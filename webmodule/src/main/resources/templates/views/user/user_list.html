@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+
+<body>
+<div id="wrapperZlc">
+    <div id="page-innerZlc">
+        <div style="margin-top: 10px;">
+            <form class="form-inline">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="usernameForm" class="lable-margin">姓名</label>
+                        <input type="text" class="form-control" id="usernameForm" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="useridentyForm" class="lable-margin">身份证号</label>
+                        <input type="text" class="form-control" id="useridentyForm">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default" onclick="userModle.SearchData();">查询</button>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" data-toggle="modal" onclick="sysUserAdd.toAdd();">新增</a>
+                <!--<a class="btn btn-primary" onclick="userModle.add()">新增2</a>-->
+            </form>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="table2">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="sysUserAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 700px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    新增
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="container" style="height: 500px;overflow-y:scroll;">
+                    <div class="row">
+                        <section>
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <form class="form-horizontal" action="/user/doAdd" method="post" id="sysUserForm"
+                                      style="margin-top: 10px;">
+                                    <table>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">账户名</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="username" id="username"
+                                                           type="text" placeholder=""/>
+                                                    <input name="id" type="hidden" id="id" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">真实姓名</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="realname" id="realname"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">密码</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="password" id="password"
+                                                           type="password" placeholder="初始密码六个1"/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">确认密码</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="confirmPassword" type="password"
+                                                           placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">邮箱</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="email" id="email" type="text"
+                                                           placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">电话</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="phone" id="phone" type="text"
+                                                           placeholder=""/>
+
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">身份证号</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="useridenty" id="useridenty"
+                                                           type="text" placeholder=""/>
+
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">出生日期</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="birthday" id="birthday"
+                                                           type="text" placeholder=""/>
+
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">年龄</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="age" id="age" type="text"
+                                                           placeholder=""/>
+
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">性别</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+
+                                                    <label class="checkbox-inline">
+                                                        <input name="sex" value="1" type="radio" placeholder=""/> 男
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input name="sex" value="2" type="radio" placeholder=""/> 女
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">现住地址</label>
+                                            </td>
+                                            <td colspan="2">
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <textarea class="form-control" name="address" rows="3" id="address"
+                                                              style="width: 300px"></textarea>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">备注</label>
+                                            </td>
+                                            <td colspan="2">
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <textarea class="form-control" name="meno" rows="3" id="meno"
+                                                              style="width: 300px"></textarea>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+
+                                    <!--<div class="form-group " align="center">-->
+                                    <!--<a class="btn btn-info" onclick="sysUserAdd.doAdd()" id="validateBtn">保存</a>-->
+                                    <!--<button type="reset" class="btn btn-default">重置</button>-->
+                                    <!--<button type="button" class="btn btn-default" onclick="sysUserAdd.close()">关闭</button>-->
+                                    <!--</div>-->
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/sys/sysUser/sysUserList.js}"></script>
+<script th:src="@{/js/sys/sysUser/sysUserAdd_Edit.js}"></script>
+</body>
+</html>

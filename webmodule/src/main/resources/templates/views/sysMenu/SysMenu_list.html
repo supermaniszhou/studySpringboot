@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+
+
+<body>
+<div id="wrapperZlc">
+    <div id="page-innerZlc">
+        <div style="margin-top: 10px; margin-bottom: 20px;">
+            <form class="form-inline">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="usernameForm" class="lable-margin">菜单名称</label>
+                        <input type="text" name="menuName" class="form-control" id="usernameForm" placeholder="">
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-default" onclick="sysMenuModle.SearchData();"> 查询</button>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" data-toggle="modal" onclick="sysMenuAddEdit.toAdd();">新增</a>
+            </form>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="SysMenutable">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="sysMenuAdd" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 700px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    新增
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="container" style="height: 500px;overflow-y:scroll;">
+                    <div class="row">
+                        <section>
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <form class="form-horizontal"
+                                      id="sysMenuForm"
+                                      style="margin-top: 10px;">
+                                    <table>
+                                        <tr hidden="hidden">
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label"></label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="id" id="id"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">菜单名称</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="menuName" id="menuName"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">等级</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="menuLevel" id="menuLevel"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">父级</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <!--<input class="form-control" name="menuParent" id="menuParent"-->
+                                                    <!--type="text" placeholder=""/>-->
+                                                    <input type="text" id="menuParent" name="menuParent"
+                                                           class="form-control" value="" onclick="$('#treeview').show()"
+                                                           placeholder="分类名称">
+                                                    <!--<div id="treeview" style="">-->
+
+                                                    <!--</div>-->
+                                                    <div class="sidebar-collapse">
+                                                        <ul class="nav" id="treeview">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">排序</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="menuOrder" id="menuOrder"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr hidden="hidden">
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">子级</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="menuChild" id="menuChild"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">描述</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="memo" id="memo"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">地址</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="menuUrl" id="menuUrl"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/sys/sysMenu/SysMenuList.js}"></script>
+<script th:src="@{/js/sys/sysMenu/SysMenuAdd_Edit.js}"></script>
+<script>
+
+    function test() {
+        var selRows = $table.bootstrapTable("getSelections");
+        if (selRows.length == 0) {
+            alert("请至少选择一行");
+            return;
+        }
+
+        var postData = "";
+        $.each(selRows, function (i) {
+            postData += this.id;
+            if (i < selRows.length - 1) {
+                postData += "， ";
+            }
+        });
+        alert("你选中行的 id 为：" + postData);
+
+    }
+
+    function add(id) {
+        alert("add 方法 , id = " + id);
+    }
+
+    function del(id) {
+        alert("del 方法 , id = " + id);
+    }
+
+    function update(id) {
+        alert("update 方法 , id = " + id);
+    }
+
+
+</script>
+</body>
+</html>

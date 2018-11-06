@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhou.mapper.sys.UserMapper">
+    <sql id="searchCondition">
+        <where>
+            1=1
+            <if test="realname !=null and realname  !=''">AND realname=#{realname}</if>
+            <if test="username !=null and username  !=''">AND USERNAME LIKE '%'||#{username}||'%'</if>
+            <if test="useridenty !=null and useridenty  !=''">AND USERIDENTY like '%'||#{useridenty}||'%'</if>
+        </where>
+    </sql>
+
+    <select id="queryCount" parameterType="com.zhou.entity.sys.SysUser" resultType="int">
+        select count(1) from zlc.sys_user
+        <include refid="searchCondition"></include>
+    </select>
+
+    <insert id="add" parameterType="com.zhou.entity.sys.SysUser">
+        insert into ZLC.sys_user (
+        <trim suffixOverrides=",">
+
+            <if test="username !=null and username !=''">
+                USERNAME,
+            </if>
+            <if test="password !=null and password !=''">
+                PASSWORD,
+            </if>
+            <if test="email !=null and email !=''">
+                EMAIL,
+            </if>
+            <if test="address !=null and address !=''">
+                ADDRESS,
+            </if>
+            <if test="phone !=null and phone !=''">
+                PHONE,
+            </if>
+            <if test="age !=null and age !=''">
+                AGE,
+            </if>
+            <if test="sex !=null and sex !=''">
+                SEX,
+            </if>
+            <if test="qq !=null and qq !=''">
+                QQ,
+            </if>
+            <if test="weixin !=null and weixin !=''">
+                WEIXIN,
+            </if>
+            <if test="useridenty !=null and useridenty !=''">
+                USERIDENTY,
+            </if>
+            <if test="isdel !=null and isdel !=''">
+                ISDEL,
+            </if>
+            <if test="isdisable !=null and isdisable !=''">
+                ISDISABLE,
+            </if>
+            <if test="createtime !=null and createtime !=''">
+                CREATETIME,
+            </if>
+            <if test="updatetime !=null and updatetime !=''">
+                UPDATETIME,
+            </if>
+            <if test="loginstatus !=null and loginstatus !=''">
+                LOGINSTATUS,
+            </if>
+            <if test="meno !=null and meno !=''">
+                MENO,
+            </if>
+            <if test="realname !=null and realname !=''">
+                REALNAME,
+            </if>
+        </trim>
+        ) VALUES (
+        <trim suffixOverrides=",">
+
+            <if test="username !=null and username !=''">
+                #{username},
+            </if>
+            <if test="password !=null and password !=''">
+                #{password},
+            </if>
+            <if test="email !=null and email !=''">
+                #{email},
+            </if>
+            <if test="address !=null and address !=''">
+                #{address},
+            </if>
+            <if test="phone !=null and phone !=''">
+                #{phone},
+            </if>
+            <if test="age !=null and age !=''">
+                #{age},
+            </if>
+            <if test="sex !=null and sex !=''">
+                #{sex},
+            </if>
+            <if test="qq !=null and qq !=''">
+                #{qq},
+            </if>
+            <if test="weixin !=null and weixin !=''">
+                #{weixin},
+            </if>
+            <if test="useridenty !=null and useridenty !=''">
+                #{useridenty},
+            </if>
+            <if test="isdel !=null and isdel !=''">
+                #{isdel},
+            </if>
+            <if test="isdisable !=null and isdisable !=''">
+                #{isdisable},
+            </if>
+            <if test="createtime !=null and createtime !=''">
+                #{createtime},
+            </if>
+            <if test="updatetime !=null and updatetime !=''">
+                #{updatetime},
+            </if>
+            <if test="loginstatus !=null and loginstatus !=''">
+                #{loginstatus},
+            </if>
+            <if test="meno !=null and meno !=''">
+                #{meno},
+            </if>
+            <if test="realname !=null and realname !=''">
+                #{realname},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <update id="update" parameterType="com.zhou.entity.sys.SysUser">
+        update ZLC.sys_user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="username !=null and username !=''">
+                USERNAME=#{username},
+            </if>
+            <if test="password !=null and password !=''">
+                PASSWORD=#{password},
+            </if>
+            <if test="email !=null and email !=''">
+                EMAIL=#{email},
+            </if>
+            <if test="address !=null and address !=''">
+                ADDRESS=#{address},
+            </if>
+            <if test="phone !=null and phone !=''">
+                PHONE=#{phone},
+            </if>
+            <if test="age !=null and age !=''">
+                AGE=#{age},
+            </if>
+            <if test="sex !=null and sex !=''">
+                SEX=#{sex},
+            </if>
+            <if test="qq !=null and qq !=''">
+                QQ=#{qq},
+            </if>
+            <if test="weixin !=null and weixin !=''">
+                WEIXIN=#{weixin},
+            </if>
+            <if test="useridenty !=null and useridenty !=''">
+                USERIDENTY=#{useridenty},
+            </if>
+            <if test="isdel !=null and isdel !=''">
+                ISDEL=#{isdel},
+            </if>
+            <if test="isdisable !=null and isdisable !=''">
+                ISDISABLE=#{isdisable},
+            </if>
+            <if test="createtime !=null and createtime !=''">
+                CREATETIME=#{createtime},
+            </if>
+            <if test="updatetime !=null and updatetime !=''">
+                UPDATETIME=#{updatetime},
+            </if>
+            <if test="loginstatus !=null and loginstatus !=''">
+                LOGINSTATUS=#{loginstatus},
+            </if>
+            <if test="meno !=null and meno !=''">
+                MENO=#{meno},
+            </if>
+            <if test="realname !=null and realname !=''">
+                REALNAME=#{realname},
+            </if>
+        </trim>
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                <if test="id !=null and id !=''">
+                    and ID=#{id},
+                </if>
+            </trim>
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="com.zhou.entity.sys.SysUser">
+        delete from ZLC.sys_user
+        <where>1=1
+            <trim suffixOverrides=",">
+                <if test="id !=null and id !=''">
+                    and ID=#{id},
+                </if>
+            </trim>
+        </where>
+    </delete>
+
+    <select id="queryList" parameterType="SysUser" resultType="SysUser">
+        select * from sys_user
+        <include refid="searchCondition"></include>
+        order by id desc
+    </select>
+
+    <select id="getAll" resultType="com.zhou.entity.sys.SysUser">
+        select * from sys_user
+    </select>
+
+    <select id="query" resultType="SysUser" parameterType="SysUser">
+        select * from sys_user
+        <where>
+            1=1
+            <if test="id !=null and id !=''">and id=#{id}</if>
+            <if test="username !=null and username !=''">and username=#{username}</if>
+            <if test="useridenty !=null and useridenty !=''">and useridenty=#{useridenty}</if>
+        </where>
+    </select>
+
+
+</mapper>

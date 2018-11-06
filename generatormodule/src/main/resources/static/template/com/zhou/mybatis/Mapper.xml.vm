@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${mapperP}.${className}Mapper">
+
+    <sql id="searchCondition">
+        <where>
+            1=1
+            #foreach($column in $columnFieldmap.entrySet())
+                <if test="$column.value !=null and $column.value !=''">
+                   and ${column.key}=#{${column.value}}
+                </if>
+            #end
+        </where>
+    </sql>
+
+    <select id="queryCount" parameterType="com.zhou.entity.sys.SysUser" resultType="int">
+        select count(1) from ${tableSchem}.${tableName}
+        <include refid="searchCondition"></include>
+    </select>
+
+    <insert id="add" parameterType="${entityP}.${className}">
+        insert into ${tableSchem}.${tableName} (
+        <trim suffixOverrides=",">
+        #foreach($column in $columnFieldmap.entrySet())
+        <if test="$column.value !=null and $column.value !=''">
+                ${column.key},
+            </if>
+        #end
+        </trim>
+        ) VALUES (
+        <trim suffixOverrides=",">
+            #foreach($f in $fieldList)
+            <if test="${f} !=null and ${f} !=''">
+                    #{${f}},
+                </if>
+            #end
+        </trim>
+        )
+    </insert>
+
+    <update id="update" parameterType="${entityP}.${className}">
+        update ${tableSchem}.${tableName}
+        <trim prefix="set" suffixOverrides="," >
+        #foreach($column in $columnFieldmap.entrySet())
+            <if test="$column.value !=null and $column.value !=''">
+                ${column.key}=#{${column.value}},
+            </if>
+        #end
+        </trim>
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                #foreach($column in $columnFieldmap.entrySet())
+                    <if test="$column.value !=null and $column.value !=''">
+                       and ${column.key}=#{${column.value}}
+                    </if>
+                #end
+            </trim>
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="${entityP}.${className}">
+        delete from ${tableSchem}.${tableName}
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                #foreach($column in $columnFieldmap.entrySet())
+                    <if test="$column.value !=null and $column.value !=''">
+                       and ${column.key}=#{${column.value}},
+                    </if>
+                #end
+            </trim>
+
+        </where>
+    </delete>
+
+    <select id="query" parameterType="${entityP}.${className}" resultType="${entityP}.${className}">
+        select
+        <trim suffixOverrides=",">
+        #foreach($column in $columnFieldmap.entrySet())
+            ${column.key} AS ${column.value},
+        #end
+        </trim>
+        from ${tableSchem}.${tableName}
+        <where>
+            1=1
+            #foreach($column in $columnFieldmap.entrySet())
+            <if test="$column.value !=null and $column.value !=''">
+                    and ${column.key}=#{${column.value}}
+                </if>
+            #end
+        </where>
+    </select>
+
+    <select id="queryList" parameterType="${entityP}.${className}" resultType="${entityP}.${className}">
+        select
+        <trim suffixOverrides=",">
+            #foreach($column in $columnFieldmap.entrySet())
+                ${column.key} AS ${column.value},
+            #end
+        </trim>
+        from ${tableSchem}.${tableName}
+        <include refid="searchCondition"></include>
+        order by id DESC
+    </select>
+
+    <select id="getAll" resultType="${entityP}.${className}">
+        select
+        <trim suffixOverrides=",">
+            #foreach($column in $columnFieldmap.entrySet())
+                ${column.key} AS ${column.value},
+            #end
+        </trim>
+         from ${tableSchem}.${tableName}
+    </select>
+
+
+</mapper>

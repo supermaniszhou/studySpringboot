@@ -1,0 +1,7 @@
+package ${serviceP};
+
+import ${entityP}.${className};
+
+
+public interface ${className}Service<T extends ${className}> extends CommonService<T> {
+}

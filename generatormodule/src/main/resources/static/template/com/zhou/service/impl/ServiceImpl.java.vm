@@ -1,0 +1,53 @@
+package ${serviceImplP};
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import ${entityP}.${className};
+import ${mapperP}.${className}Mapper;
+import ${serviceP}.${className}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ${className}ServiceImpl implements ${className}Service<${className}> {
+    @Autowired
+    private ${className}Mapper<${className}> mapper;
+
+    @Override
+    public int queryCount(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        return mapper.queryCount(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    }
+
+    @Override
+    public void addObj(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        mapper.add(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    }
+
+    @Override
+    public void deleteObj(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        mapper.delete(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    }
+
+    @Override
+    public void updateObj(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        mapper.update(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    }
+
+    @Override
+    public ${className} queryObj(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        return mapper.query(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    }
+
+    @Override
+    public Page<${className}> queryList(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}, int page, int pagesize) {
+        PageHelper.startPage(page, pagesize);
+        return mapper.queryList(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    }
+
+    @Override
+    public List<${className}> getAll() {
+        return mapper.getAll();
+    }
+}

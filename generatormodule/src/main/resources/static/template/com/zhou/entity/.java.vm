@@ -1,0 +1,22 @@
+package ${entityP};
+import java.lang.*;
+import java.math.*;
+import java.io.*;
+
+public class $className implements Serializable{
+#foreach($sysuser in $list)
+    private $sysuser.get(0) $sysuser.get(1);//$sysuser.get(2)
+#end
+    public $className(){}
+#foreach($u in $list)
+    public $u.get(0) get${u.get(1).substring(0,1).toUpperCase()}${u.get(1).substring(1)}() {
+        return $u.get(1);
+    }
+
+    public void set${u.get(1).substring(0,1).toUpperCase()}${u.get(1).substring(1)}($u.get(0) $u.get(1)) {
+        this.$u.get(1) = $u.get(1);
+    }
+#end
+
+}
+

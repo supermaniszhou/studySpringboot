@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+<style type="text/css">
+    .lwidth {
+        width: 120px;
+    }
+    .tdZ {
+        width: 200px;
+    }
+</style>
+<body>
+<div class="container " style="height: 400px;overflow-y: scroll;" >
+    <div class="row">
+        <section>
+            <div class="col-lg-6 col-lg-offset-2">
+                <form class="form-horizontal" action="/user/doAdd" method="post" id="sysUserForm" style="margin-top: 10px;">
+                    <table>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">账户名</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="username"  readonly type="text" placeholder=""/>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">真实姓名</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="realname"  th:value="${sysUser.realname}" readonly  type="text" placeholder=""/>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">密码</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="password" type="password" placeholder="初始密码六个1"/>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">确认密码</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="confirmPassword" type="password" placeholder=""/>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">邮箱</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="email" type="text" placeholder=""/>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">电话</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="phone" type="text" placeholder=""/>
+
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">身份证号</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="useridenty" type="text" placeholder=""/>
+
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">出生日期</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="birthday" type="text" placeholder=""/>
+
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">年龄</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="age" type="text" placeholder=""/>
+
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">性别</label>
+                            </td>
+                            <td>
+                                <div class="form-group" style="margin-left: 50px">
+                                    <input class="form-control" name="sex" type="text" placeholder=""/>
+
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">现住地址</label>
+                            </td>
+                            <td colspan="2">
+                                <div class="form-group" style="margin-left: 50px">
+                                    <textarea class="form-control" name="address" rows="3"
+                                              style="width: 300px"></textarea>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdZ" align="right">
+                                <label class="control-label">备注</label>
+                            </td>
+                            <td colspan="2">
+                                <div class="form-group" style="margin-left: 50px">
+                                    <textarea class="form-control" name="memo" rows="3" style="width: 300px"></textarea>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                    <!--<div class="form-group " align="center">-->
+                        <!--<a class="btn btn-info" onclick="sysUserAdd.doAdd()"   id="validateBtn">保存</a>-->
+                        <!--<button type="reset" class="btn btn-default">重置</button>-->
+                        <!--<button type="button" class="btn btn-default" onclick="sysUserAdd.close()">关闭</button>-->
+                    <!--</div>-->
+                </form>
+            </div>
+
+        </section>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/js/sys/sysUser/sysUserAdd.js}">
+</script>
+</body>
+</html>

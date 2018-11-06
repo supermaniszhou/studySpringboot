@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhou.mapper.sys.SysLogMapper">
+
+    <sql id="searchCondition">
+        <where>
+            1=1
+            <if test="id !=null and id !=''">
+                and ID=#{id}
+            </if>
+            <if test="userId !=null and userId !=''">
+                and USER_ID=#{userId}
+            </if>
+            <if test="userName !=null and userName !=''">
+                and USER_NAME=#{userName}
+            </if>
+            <if test="userIp !=null and userIp !=''">
+                and USER_IP=#{userIp}
+            </if>
+            <if test="userMac !=null and userMac !=''">
+                and USER_MAC=#{userMac}
+            </if>
+            <if test="oporateComment !=null and oporateComment !=''">
+                and OPORATE_COMMENT=#{oporateComment}
+            </if>
+            <if test="oporateTime !=null and oporateTime !=''">
+                and OPORATE_TIME=#{oporateTime}
+            </if>
+            <if test="opotateType !=null and opotateType !=''">
+                and OPOTATE_TYPE=#{opotateType}
+            </if>
+        </where>
+    </sql>
+
+    <select id="queryCount" parameterType="com.zhou.entity.sys.SysUser" resultType="int">
+        select count(1) from ZLC.sys_log
+        <include refid="searchCondition"></include>
+    </select>
+
+    <insert id="add" parameterType="com.zhou.entity.sys.SysLog">
+        insert into ZLC.sys_log (
+        <trim suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                ID,
+            </if>
+            <if test="userId !=null and userId !=''">
+                USER_ID,
+            </if>
+            <if test="userName !=null and userName !=''">
+                USER_NAME,
+            </if>
+            <if test="userIp !=null and userIp !=''">
+                USER_IP,
+            </if>
+            <if test="userMac !=null and userMac !=''">
+                USER_MAC,
+            </if>
+            <if test="oporateComment !=null and oporateComment !=''">
+                OPORATE_COMMENT,
+            </if>
+            <if test="oporateTime !=null and oporateTime !=''">
+                OPORATE_TIME,
+            </if>
+            <if test="opotateType !=null and opotateType !=''">
+                OPOTATE_TYPE,
+            </if>
+        </trim>
+        ) VALUES (
+        <trim suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                #{id},
+            </if>
+            <if test="userId !=null and userId !=''">
+                #{userId},
+            </if>
+            <if test="userName !=null and userName !=''">
+                #{userName},
+            </if>
+            <if test="userIp !=null and userIp !=''">
+                #{userIp},
+            </if>
+            <if test="userMac !=null and userMac !=''">
+                #{userMac},
+            </if>
+            <if test="oporateComment !=null and oporateComment !=''">
+                #{oporateComment},
+            </if>
+            <if test="oporateTime !=null and oporateTime !=''">
+                #{oporateTime},
+            </if>
+            <if test="opotateType !=null and opotateType !=''">
+                #{opotateType},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <update id="update" parameterType="com.zhou.entity.sys.SysLog">
+        update ZLC.sys_log
+        <trim prefix="set" suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                ID=#{id},
+            </if>
+            <if test="userId !=null and userId !=''">
+                USER_ID=#{userId},
+            </if>
+            <if test="userName !=null and userName !=''">
+                USER_NAME=#{userName},
+            </if>
+            <if test="userIp !=null and userIp !=''">
+                USER_IP=#{userIp},
+            </if>
+            <if test="userMac !=null and userMac !=''">
+                USER_MAC=#{userMac},
+            </if>
+            <if test="oporateComment !=null and oporateComment !=''">
+                OPORATE_COMMENT=#{oporateComment},
+            </if>
+            <if test="oporateTime !=null and oporateTime !=''">
+                OPORATE_TIME=#{oporateTime},
+            </if>
+            <if test="opotateType !=null and opotateType !=''">
+                OPOTATE_TYPE=#{opotateType},
+            </if>
+        </trim>
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                <if test="id !=null and id !=''">
+                    and ID=#{id}
+                </if>
+                <if test="userId !=null and userId !=''">
+                    and USER_ID=#{userId}
+                </if>
+                <if test="userName !=null and userName !=''">
+                    and USER_NAME=#{userName}
+                </if>
+                <if test="userIp !=null and userIp !=''">
+                    and USER_IP=#{userIp}
+                </if>
+                <if test="userMac !=null and userMac !=''">
+                    and USER_MAC=#{userMac}
+                </if>
+                <if test="oporateComment !=null and oporateComment !=''">
+                    and OPORATE_COMMENT=#{oporateComment}
+                </if>
+                <if test="oporateTime !=null and oporateTime !=''">
+                    and OPORATE_TIME=#{oporateTime}
+                </if>
+                <if test="opotateType !=null and opotateType !=''">
+                    and OPOTATE_TYPE=#{opotateType}
+                </if>
+            </trim>
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="com.zhou.entity.sys.SysLog">
+        delete from ZLC.sys_log
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                <if test="id !=null and id !=''">
+                    and ID=#{id},
+                </if>
+                <if test="userId !=null and userId !=''">
+                    and USER_ID=#{userId},
+                </if>
+                <if test="userName !=null and userName !=''">
+                    and USER_NAME=#{userName},
+                </if>
+                <if test="userIp !=null and userIp !=''">
+                    and USER_IP=#{userIp},
+                </if>
+                <if test="userMac !=null and userMac !=''">
+                    and USER_MAC=#{userMac},
+                </if>
+                <if test="oporateComment !=null and oporateComment !=''">
+                    and OPORATE_COMMENT=#{oporateComment},
+                </if>
+                <if test="oporateTime !=null and oporateTime !=''">
+                    and OPORATE_TIME=#{oporateTime},
+                </if>
+                <if test="opotateType !=null and opotateType !=''">
+                    and OPOTATE_TYPE=#{opotateType},
+                </if>
+            </trim>
+
+        </where>
+    </delete>
+
+    <select id="query" parameterType="com.zhou.entity.sys.SysLog" resultType="com.zhou.entity.sys.SysLog">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            USER_ID AS userId,
+            USER_NAME AS userName,
+            USER_IP AS userIp,
+            USER_MAC AS userMac,
+            OPORATE_COMMENT AS oporateComment,
+            OPORATE_TIME AS oporateTime,
+            OPOTATE_TYPE AS opotateType,
+        </trim>
+        from ZLC.sys_log
+        <where>
+            1=1
+            <if test="id !=null and id !=''">
+                and ID=#{id}
+            </if>
+            <if test="userId !=null and userId !=''">
+                and USER_ID=#{userId}
+            </if>
+            <if test="userName !=null and userName !=''">
+                and USER_NAME=#{userName}
+            </if>
+            <if test="userIp !=null and userIp !=''">
+                and USER_IP=#{userIp}
+            </if>
+            <if test="userMac !=null and userMac !=''">
+                and USER_MAC=#{userMac}
+            </if>
+            <if test="oporateComment !=null and oporateComment !=''">
+                and OPORATE_COMMENT=#{oporateComment}
+            </if>
+            <if test="oporateTime !=null and oporateTime !=''">
+                and OPORATE_TIME=#{oporateTime}
+            </if>
+            <if test="opotateType !=null and opotateType !=''">
+                and OPOTATE_TYPE=#{opotateType}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryList" parameterType="com.zhou.entity.sys.SysLog" resultType="com.zhou.entity.sys.SysLog">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            USER_ID AS userId,
+            USER_NAME AS userName,
+            USER_IP AS userIp,
+            USER_MAC AS userMac,
+            OPORATE_COMMENT AS oporateComment,
+            OPORATE_TIME AS oporateTime,
+            OPOTATE_TYPE AS opotateType,
+        </trim>
+        from ZLC.sys_log
+        <include refid="searchCondition"></include>
+        order by id DESC
+    </select>
+
+    <select id="getAll" resultType="com.zhou.entity.sys.SysLog">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            USER_ID AS userId,
+            USER_NAME AS userName,
+            USER_IP AS userIp,
+            USER_MAC AS userMac,
+            OPORATE_COMMENT AS oporateComment,
+            OPORATE_TIME AS oporateTime,
+            OPOTATE_TYPE AS opotateType,
+        </trim>
+        from ZLC.sys_log
+    </select>
+
+
+</mapper>

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9643870b-672a-4308-b1fb-0fc9818e8371" name="Default" comment="" />
+    <list default="true" id="9643870b-672a-4308-b1fb-0fc9818e8371" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/StudySpringboot/.idea/encodings.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/StudySpringboot/.idea/modules.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/StudySpringboot/.idea/workspace.xml" afterPath="" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/webmodule/target/" />
     <ignored path="$PROJECT_DIR$/generatormodule/target/" />
@@ -46,16 +54,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SysLogMapper.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webmodule/src/main/resources/sqlmapper/sys/SysLogMapper.xml">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="10" column="53" lean-forward="true" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+            <state relative-caret-position="112">
+              <caret line="39" column="45" lean-forward="false" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebmoduleApplication.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webmodule/src/main/java/com/zhou/WebmoduleApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding>
-                <marker date="1541492140310" expanded="true" signature="1341:1373" ph="select count... sys_log" />
-                <marker date="1541492140310" expanded="true" signature="1514:3339" ph="insert into ZLC.sys_log... " />
-                <marker date="1541492140310" expanded="true" signature="8487:8927" ph="select ID AS... sys_log" />
-                <marker date="1541492140310" expanded="true" signature="9016:9379" ph="select ID AS... sys_log" />
+                <element signature="e#354#355#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -69,6 +85,9 @@
       <find>queryObj</find>
       <find>mybatis</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -136,9 +155,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-135" />
-    <option name="y" value="17" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-49" />
+    <option name="y" value="28" />
     <option name="width" value="1534" />
     <option name="height" value="916" />
   </component>
@@ -157,6 +176,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,54 +219,13 @@
               <item name="webmodule" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudySpringboot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudySpringboot" type="462c0819:PsiDirectoryNode" />
-              <item name="webmodule" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="sqlmapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudySpringboot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudySpringboot" type="462c0819:PsiDirectoryNode" />
-              <item name="webmodule" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="sqlmapper" type="462c0819:PsiDirectoryNode" />
-              <item name="sys" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudySpringboot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudySpringboot" type="462c0819:PsiDirectoryNode" />
-              <item name="webmodule" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudySpringboot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudySpringboot" type="462c0819:PsiDirectoryNode" />
-              <item name="webmodule" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="zhou" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,7 +233,7 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/commonutil" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelOrder0" value="0" />
@@ -260,6 +242,9 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="RequestMappingsPanelOrder2" value="2" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Oracle" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -403,15 +388,15 @@
       <updated>1541471407283</updated>
       <workItem from="1541471408614" duration="14627000" />
       <workItem from="1541492246606" duration="158000" />
+      <workItem from="1541492893453" duration="388000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14785000" />
+    <option name="totallyTimeSpent" value="15173000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1554" height="916" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1554" height="916" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -431,11 +416,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36445013" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27576974" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27576974" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -478,6 +463,19 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/webmodule/src/main/resources/sqlmapper/sys/SysLogMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1541492140310" expanded="true" signature="1341:1373" ph="select count... sys_log" />
+            <marker date="1541492140310" expanded="true" signature="1514:3339" ph="insert into ZLC.sys_log... " />
+            <marker date="1541492140310" expanded="true" signature="8487:8927" ph="select ID AS... sys_log" />
+            <marker date="1541492140310" expanded="true" signature="9016:9379" ph="select ID AS... sys_log" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webmodule/src/main/java/com/zhou/WebmoduleApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -509,26 +507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2700">
           <caret line="117" column="18" lean-forward="false" selection-start-line="117" selection-start-column="18" selection-end-line="117" selection-end-column="18" />
-          <folding>
-            <marker date="1541422686952" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1541422686952" expanded="false" signature="162:711" ph="..." />
-            <marker date="1541422686952" expanded="false" signature="1105:1116" ph=" { " />
-            <marker date="1541422686952" expanded="false" signature="1137:1143" ph=" }" />
-            <marker date="1541422686952" expanded="false" signature="1206:1217" ph=" { " />
-            <marker date="1541422686952" expanded="false" signature="1237:1243" ph=" }" />
-            <marker date="1541422686952" expanded="true" signature="1365:1421" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="1500:1559" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="1669:1728" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="1822:1893" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="2033:2638" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="2788:4133" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="4212:4389" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="4485:4943" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="5008:6165" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="6250:6846" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="6929:7500" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="7560:7893" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -536,7 +514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -753,22 +730,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webmodule/src/main/java/com/zhou/WebmoduleApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#354#355#0" expanded="true" />
-            <element signature="e#416#417#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webmodule/src/main/java/com/zhou/service/sys/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -797,26 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2700">
           <caret line="117" column="18" lean-forward="false" selection-start-line="117" selection-start-column="18" selection-end-line="117" selection-end-column="18" />
-          <folding>
-            <marker date="1541422686952" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1541422686952" expanded="false" signature="162:711" ph="..." />
-            <marker date="1541422686952" expanded="false" signature="1105:1116" ph=" { " />
-            <marker date="1541422686952" expanded="false" signature="1137:1143" ph=" }" />
-            <marker date="1541422686952" expanded="false" signature="1206:1217" ph=" { " />
-            <marker date="1541422686952" expanded="false" signature="1237:1243" ph=" }" />
-            <marker date="1541422686952" expanded="true" signature="1365:1421" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="1500:1559" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="1669:1728" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="1822:1893" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="2033:2638" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="2788:4133" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="4212:4389" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="4485:4943" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="5008:6165" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="6250:6846" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="6929:7500" ph="{...}" />
-            <marker date="1541422686952" expanded="true" signature="7560:7893" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -841,18 +786,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="39" column="45" lean-forward="true" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webmodule/src/main/resources/sqlmapper/sys/SysLogMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="10" column="53" lean-forward="true" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+          <caret line="10" column="53" lean-forward="false" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
           <folding>
             <marker date="1541492140310" expanded="true" signature="1341:1373" ph="select count... sys_log" />
             <marker date="1541492140310" expanded="true" signature="1514:3339" ph="insert into ZLC.sys_log... " />
@@ -862,12 +799,102 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="39" column="45" lean-forward="false" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webmodule/src/main/java/com/zhou/WebmoduleApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>commonutil</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.1.11</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

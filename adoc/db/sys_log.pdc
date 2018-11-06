@@ -1,0 +1,55 @@
+-- Create table
+create table SYS_LOG
+(
+  id              NUMBER default 10 not null,
+  user_id         VARCHAR2(30),
+  user_name       VARCHAR2(50),
+  user_ip         VARCHAR2(50),
+  user_mac        VARCHAR2(50),
+  oporate_comment VARCHAR2(2000),
+  oporate_time    DATE,
+  opotate_type    NUMBER default 3
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column SYS_LOG.id
+  is '编号';
+comment on column SYS_LOG.user_id
+  is '用户ID';
+comment on column SYS_LOG.user_name
+  is '用户名称';
+comment on column SYS_LOG.user_ip
+  is '用户IP地址';
+comment on column SYS_LOG.user_mac
+  is '用户Mac地址';
+comment on column SYS_LOG.oporate_comment
+  is '操作内容';
+comment on column SYS_LOG.oporate_time
+  is '操作时间';
+comment on column SYS_LOG.opotate_type
+  is '操作类型';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table SYS_LOG
+  add constraint KEY primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );

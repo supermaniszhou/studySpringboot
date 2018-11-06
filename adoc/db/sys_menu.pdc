@@ -1,0 +1,59 @@
+-- Create table
+create table SYS_MENU
+(
+  id          NUMBER(18) not null,
+  menu_name   VARCHAR2(50),
+  menu_level  NUMBER(3),
+  menu_parent NUMBER(18),
+  menu_order  VARCHAR2(50),
+  menu_child  VARCHAR2(50),
+  memo        VARCHAR2(2000),
+  menu_url    VARCHAR2(200),
+  menu_icon   VARCHAR2(50),
+  yes_no      INTEGER default 0
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column SYS_MENU.menu_name
+  is '菜单名称';
+comment on column SYS_MENU.menu_level
+  is '等级';
+comment on column SYS_MENU.menu_parent
+  is '父级';
+comment on column SYS_MENU.menu_order
+  is '排序';
+comment on column SYS_MENU.menu_child
+  is '子级';
+comment on column SYS_MENU.memo
+  is '描述';
+comment on column SYS_MENU.menu_url
+  is '地址';
+comment on column SYS_MENU.menu_icon
+  is '图标';
+comment on column SYS_MENU.yes_no
+  is '是否启用';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table SYS_MENU
+  add primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );

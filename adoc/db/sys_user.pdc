@@ -1,0 +1,58 @@
+-- Create table
+create table SYS_USER
+(
+  id          NUMBER(18) not null,
+  username    VARCHAR2(50),
+  password    VARCHAR2(50),
+  email       VARCHAR2(50),
+  address     VARCHAR2(300),
+  phone       VARCHAR2(300),
+  age         NUMBER(3),
+  sex         NUMBER(2),
+  qq          VARCHAR2(200),
+  weixin      VARCHAR2(50),
+  useridenty  VARCHAR2(100),
+  isdel       VARCHAR2(50),
+  isdisable   VARCHAR2(200),
+  createtime  DATE,
+  updatetime  DATE,
+  loginstatus NUMBER(2),
+  meno        VARCHAR2(2000),
+  realname    VARCHAR2(50)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table SYS_USER
+  is '用户表';
+-- Add comments to the columns 
+comment on column SYS_USER.username
+  is '姓名';
+comment on column SYS_USER.password
+  is '密码';
+comment on column SYS_USER.email
+  is '邮箱';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table SYS_USER
+  add primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );

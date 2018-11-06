@@ -3,7 +3,7 @@ package com.zhou.service.sys.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.zhou.entity.sys.SysUser;
-import com.zhou.mapper.sys.UserMapper;
+import com.zhou.mapper.sys.SysUserMapper;
 import com.zhou.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService<SysUser> {
 
     @Autowired
-    private UserMapper<SysUser> userMapper;
+    private SysUserMapper<SysUser> userMapper;
 
     @Override
     public int queryCount(SysUser sysUser) {

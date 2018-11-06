@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Administrator on 2017/12/25 0025.
  */
 @Repository
-public interface UserMapper<T extends SysUser> {
+public interface SysUserMapper<T extends SysUser> {
 
     int queryCount(T t);
 

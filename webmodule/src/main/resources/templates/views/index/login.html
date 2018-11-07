@@ -12,7 +12,7 @@
 <div class="logo_box">
     <h3>某某公司欢迎你</h3>
     <h5 align="center" style="color: red;" id="errorInfo"></h5>
-    <form id="form" action="#" method="post">
+    <form id="form">
         <div class="input_outer">
             <span class="u_user"></span>
             <input name="username" id="username" class="text" onFocus=" if(this.value=='输入ID或用户名登录') this.value=''"
@@ -49,8 +49,8 @@
             success: successfun,  //提交成功后的回调函数
             target: "#output",  //把服务器返回的内容放入id为output的元素中
             dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
-            clearForm: true,  //成功提交后，是否清除所有表单元素的值
-            resetForm: true,  //成功提交后，是否重置所有表单元素的值
+            clearForm: false,  //成功提交后，是否清除所有表单元素的值
+            resetForm: false,  //成功提交后，是否重置所有表单元素的值
             timeout: 3000     //限制请求的时间，当请求大于3秒后，跳出请求
         };
         $("#form").ajaxSubmit(options);

@@ -24,7 +24,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        log.info("开始进入login拦截器---------------------------------");
+//        log.info("开始进入login拦截器---------------------------------");
         boolean flag = true;
         String url = request.getServletPath();
         String userId = (String) request.getSession().getAttribute("userId");
@@ -53,7 +53,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
-        log.info("------处理请求完成后视图渲染之前的处理操作-----------------");
+//        log.info("------处理请求完成后视图渲染之前的处理操作-----------------");
 //        request.getRequestDispatcher("/login/toIndexPage").forward(request, response);
     }
 

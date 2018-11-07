@@ -3,7 +3,7 @@ package com.zhou.controller.sys;
 import com.github.pagehelper.PageInfo;
 import com.zhou.common.base.BaseController;
 import com.zhou.entity.sys.SysUser;
-import com.zhou.service.sys.UserService;
+import com.zhou.service.sys.SysUserService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +21,9 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController extends BaseController {
+public class SysUserController extends BaseController {
     @Autowired
-    private UserService userService;
+    private SysUserService userService;
 
 
     @RequestMapping("/main")

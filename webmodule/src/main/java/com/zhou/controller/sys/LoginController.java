@@ -2,7 +2,7 @@ package com.zhou.controller.sys;
 
 import com.zhou.common.base.BaseController;
 import com.zhou.entity.sys.SysUser;
-import com.zhou.service.sys.UserService;
+import com.zhou.service.sys.SysUserService;
 import com.zhou.util.Base64Zlc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -15,22 +15,21 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static com.zhou.common.base.BaseController.VIEW_PATH;
 
 @RestController
 @RequestMapping(value = "/login")
 public class LoginController extends BaseController {
     @Autowired
-    private UserService<SysUser> userService;
+    private SysUserService<SysUser> userService;
     @Autowired
     private RedisTemplate<String, Object> template;
 
     /**
      * 登录页
      */
-    @RequestMapping(value = "/page")
+    @RequestMapping(value = "/loginpage")
     public ModelAndView toLoginPage() {
         return new ModelAndView(VIEW_PATH + "index/login");
     }
@@ -39,7 +38,7 @@ public class LoginController extends BaseController {
      * 登录操作
      */
     @RequestMapping(value = "/login")
-    public ModelAndView login(HttpServletRequest request, HttpServletResponse response, @ModelAttribute SysUser sysUser, Model model) {
+    public Map<String, Object> login(HttpServletRequest request, HttpServletResponse response, @ModelAttribute SysUser sysUser, Model model) {
         SysUser user = null;
         String token = "";
         try {
@@ -53,7 +52,7 @@ public class LoginController extends BaseController {
             if (null != user) {
                 if (!sysUser.getPassword().equals(user.getPassword())) {
                     model.addAttribute("error", "密码不正确");
-                    return new ModelAndView(VIEW_PATH + "index/login");
+                    return responseTo(ERROR_FLAG, "密码不正确");
                 } else {
                     template.opsForValue().set(Base64Zlc.encodeString(usernamepwd), user);
                     template.expire(Base64Zlc.encodeString(user.getUsername()), 30 * 60, TimeUnit.SECONDS);
@@ -64,17 +63,23 @@ public class LoginController extends BaseController {
                     cookie.setPath("/");
                     response.addCookie(cookie);
 
-                    return new ModelAndView(VIEW_PATH + "index/index");
+                    request.getSession().setAttribute("userId",Base64Zlc.encodeString(user.getUsername()));
+                    return responseTo(SUCCESS_FLAG, "/login/toIndexPage");
                 }
             } else {
                 model.addAttribute("error", "此用户不存在");
-                return new ModelAndView(VIEW_PATH + "index/login");
+                return responseTo(ERROR_FLAG, "此用户不存在");
             }
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error", "登录出错了");
-            return new ModelAndView(VIEW_PATH + "index/login");
+            return responseTo(ERROR_FLAG, "登录出错了");
         }
+    }
+
+    @RequestMapping(value = "/toIndexPage")
+    public ModelAndView toIndexPage() {
+        return new ModelAndView(VIEW_PATH + "index/index");
     }
 
     /**

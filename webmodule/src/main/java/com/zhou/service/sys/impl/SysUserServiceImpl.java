@@ -4,7 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.zhou.entity.sys.SysUser;
 import com.zhou.mapper.sys.SysUserMapper;
-import com.zhou.service.sys.UserService;
+import com.zhou.service.sys.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Administrator on 2018/4/19.
  */
 @Service
-public class UserServiceImpl implements UserService<SysUser> {
+public class SysUserServiceImpl implements SysUserService<SysUser> {
 
     @Autowired
     private SysUserMapper<SysUser> userMapper;
@@ -56,8 +56,5 @@ public class UserServiceImpl implements UserService<SysUser> {
         return userMapper.getAll();
     }
 
-    @Override
-    public SysUser query(SysUser sysUser) {
-        return userMapper.query(sysUser);
-    }
+
 }

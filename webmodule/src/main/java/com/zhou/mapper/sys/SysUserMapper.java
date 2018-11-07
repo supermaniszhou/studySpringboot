@@ -12,19 +12,6 @@ import java.util.List;
  * Created by Administrator on 2017/12/25 0025.
  */
 @Repository
-public interface SysUserMapper<T extends SysUser> {
-
-    int queryCount(T t);
-
-    void add(T t);
-
-    void delete(T t);
-
-    void update(T t);
-
-    SysUser query(SysUser t);
-
-    Page<T> queryList(T t);
-
-    List<T> getAll();
+public interface SysUserMapper<T extends SysUser> extends CommonMapper<T> {
+    
 }

@@ -52,16 +52,30 @@
             timeout: 3000     //限制请求的时间，当请求大于3秒后，跳出请求
         };
         $("#form").ajaxSubmit(options);
+        // $.post("/login/login", $("#form").serialize(), function (data) {
+        //     var url = data.msg;
+        //     if (data.code == 0) {
+        //         window.location.href = url;
+        //     }
+        // });
 
-        var formdata=$("#form").serialize();
-        console.log(formdata);
     }
 
     function beforeCheck(formData, form, options) {
-        console.log("======"+$.param(formData));
+        // console.log("======"+$.param(formData));
+        // alert(formData);
     }
 
     function successfun(data, status) {
+        var url = data.msg;
+        console.log(data);
+        console.log(status);
+        if (data.code == 0) {
+            window.location.href = url;
+        } else {
+
+        }
+
 
     }
 </script>

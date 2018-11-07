@@ -17,7 +17,7 @@ public class HomeController {
 
     @RequestMapping(value = "/toIndexPage")
     public ModelAndView toIndexPage() {
-        return new ModelAndView("views/index");
+        return new ModelAndView("views/index/index");
     }
 
     @RequestMapping(value = "/toLoginPage")

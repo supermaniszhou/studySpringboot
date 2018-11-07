@@ -205,7 +205,7 @@
         </where>
     </delete>
 
-    <select id="queryList" parameterType="SysUser" resultType="SysUser">
+    <select id="queryList" parameterType="com.zhou.entity.sys.SysUser" resultType="com.zhou.entity.sys.SysUser">
         select * from sys_user
         <include refid="searchCondition"></include>
         order by id desc
@@ -215,8 +215,8 @@
         select * from sys_user
     </select>
 
-    <select id="query" resultType="SysUser" parameterType="SysUser">
-        select * from sys_user
+    <select id="query" resultType="com.zhou.entity.sys.SysUser" parameterType="com.zhou.entity.sys.SysUser">
+        select * from ZLC.SYS_USER
         <where>
             1=1
             <if test="id !=null and id !=''">and id=#{id}</if>

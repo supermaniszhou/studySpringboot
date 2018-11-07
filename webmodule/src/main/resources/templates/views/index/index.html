@@ -130,7 +130,11 @@
     </div>
 </div>
 <script>
-
+    $(function () {
+        $("#loginOut").on("click", function () {
+            window.location.href ="/login/logOut";
+        });
+    });
 </script>
 <!-- JS -->
 <!--<script th:inline="javascript">

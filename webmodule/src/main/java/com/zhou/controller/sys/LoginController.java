@@ -58,12 +58,12 @@ public class LoginController extends BaseController {
                     template.expire(Base64Zlc.encodeString(user.getUsername()), 30 * 60, TimeUnit.SECONDS);
                     System.out.println(request.getSession().getId());
                     //将用户信息放在cookie中
-//                    Cookie cookie = new Cookie("userOnly", Base64Zlc.encodeString(usernamepwd));
-//                    cookie.setMaxAge(30 * 60);
-//                    cookie.setPath("/");
-//                    response.addCookie(cookie);
+                    Cookie cookie = new Cookie("userOnly", Base64Zlc.encodeString(usernamepwd));
+                    cookie.setMaxAge(30 * 60);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
 
-                    request.getSession().setAttribute("userId",Base64Zlc.encodeString(user.getUsername()));
+                    request.getSession().setAttribute("userId", Base64Zlc.encodeString(user.getUsername()));
                     return responseTo(SUCCESS_FLAG, "/login/toIndexPage");
                 }
             } else {
@@ -90,6 +90,7 @@ public class LoginController extends BaseController {
         Cookie[] cookies = request.getCookies();
         String value = eachCookieGetValue(cookies);
         template.delete(value);
+        request.getSession().invalidate();
         return new ModelAndView(VIEW_PATH + "index/login");
     }
 

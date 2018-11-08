@@ -11,7 +11,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit = 
             fields: {
 ##                #foreach($f in $fieldList)
                 #foreach($f in $fieldRemarks.entrySet())
-                    $f: {
+                    ${f.key}: {
                         validators: {
                             notEmpty: {
                                 message: '${f.value}不可为空！',

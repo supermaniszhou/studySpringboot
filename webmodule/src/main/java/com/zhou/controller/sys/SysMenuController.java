@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
@@ -17,7 +18,7 @@ import java.util.*;
 /**
  * Created by Administrator on 2017/12/25 0025.
  */
-@Controller
+@RestController
 @RequestMapping("/sysMenu")
 public class SysMenuController extends BaseController {
     @Autowired

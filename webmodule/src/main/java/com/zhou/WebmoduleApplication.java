@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 @EnableAutoConfiguration
 @SpringBootApplication
 //用于mybatis 扫描mapper 接口
-@MapperScan(basePackages = {"com.zhou.mapper.SqlMapper", "com.zhou.mapper.sys"})
+@MapperScan(basePackages = {"com.zhou.mapper.*"})
 public class WebmoduleApplication {
 
     public static void main(String[] args) {

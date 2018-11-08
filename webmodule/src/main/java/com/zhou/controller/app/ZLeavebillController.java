@@ -3,6 +3,7 @@ package com.zhou.controller.app;
 import com.zhou.common.base.BaseController;
 import com.zhou.entity.app.ZLeavebill;
 import com.zhou.service.app.ZLeavebillService;
+import com.zhou.util.GenerateUUID;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ public class ZLeavebillController extends BaseController {
 
     @RequestMapping(value = "/toZLeavebillList")
     public ModelAndView toZLeavebillList(Model model) {
-        return new ModelAndView(VIEW_PATH + "zLeavebill/ZLeavebill_list");
+        return new ModelAndView(VIEW_PATH + "app/zLeavebill/ZLeavebill_list");
     }
 
     @RequestMapping("/getZLeavebillData")
@@ -51,6 +52,7 @@ public class ZLeavebillController extends BaseController {
     @ResponseBody
     public Map<String, Object> doAdd(ZLeavebill zLeavebill) {
         try {
+            zLeavebill.setId(GenerateUUID.getUUID());
             zLeavebillService.addObj(zLeavebill);
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+
+<body>
+<div id="wrapperZlc">
+    <div id="page-innerZlc">
+        <div style="margin-top: 10px;">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label for="idfor" class="layui-form-label">编号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="idfor" name="id" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="daysfor" class="layui-form-label">请假天数</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="daysfor" name="days" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="contentfor" class="layui-form-label">请假类型</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="contentfor" name="content" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="remarkfor" class="layui-form-label">请假内容</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="remarkfor" name="remark" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="leaveStarttimefor" class="layui-form-label">请假开始时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="leaveStarttimefor" name="leaveStarttime"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="statefor" class="layui-form-label">状态</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="statefor" name="state" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="userIdfor" class="layui-form-label">请假人编号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="userIdfor" name="userId" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="userNamefor" class="layui-form-label">请假人姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="userNamefor" name="userName" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="userDeptfor" class="layui-form-label">所属单位</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="userDeptfor" name="userDept" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="leaveEndtimefor" class="layui-form-label">请假截止日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control" id="leaveEndtimefor" name="leaveEndtime" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <button type="button" class="btn btn-default" onclick="zLeavebillModle.SearchData();">
+                    查询
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" data-toggle="modal" onclick="zLeavebillAddEdit.toAdd();">新增</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="ZLeavebilltable">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="zLeavebillAdd" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 700px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    新增
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="container" style="height: 500px;overflow-y:scroll;">
+                    <div class="row">
+                        <section>
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <form class="form-horizontal"
+                                      id="zLeavebillForm"
+                                      style="margin-top: 10px;">
+                                    <table>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">编号</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="id" id="id"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">请假天数</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="days" id="days"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">请假类型</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="content" id="content"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">请假内容</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="remark" id="remark"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <!--<tr>-->
+                                            <!--<td class="tdZ" align="right">-->
+                                                <!--<label class="control-label">请假开始时间</label>-->
+                                            <!--</td>-->
+                                            <!--<td>-->
+                                                <!--<div class="form-group" style="margin-left: 50px">-->
+                                                    <!--<input class="form-control" name="leaveStarttime"-->
+                                                           <!--id="leaveStarttime"-->
+                                                           <!--type="text" placeholder=""/>-->
+                                                <!--</div>-->
+                                            <!--</td>-->
+                                            <!--<td></td>-->
+                                        <!--</tr>-->
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">状态</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="state" id="state"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">请假人编号</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="userId" id="userId"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdZ" align="right">
+                                                <label class="control-label">请假人姓名</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" style="margin-left: 50px">
+                                                    <input class="form-control" name="userName" id="userName"
+                                                           type="text" placeholder=""/>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <!--<tr>-->
+                                            <!--<td class="tdZ" align="right">-->
+                                                <!--<label class="control-label">所属单位</label>-->
+                                            <!--</td>-->
+                                            <!--<td>-->
+                                                <!--<div class="form-group" style="margin-left: 50px">-->
+                                                    <!--<input class="form-control" name="userDept" id="userDept"-->
+                                                           <!--type="text" placeholder=""/>-->
+                                                <!--</div>-->
+                                            <!--</td>-->
+                                            <!--<td></td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td class="tdZ" align="right">-->
+                                                <!--<label class="control-label">请假截止日期</label>-->
+                                            <!--</td>-->
+                                            <!--<td>-->
+                                                <!--<div class="form-group" style="margin-left: 50px">-->
+                                                    <!--<input class="form-control" name="leaveEndtime" id="leaveEndtime"-->
+                                                           <!--type="text" placeholder=""/>-->
+                                                <!--</div>-->
+                                            <!--</td>-->
+                                            <!--<td></td>-->
+                                        <!--</tr>-->
+                                    </table>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjs/app/zLeavebill/ZLeavebillList.js}"></script>
+<script th:src="@{/webjs/app/zLeavebill/ZLeavebillAdd_Edit.js}"></script>
+</body>
+</html>

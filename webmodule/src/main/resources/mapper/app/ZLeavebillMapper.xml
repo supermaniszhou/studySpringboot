@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhou.mapper.app.ZLeavebillMapper">
+
+    <sql id="searchCondition">
+        <where>
+            1=1
+            <if test="id !=null and id !=''">
+                and ID=#{id}
+            </if>
+            <if test="days !=null and days !=''">
+                and DAYS=#{days}
+            </if>
+            <if test="content !=null and content !=''">
+                and CONTENT=#{content}
+            </if>
+            <if test="remark !=null and remark !=''">
+                and REMARK=#{remark}
+            </if>
+            <if test="leaveStarttime !=null and leaveStarttime !=''">
+                and LEAVE_STARTTIME=#{leaveStarttime}
+            </if>
+            <if test="state !=null and state !=''">
+                and STATE=#{state}
+            </if>
+            <if test="userId !=null and userId !=''">
+                and USER_ID=#{userId}
+            </if>
+            <if test="userName !=null and userName !=''">
+                and USER_NAME=#{userName}
+            </if>
+            <if test="userDept !=null and userDept !=''">
+                and USER_DEPT=#{userDept}
+            </if>
+            <if test="leaveEndtime !=null and leaveEndtime !=''">
+                and LEAVE_ENDTIME=#{leaveEndtime}
+            </if>
+        </where>
+    </sql>
+
+    <select id="queryCount" parameterType="com.zhou.entity.app.ZLeavebill" resultType="int">
+        select count(1) from ZLC.z_leavebill
+        <include refid="searchCondition"></include>
+    </select>
+
+    <insert id="add" parameterType="com.zhou.entity.app.ZLeavebill">
+        insert into ZLC.z_leavebill (
+        <trim suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                ID,
+            </if>
+            <if test="days !=null and days !=''">
+                DAYS,
+            </if>
+            <if test="content !=null and content !=''">
+                CONTENT,
+            </if>
+            <if test="remark !=null and remark !=''">
+                REMARK,
+            </if>
+            <if test="leaveStarttime !=null and leaveStarttime !=''">
+                LEAVE_STARTTIME,
+            </if>
+            <if test="state !=null and state !=''">
+                STATE,
+            </if>
+            <if test="userId !=null and userId !=''">
+                USER_ID,
+            </if>
+            <if test="userName !=null and userName !=''">
+                USER_NAME,
+            </if>
+            <if test="userDept !=null and userDept !=''">
+                USER_DEPT,
+            </if>
+            <if test="leaveEndtime !=null and leaveEndtime !=''">
+                LEAVE_ENDTIME,
+            </if>
+        </trim>
+        ) VALUES (
+        <trim suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                #{id},
+            </if>
+            <if test="days !=null and days !=''">
+                #{days},
+            </if>
+            <if test="content !=null and content !=''">
+                #{content},
+            </if>
+            <if test="remark !=null and remark !=''">
+                #{remark},
+            </if>
+            <if test="leaveStarttime !=null and leaveStarttime !=''">
+                #{leaveStarttime},
+            </if>
+            <if test="state !=null and state !=''">
+                #{state},
+            </if>
+            <if test="userId !=null and userId !=''">
+                #{userId},
+            </if>
+            <if test="userName !=null and userName !=''">
+                #{userName},
+            </if>
+            <if test="userDept !=null and userDept !=''">
+                #{userDept},
+            </if>
+            <if test="leaveEndtime !=null and leaveEndtime !=''">
+                #{leaveEndtime},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <update id="update" parameterType="com.zhou.entity.app.ZLeavebill">
+        update ZLC.z_leavebill
+        <trim prefix="set" suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                ID=#{id},
+            </if>
+            <if test="days !=null and days !=''">
+                DAYS=#{days},
+            </if>
+            <if test="content !=null and content !=''">
+                CONTENT=#{content},
+            </if>
+            <if test="remark !=null and remark !=''">
+                REMARK=#{remark},
+            </if>
+            <if test="leaveStarttime !=null and leaveStarttime !=''">
+                LEAVE_STARTTIME=#{leaveStarttime},
+            </if>
+            <if test="state !=null and state !=''">
+                STATE=#{state},
+            </if>
+            <if test="userId !=null and userId !=''">
+                USER_ID=#{userId},
+            </if>
+            <if test="userName !=null and userName !=''">
+                USER_NAME=#{userName},
+            </if>
+            <if test="userDept !=null and userDept !=''">
+                USER_DEPT=#{userDept},
+            </if>
+            <if test="leaveEndtime !=null and leaveEndtime !=''">
+                LEAVE_ENDTIME=#{leaveEndtime},
+            </if>
+        </trim>
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                <if test="id !=null and id !=''">
+                    and ID=#{id}
+                </if>
+                <if test="days !=null and days !=''">
+                    and DAYS=#{days}
+                </if>
+                <if test="content !=null and content !=''">
+                    and CONTENT=#{content}
+                </if>
+                <if test="remark !=null and remark !=''">
+                    and REMARK=#{remark}
+                </if>
+                <if test="leaveStarttime !=null and leaveStarttime !=''">
+                    and LEAVE_STARTTIME=#{leaveStarttime}
+                </if>
+                <if test="state !=null and state !=''">
+                    and STATE=#{state}
+                </if>
+                <if test="userId !=null and userId !=''">
+                    and USER_ID=#{userId}
+                </if>
+                <if test="userName !=null and userName !=''">
+                    and USER_NAME=#{userName}
+                </if>
+                <if test="userDept !=null and userDept !=''">
+                    and USER_DEPT=#{userDept}
+                </if>
+                <if test="leaveEndtime !=null and leaveEndtime !=''">
+                    and LEAVE_ENDTIME=#{leaveEndtime}
+                </if>
+            </trim>
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="com.zhou.entity.app.ZLeavebill">
+        delete from ZLC.z_leavebill
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                <if test="id !=null and id !=''">
+                    and ID=#{id},
+                </if>
+                <if test="days !=null and days !=''">
+                    and DAYS=#{days},
+                </if>
+                <if test="content !=null and content !=''">
+                    and CONTENT=#{content},
+                </if>
+                <if test="remark !=null and remark !=''">
+                    and REMARK=#{remark},
+                </if>
+                <if test="leaveStarttime !=null and leaveStarttime !=''">
+                    and LEAVE_STARTTIME=#{leaveStarttime},
+                </if>
+                <if test="state !=null and state !=''">
+                    and STATE=#{state},
+                </if>
+                <if test="userId !=null and userId !=''">
+                    and USER_ID=#{userId},
+                </if>
+                <if test="userName !=null and userName !=''">
+                    and USER_NAME=#{userName},
+                </if>
+                <if test="userDept !=null and userDept !=''">
+                    and USER_DEPT=#{userDept},
+                </if>
+                <if test="leaveEndtime !=null and leaveEndtime !=''">
+                    and LEAVE_ENDTIME=#{leaveEndtime},
+                </if>
+            </trim>
+
+        </where>
+    </delete>
+
+    <select id="query" parameterType="com.zhou.entity.app.ZLeavebill" resultType="com.zhou.entity.app.ZLeavebill">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            DAYS AS days,
+            CONTENT AS content,
+            REMARK AS remark,
+            LEAVE_STARTTIME AS leaveStarttime,
+            STATE AS state,
+            USER_ID AS userId,
+            USER_NAME AS userName,
+            USER_DEPT AS userDept,
+            LEAVE_ENDTIME AS leaveEndtime,
+        </trim>
+        from ZLC.z_leavebill
+        <where>
+            1=1
+            <if test="id !=null and id !=''">
+                and ID=#{id}
+            </if>
+            <if test="days !=null and days !=''">
+                and DAYS=#{days}
+            </if>
+            <if test="content !=null and content !=''">
+                and CONTENT=#{content}
+            </if>
+            <if test="remark !=null and remark !=''">
+                and REMARK=#{remark}
+            </if>
+            <if test="leaveStarttime !=null and leaveStarttime !=''">
+                and LEAVE_STARTTIME=#{leaveStarttime}
+            </if>
+            <if test="state !=null and state !=''">
+                and STATE=#{state}
+            </if>
+            <if test="userId !=null and userId !=''">
+                and USER_ID=#{userId}
+            </if>
+            <if test="userName !=null and userName !=''">
+                and USER_NAME=#{userName}
+            </if>
+            <if test="userDept !=null and userDept !=''">
+                and USER_DEPT=#{userDept}
+            </if>
+            <if test="leaveEndtime !=null and leaveEndtime !=''">
+                and LEAVE_ENDTIME=#{leaveEndtime}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryList" parameterType="com.zhou.entity.app.ZLeavebill" resultType="com.zhou.entity.app.ZLeavebill">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            DAYS AS days,
+            CONTENT AS content,
+            REMARK AS remark,
+            LEAVE_STARTTIME AS leaveStarttime,
+            STATE AS state,
+            USER_ID AS userId,
+            USER_NAME AS userName,
+            USER_DEPT AS userDept,
+            LEAVE_ENDTIME AS leaveEndtime,
+        </trim>
+        from ZLC.z_leavebill
+        <include refid="searchCondition"></include>
+        order by id DESC
+    </select>
+
+    <select id="getAll" resultType="com.zhou.entity.app.ZLeavebill">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            DAYS AS days,
+            CONTENT AS content,
+            REMARK AS remark,
+            LEAVE_STARTTIME AS leaveStarttime,
+            STATE AS state,
+            USER_ID AS userId,
+            USER_NAME AS userName,
+            USER_DEPT AS userDept,
+            LEAVE_ENDTIME AS leaveEndtime,
+        </trim>
+        from ZLC.z_leavebill
+    </select>
+
+
+</mapper>

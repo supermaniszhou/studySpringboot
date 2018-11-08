@@ -1,0 +1,28 @@
+参考网址：http://www.jianshu.com/p/8033ef83a8ed
+看到了
+在pom.xml中加入Swagger2的依赖
+
+
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.2.2</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.2.2</version>
+</dependency>
+
+
+#访问地址
+完成上述代码添加上，启动Spring Boot程序，访问：       http://localhost:8080/swagger-ui.html
+
+
+#在方法上使用的注解
+@ApiOperation(value = "查询用户", notes = "查询用户列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "当前分页数", required = true, dataType = "Integer", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据条数", required = true, dataType = "Integer", paramType = "path")})
+
+

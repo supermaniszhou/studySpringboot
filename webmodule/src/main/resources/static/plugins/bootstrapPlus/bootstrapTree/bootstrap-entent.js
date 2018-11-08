@@ -1,7 +1,7 @@
 function itemOnclick(target){
     //找到当前节点id
     var nodeid = $(target).attr('data-nodeid');
-    var tree = $('#main-menu');
+    var tree = $('#treeUl');
     //获取当前节点对象
     var node = tree.treeview('getNode', nodeid);
 

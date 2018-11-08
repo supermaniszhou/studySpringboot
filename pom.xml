@@ -371,6 +371,7 @@
 
     <!--指定使用maven打包-->
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

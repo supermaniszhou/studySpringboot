@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="/common/main_head::mainHeader"></head>
-<body class="container">
-<form class="form-horizontal" id="sysLogForm" >
+<body class="">
+<form class="form-horizontal" id="sysLogForm">
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">用户名称</label>
         <div class="col-sm-10">
@@ -21,10 +21,10 @@
         </div>
     </div>
     <!--<div class="form-group">-->
-        <!--<label for="oporateTime" class="col-sm-2 control-label">操作时间</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="text" name="oporateTime" class="form-control" id="oporateTime" placeholder="">-->
-        <!--</div>-->
+    <!--<label for="oporateTime" class="col-sm-2 control-label">操作时间</label>-->
+    <!--<div class="col-sm-10">-->
+    <!--<input type="text" name="oporateTime" class="form-control" id="oporateTime" placeholder="">-->
+    <!--</div>-->
     <!--</div>-->
 
     <div class="form-group">
@@ -39,7 +39,7 @@
             <textarea class="form-control" name="oporateComment" id="oporateComment" rows="3"></textarea>
         </div>
     </div>
-    <button type="button" id="saveForm" onclick="sysLogAddEdit.doAdd()">baocun</button>
+    <button type="button" id="saveForm" onclick="sysLogAddEdit.doAdd()" hidden></button>
 </form>
 </body>
 <script th:src="@{/webjs/sys/sysLog/SysLogAdd_Edit.js}"></script>

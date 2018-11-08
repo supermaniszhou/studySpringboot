@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+<body>
+<form class="form-horizontal" id="sysMenuForm">
+    <div class="form-group">
+        <label for="menuName" class="col-sm-2 control-label">菜单名称</label>
+        <div class="col-sm-9">
+            <input type="text" name="menuName" class="form-control" id="menuName" placeholder="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="parentName" class="col-sm-2 control-label">父级菜单</label>
+        <div class="col-sm-9">
+            <input type="text" name="parentName" class="form-control" id="parentName" placeholder="">
+            <input type="hidden" name="menuParent" id="menuParent" placeholder="父级编号">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="menuUrl" class="col-sm-2 control-label">地址</label>
+        <div class="col-sm-9">
+            <input type="text" name="menuUrl" class="form-control" id="menuUrl" placeholder="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="menuIcon" class="col-sm-2 control-label">菜单图标</label>
+        <div class="col-sm-9">
+            <input type="text" name="menuIcon" class="form-control" id="menuIcon" placeholder="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="yesNo" class="col-sm-2 control-label">是否启用</label>
+        <div class="col-sm-9">
+            <textarea class="form-control" name="yesNo" id="yesNo" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="memo" class="col-sm-2 control-label">描述</label>
+        <div class="col-sm-9">
+            <textarea class="form-control" name="memo" id="memo" rows="3"></textarea>
+        </div>
+    </div>
+    <button type="button" onclick="sysMenuAddEdit.doAdd()" hidden></button>
+
+</form>
+</body>
+<script th:src="@{/webjs/sys/sysMenu/SysMenuAdd_Edit.js}"></script>
+
+</html>

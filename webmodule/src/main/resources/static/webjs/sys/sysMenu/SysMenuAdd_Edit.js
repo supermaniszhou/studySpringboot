@@ -9,80 +9,18 @@ var sysMenuAddEdit = (function () {
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                id: {
-                    validators: {
-                        notEmpty: {
-                            message: '账号名称不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
-                        }
-                    }
-                },
+
                 menuName: {
                     validators: {
                         notEmpty: {
-                            message: '账号名称不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
-                        }
-                    }
-                },
-                menuLevel: {
-                    validators: {
-                        notEmpty: {
-                            message: '账号名称不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
-                        }
-                    }
-                },
-                menuParent: {
-                    validators: {
-                        notEmpty: {
-                            message: '账号名称不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
-                        }
-                    }
-                },
-                menuOrder: {
-                    validators: {
-                        notEmpty: {
-                            message: '账号名称不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
-                        }
-                    }
-                },
-                menuChild: {
-                    validators: {
-                        notEmpty: {
-                            message: '账号名称不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
-                        }
-                    }
-                },
-                memo: {
-                    validators: {
-                        notEmpty: {
-                            message: '账号名称不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
+                            message: '菜单名称不可以为空！',
                         }
                     }
                 },
                 menuUrl: {
                     validators: {
                         notEmpty: {
-                            message: '账号名称不可以为空！',
+                            message: '地址不可以为空！',
                             callback: function (value, validator) {
                                 flag = false;
                             }
@@ -102,25 +40,26 @@ var sysMenuAddEdit = (function () {
 
     function doAdd() {
         var bootstrapValidator = $("#sysMenuForm").data('bootstrapValidator');
+
         //手动触发验证
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
             $.post("/sysMenu/doAdd", $("#sysMenuForm").serialize(), function (data) {
                 document.getElementById('sysMenuForm').reset();
                 if (data.code == 0) {
-                    document.getElementById('sysMenuForm').reset();
-                    $('#sysMenuAdd').modal('hide');
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_SUCCESS,
-                        title: '成功 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
+                    // document.getElementById('sysMenuForm').reset();
+                    // $('#sysMenuAdd').modal('hide');
+                    // BootstrapDialog.show({
+                    //     type: BootstrapDialog.TYPE_SUCCESS,
+                    //     title: '成功 ',
+                    //     message: data.msg,
+                    //     size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
+                    //     onshown: function (dialogRef) {
+                    //         setTimeout(function () {
+                    //             dialogRef.close();
+                    //         }, 1000);
+                    //     }
+                    // });
                     $("#SysMenutable").bootstrapTable('refresh');
                 } else {
                     BootstrapDialog.show({

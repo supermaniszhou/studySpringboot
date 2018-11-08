@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -51,6 +52,11 @@ public class SysMenuController extends BaseController {
         map.put("total", count);
         map.put("rows", mapList);
         return map;
+    }
+
+    @RequestMapping(value = "/toAddMenuPage")
+    public ModelAndView toAddMenuPage(HttpServletRequest request) {
+        return new ModelAndView(VIEW_PATH + "sysMenu/sysMenu_add");
     }
 
 

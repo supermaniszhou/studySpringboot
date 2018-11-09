@@ -56,5 +56,8 @@ public class SysUserServiceImpl implements SysUserService<SysUser> {
         return userMapper.getAll();
     }
 
-
+    @Override
+    public List<SysUser> getAll(SysUser sysUser) {
+        return userMapper.getAll(sysUser);
+    }
 }

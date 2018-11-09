@@ -50,4 +50,9 @@ public class ZLeavebillServiceImpl implements ZLeavebillService<ZLeavebill> {
     public List<ZLeavebill> getAll() {
         return mapper.getAll();
     }
+
+    @Override
+    public List<ZLeavebill> getAll(ZLeavebill zLeavebill) {
+        return mapper.getAll(zLeavebill);
+    }
 }

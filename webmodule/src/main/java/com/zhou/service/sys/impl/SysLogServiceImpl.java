@@ -50,4 +50,9 @@ public class SysLogServiceImpl implements SysLogService<SysLog> {
     public List<SysLog> getAll() {
         return mapper.getAll();
     }
+
+    @Override
+    public List<SysLog> getAll(SysLog sysLog) {
+        return mapper.getAll(sysLog);
+    }
 }

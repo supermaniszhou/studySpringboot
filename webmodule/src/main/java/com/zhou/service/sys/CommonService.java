@@ -22,4 +22,6 @@ public interface CommonService<T> {
     public Page<T> queryList(T t, int page, int pagesize);
 
     public List<T> getAll();
+
+    public List<T> getAll(T t);
 }

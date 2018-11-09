@@ -13,41 +13,46 @@ import java.util.List;
 @Service
 public class SysMenuServiceImpl implements SysMenuService<SysMenu> {
     @Autowired
-    private SysMenuMapper<SysMenu> mapper;
+    private SysMenuMapper<SysMenu> sysMenuMapper;
 
     @Override
     public int queryCount(SysMenu sysMenu) {
-        return mapper.queryCount(sysMenu);
+        return sysMenuMapper.queryCount(sysMenu);
     }
 
     @Override
     public void addObj(SysMenu sysMenu) {
-        mapper.add(sysMenu);
+        sysMenuMapper.add(sysMenu);
     }
 
     @Override
     public void deleteObj(SysMenu sysMenu) {
-        mapper.delete(sysMenu);
+        sysMenuMapper.delete(sysMenu);
     }
 
     @Override
     public void updateObj(SysMenu sysMenu) {
-        mapper.update(sysMenu);
+        sysMenuMapper.update(sysMenu);
     }
 
     @Override
     public SysMenu queryObj(SysMenu sysMenu) {
-        return mapper.query(sysMenu);
+        return sysMenuMapper.query(sysMenu);
     }
 
     @Override
     public Page<SysMenu> queryList(SysMenu sysMenu, int page, int pagesize) {
         PageHelper.startPage(page, pagesize);
-        return mapper.queryList(sysMenu);
+        return sysMenuMapper.queryList(sysMenu);
     }
 
     @Override
     public List<SysMenu> getAll() {
-        return mapper.getAll();
+        return sysMenuMapper.getAll();
+    }
+
+    @Override
+    public List<SysMenu> getAll(SysMenu sysMenu) {
+        return sysMenuMapper.getAll(sysMenu);
     }
 }

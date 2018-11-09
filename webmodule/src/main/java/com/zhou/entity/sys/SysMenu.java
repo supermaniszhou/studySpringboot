@@ -22,7 +22,7 @@ public class SysMenu implements Serializable {
 
     private String parentName;//父级菜单名称
 
-
+    private String flag;
 
 
 }

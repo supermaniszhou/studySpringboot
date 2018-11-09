@@ -293,7 +293,7 @@
         order by id DESC
     </select>
 
-    <select id="getAll" resultType="com.zhou.entity.sys.SysMenu">
+    <select id="getAll" parameterType="com.zhou.entity.sys.SysMenu" resultType="com.zhou.entity.sys.SysMenu">
         select
         <trim suffixOverrides=",">
             ID AS id,
@@ -308,6 +308,16 @@
             YES_NO AS yesNo,
         </trim>
         from ZLC.sys_menu
+        <where>
+            1=1
+            <if test="flag==null and flag==''">
+                and MENU_PARENT not in (-1)
+            </if>
+            <if test="yesNo !=null and yesNo !=''">
+                and yesNo=0
+            </if>
+        </where>
+        ORDER BY MENU_LEVEL ASC
     </select>
 
 

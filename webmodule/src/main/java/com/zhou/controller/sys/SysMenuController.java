@@ -114,15 +114,22 @@ public class SysMenuController extends BaseController {
 
     @RequestMapping(value = "/getMenuList")
     @ResponseBody
-    public List<Map<String, Object>> getMenuList() {
+    public List<Map<String, Object>> getMenuList(@RequestParam(value = "flag", required = false) String flag) {
         List<SysMenu> sysMenuList = null;
         List<Map<String, Object>> parent = new LinkedList<>();
+        SysMenu menu = new SysMenu();
         try {
-            sysMenuList = sysMenuService.getAll();
+            if (null != flag && !"".equals(flag)) {
+                menu.setFlag(flag);
+                menu.setYesNo(0);
+            } else {
+                menu.setFlag(flag);
+            }
+            sysMenuList = sysMenuService.getAll(menu);
             //获取一级菜单
             for (SysMenu sysMenu : sysMenuList) {
                 Map<String, Object> map = new LinkedHashMap<>();
-                if (sysMenu.getMenuParent() == 0) {
+                if (sysMenu.getMenuParent() == 0 || sysMenu.getMenuParent() == -1) {
                     map.put("id", sysMenu.getId());
                     map.put("text", sysMenu.getMenuName());
                     map.put("href", sysMenu.getMenuUrl());

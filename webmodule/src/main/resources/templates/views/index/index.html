@@ -51,8 +51,8 @@
     </div>
 
     <!--<div class="layui-footer footer">-->
-        <!--&lt;!&ndash; 底部固定区域 &ndash;&gt;-->
-        <!--<span> 这里可以搞一个信息滚动，比如某某登录了，或者重要信息提醒，代办事项信息也可以滚动</span>-->
+    <!--&lt;!&ndash; 底部固定区域 &ndash;&gt;-->
+    <!--<span> 这里可以搞一个信息滚动，比如某某登录了，或者重要信息提醒，代办事项信息也可以滚动</span>-->
     <!--</div>-->
 </div>
 <script>
@@ -76,7 +76,7 @@
     });
 
     function initTreeMenu() {
-        $.post("/sysMenu/getMenuList", null, function (data) {
+        $.post("/sysMenu/getMenuList", {flag: "up"}, function (data) {
             $('#treeUl').treeview({
                 data: data,         // data is not optional
                 levels: 2,

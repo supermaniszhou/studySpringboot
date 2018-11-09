@@ -12,10 +12,10 @@
         <label class="col-sm-2 control-label">父级菜单</label>
         <div class="col-sm-9">
             <!--<select class="js-example-basic-single form-control" name="menuParent">-->
-                <!---->
+            <!---->
             <!--</select>-->
 
-            <select id="menuParent" style="width:8em"  name="menuParent" class="form-control">
+            <select id="menuParent" style="width: 100%" name="menuParent" class="form-control">
 
             </select>
 
@@ -63,21 +63,6 @@
 <script th:src="@{/webjs/sys/sysMenu/SysMenuAdd_Edit.js}"></script>
 <script>
 
-    var mydata = [
-        {id:1, text:"USA", inc:[
-                {text:"west", inc:[
-                        {id:111, text:"California", inc:[
-                                {id:1111, text:"Los Angeles", inc:[
-                                        {id:11111, text:"Hollywood"}
-                                    ]},
-                                {id:1112, text:"San Diego"}
-                            ]},
-                        {id:112, text:"Oregon"}
-                    ]}
-            ]},
-        {id:2, text:"India"},
-        {id:3, text:"中国"}
-    ];
 
     $(function () {
         //必须要添加的   否则select2 搜索框无法输入
@@ -87,7 +72,11 @@
 
         //$(".js-example-basic-single").select2();
 
-        $("#menuParent").select2ToTree({treeData: {dataArr: mydata}, maximumSelectionLength: 5});
+        $.post("/sysMenu/getMenuList", {flag: "up"}, function (data) {
+            console.log(data);
+            $("#menuParent").select2ToTree({treeData: {dataArr: data}, maximumSelectionLength: 5});
+
+        });
     });
 </script>
 </html>

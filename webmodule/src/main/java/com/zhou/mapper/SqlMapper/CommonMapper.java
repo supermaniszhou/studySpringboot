@@ -23,4 +23,6 @@ public interface CommonMapper<T> {
 
     List<T> getAll();
 
+    List<T> getAll(T t);
+
 }

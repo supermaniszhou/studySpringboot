@@ -77,7 +77,7 @@
 				$opt.addClass("l" + curLevel);
 				if (pup) $opt.attr("data-pup", pup);
 				$el.append($opt);
-				var inc = data[treeData.incFld || "inc"];
+				var inc = data[treeData.incFld || "nodes"];
 				if (inc) {
 					$opt.addClass("non-leaf");
 					buildOptions(inc, curLevel+1, $opt.val());

@@ -122,7 +122,7 @@ public class SysMenuController extends BaseController {
             if (null != flag && !"".equals(flag)) {
                 menu.setFlag(flag);
                 menu.setYesNo(0);
-            } else {
+            }  else {
                 menu.setFlag(flag);
             }
             sysMenuList = sysMenuService.getAll(menu);

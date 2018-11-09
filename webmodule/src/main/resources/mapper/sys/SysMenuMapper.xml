@@ -313,9 +313,21 @@
             <if test="flag==null and flag==''">
                 and MENU_PARENT not in (-1)
             </if>
-            <if test="yesNo !=null and yesNo !=''">
-                and yesNo=0
+            <if test="flag=='contain'">
+                <if test="yesNo !=null ">
+                    and YES_NO=0
+                </if>
             </if>
+
+            <if test="flag=='exclusive'">
+                <if test="flag==null and flag==''">
+                    and MENU_PARENT not in (-1)
+                </if>
+                <if test="yesNo !=null ">
+                    and YES_NO=0
+                </if>
+            </if>
+
         </where>
         ORDER BY MENU_LEVEL ASC
     </select>

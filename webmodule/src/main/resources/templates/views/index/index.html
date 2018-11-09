@@ -76,7 +76,7 @@
     });
 
     function initTreeMenu() {
-        $.post("/sysMenu/getMenuList", {flag: "up"}, function (data) {
+        $.post("/sysMenu/getMenuList", {flag: "exclusive"}, function (data) {
             $('#treeUl').treeview({
                 data: data,         // data is not optional
                 levels: 2,

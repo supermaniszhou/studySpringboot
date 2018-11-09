@@ -1,13 +1,57 @@
 var sysMenuAddEdit = (function () {
     $(function () {
         $('#sysMenuForm').bootstrapValidator({
-//        live: 'disabled',
-            message: 'This value is not valid',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
+            /**
+             *  指定不验证的情况
+             *  值可设置为以下三种类型：
+             *  1、String  ':disabled, :hidden, :not(:visible)'
+             *  2、Array  默认值  [':disabled', ':hidden', ':not(:visible)']
+             *  3、带回调函数
+             [':disabled', ':hidden', function($field, validator) {
+            // $field 当前验证字段dom节点
+            // validator 验证实例对象
+            // 可以再次自定义不要验证的规则
+            // 必须要return，return true or false;
+                return !$field.is(':visible');
+            }]
+             */
+            // excluded: [':disabled', ':hidden', ':not(:visible)'],
+
+            /**
+             * 生效规则（三选一）
+             * enabled 字段值有变化就触发验证
+             * disabled,submitted 当点击提交时验证并展示错误信息
+             */
+            // live: 'disabled',
+            message: '不能为空！',
+            /**
+             * 指定验证后验证字段的提示字体图标。（默认是bootstrap风格）
+             * Bootstrap 版本 >= 3.1.0
+             * 也可以使用任何自定义风格，只要引入好相关的字体文件即可
+             * 默认样式
+             .form-horizontal .has-feedback .form-control-feedback {
+            top: 0;
+            right: 15px;
+        }
+             * 自定义该样式覆盖默认样式
+             .form-horizontal .has-feedback .form-control-feedback {
+            top: 0;
+            right: -15px;
+        }
+             .form-horizontal .has-feedback .input-group .form-control-feedback {
+            top: 0;
+            right: -30px;
+        }
+             */
+            feedbackIcons:
+                {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid:
+                        'glyphicon glyphicon-remove',
+                    validating:
+                        'glyphicon glyphicon-refresh'
+                }
+            ,
             fields: {
 
                 menuName: {
@@ -16,17 +60,16 @@ var sysMenuAddEdit = (function () {
                             message: '菜单名称不可以为空！',
                         }
                     }
-                },
+                }
+                ,
                 menuUrl: {
                     validators: {
                         notEmpty: {
                             message: '地址不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
                         }
                     }
-                },
+                }
+                ,
             }
         });
     });
@@ -45,7 +88,7 @@ var sysMenuAddEdit = (function () {
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
             $.post("/sysMenu/doAdd", $("#sysMenuForm").serialize(), function (data) {
-                document.getElementById('sysMenuForm').reset();
+                // document.getElementById('sysMenuForm').reset();
                 if (data.code == 0) {
                     // document.getElementById('sysMenuForm').reset();
                     // $('#sysMenuAdd').modal('hide');

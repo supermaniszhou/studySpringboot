@@ -153,8 +153,7 @@ var sysMenuModle = (function () {
         }
     }
 
-
-//查询条件
+    //查询条件
     function queryParams(params) {
         return {
             pageSize: params.pageSize,
@@ -162,13 +161,44 @@ var sysMenuModle = (function () {
         };
     }
 
-//查询事件
+    //查询事件
     function SearchData() {
         $('#SysMenutable').bootstrapTable('refresh', {pageNumber: 1});
     }
 
+    /**
+     * 跳转到新增页面并可以提交表单数据
+     * */
+    function toAddMenuPage() {
+        BootstrapDialog.show({
+            title: '新增',
+            message: $('<div></div>').load('/sysMenu/toAddMenuPage'),
+            draggable: false,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            buttons: [{
+                label: '保存',
+                cssClass: 'btn-primary',
+                action: function (dialogRef) {
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
+                    console.log(dialogRef.getModalBody().find('form').serialize())
+                    // dialogRef.close();
+
+                }
+            }, {
+                icon: 'glyphicon glyphicon-eye-close',
+                label: '关闭',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
+
     return {
-        SearchData: SearchData
+        SearchData: SearchData,
+        toAddMenuPage: toAddMenuPage,
     }
 })();
 

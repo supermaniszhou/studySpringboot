@@ -90,7 +90,7 @@ var sysLogAddEdit = (function () {
         //手动触发验证
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
-            var d = {};
+            /*var d = {};
             var formData = $("#sysLogForm").serializeArray();
             $.each(formData, function (i, item) {
                 d[item.name] = item.value;
@@ -123,7 +123,7 @@ var sysLogAddEdit = (function () {
                     });
                 }
 
-            });
+            });*/
         }
     }
 

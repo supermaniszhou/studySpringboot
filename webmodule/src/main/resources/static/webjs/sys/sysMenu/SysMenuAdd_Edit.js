@@ -1,5 +1,9 @@
 var sysMenuAddEdit = (function () {
     $(function () {
+        formValidator();
+    });
+
+    function formValidator() {
         $('#sysMenuForm').bootstrapValidator({
             /**
              *  指定不验证的情况
@@ -72,7 +76,8 @@ var sysMenuAddEdit = (function () {
                 ,
             }
         });
-    });
+    }
+
 
     function toAdd() {
         document.getElementById('sysMenuForm').reset();
@@ -89,31 +94,16 @@ var sysMenuAddEdit = (function () {
         if (bootstrapValidator.isValid()) {
             $.post("/sysMenu/doAdd", $("#sysMenuForm").serialize(), function (data) {
                 if (data.code == 0) {
+                    //清空表单 并清除表单验证
                     document.getElementById('sysMenuForm').reset();
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_SUCCESS,
-                        title: '成功 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
-                    $("#SysMenutable").bootstrapTable('refresh');
+                    $("#sysMenuForm").data('bootstrapValidator').destroy();
+
+                    formValidator();
+                    ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
+
                 } else {
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_DANGER,
-                        title: '错误 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
+                    ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");
+
                 }
 
             });
@@ -210,60 +200,11 @@ var sysMenuAddEdit = (function () {
         }
     }
 
-    function doDel(id) {
-        BootstrapDialog.show({
-            size: BootstrapDialog.SIZE_SMALL,
-            type: BootstrapDialog.TYPE_DANGER,
-            message: '你确认删除吗？',
-            buttons: [{
-                label: '确认删除',
-                cssClass: 'btn-primary',
-
-                action: function (dialogItself) {
-                    $.post("/sysMenu/doDel", {id: id}, function (data) {
-                        dialogItself.close();
-                        if (data.code == 0) {
-                            BootstrapDialog.show({
-                                type: BootstrapDialog.TYPE_SUCCESS,
-                                title: '成功 ',
-                                message: data.msg,
-                                size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                                onshown: function (dialogRef) {
-                                    setTimeout(function () {
-                                        dialogRef.close();
-                                    }, 1000);
-                                }
-                            });
-                            $("#SysMenutable").bootstrapTable('refresh');
-                        } else {
-                            BootstrapDialog.show({
-                                type: BootstrapDialog.TYPE_DANGER,
-                                title: '错误 ',
-                                message: data.msg,
-                                size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                                onshown: function (dialogRef) {
-                                    setTimeout(function () {
-                                        dialogRef.close();
-                                    }, 1000);
-                                }
-                            });
-                        }
-                    });
-                }
-            }, {
-                label: '取消',
-                action: function (dialogItself) {
-                    dialogItself.close();
-                }
-            }]
-        });
-    }
 
     return {
         toAdd: toAdd,
         doAdd: doAdd,
         toUpdate: toUpdate,
         doEdit: doEdit,
-        doDel: doDel
     };
 })();

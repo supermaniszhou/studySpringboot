@@ -55,7 +55,7 @@
             <if test="menuLevel !=null and menuLevel !=''">
                 MENU_LEVEL,
             </if>
-            <if test="menuParent !=null and menuParent !=''">
+            <if test="menuParent !=null ">
                 MENU_PARENT,
             </if>
             <if test="menuOrder !=null and menuOrder !=''">
@@ -79,7 +79,7 @@
         </trim>
         ) VALUES (
         <trim suffixOverrides=",">
-            <if test="id !=null and id !=''">
+            <if test="id !=null ">
                 #{id},
             </if>
             <if test="menuName !=null and menuName !=''">
@@ -88,7 +88,7 @@
             <if test="menuLevel !=null and menuLevel !=''">
                 #{menuLevel},
             </if>
-            <if test="menuParent !=null and menuParent !=''">
+            <if test="menuParent !=null ">
                 #{menuParent},
             </if>
             <if test="menuOrder !=null and menuOrder !=''">

@@ -129,12 +129,14 @@ public class SysMenuController extends BaseController {
             //获取一级菜单
             for (SysMenu sysMenu : sysMenuList) {
                 Map<String, Object> map = new LinkedHashMap<>();
-                if (sysMenu.getMenuParent() == 0 || sysMenu.getMenuParent() == -1) {
-                    map.put("id", sysMenu.getId());
-                    map.put("text", sysMenu.getMenuName());
-                    map.put("href", sysMenu.getMenuUrl());
-                    map.put("nodes", "");
-                    parent.add(map);
+                if(null != sysMenu.getMenuParent()){
+                    if (sysMenu.getMenuParent() == 0 || sysMenu.getMenuParent() == -1) {
+                        map.put("id", sysMenu.getId());
+                        map.put("text", sysMenu.getMenuName());
+                        map.put("href", sysMenu.getMenuUrl());
+                        map.put("nodes", "");
+                        parent.add(map);
+                    }
                 }
             }
             //为一级菜单设置子菜单

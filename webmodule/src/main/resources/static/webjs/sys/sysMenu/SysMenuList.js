@@ -1,7 +1,9 @@
 var sysMenuModle = (function () {
 
     $(function () {
-        initTable();
+
+        initSysMenuTable();
+        $("[data-toggle='tooltip']").tooltip();
     });
     //初始化操作按钮的方法
     // window.operateEvents = {
@@ -16,10 +18,12 @@ var sysMenuModle = (function () {
     //     }
     // };
 
-    function initTable() {
+    function initSysMenuTable() {
         $.post("/sysMenu/getSysMenuData", {}, function (data) {
             var d = data.rows;
             var $table = $("#SysMenutable");
+            //清空数据
+            $table.bootstrapTable('destroy');
             $table.bootstrapTable({
                 // url:'/sysMenu/getSysMenuData',
                 data: d,
@@ -97,11 +101,66 @@ var sysMenuModle = (function () {
     }
 
     function opeate(value, row, index) {
-        var html = '<a title="修改" href="javascript:void(0)" onclick="sysMenuAddEdit.toUpdate(' + row.id + ',\'edit\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
-        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="查看" href="javascript:void(0)" onclick="sysMenuAddEdit.toUpdate(' + row.id + ',\'view\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
-        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="删除" href="javascript:void(0)" onclick="sysMenuAddEdit.doDel(' + row.id + ')" ><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>';
+        var html = '<a  href="javascript:void(0)"  data-toggle="tooltip" data-placement="top" title="修改" onclick="sysMenuAddEdit.toUpdate(' + row.id + ',\'edit\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a    href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="查看" onclick="sysMenuAddEdit.toUpdate(' + row.id + ',\'view\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a   href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="删除" onclick="sysMenuModle.doDel(' + row.id + ')" ><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>';
         return html;
     }
+
+    function doDel(id) {
+        BootstrapDialog.show({
+            size: BootstrapDialog.SIZE_SMALL,
+            type: BootstrapDialog.TYPE_DANGER,
+            message: '你确认删除吗？',
+            buttons: [{
+                label: '确认删除',
+                cssClass: 'btn-primary',
+                action: function (dialogItself) {
+                    $.ajaxSettings.async = false;
+                    $.post("/sysMenu/doDel", {id: id}, function (data) {
+                        if (data.code == 0) {
+
+                            dialogItself.close();
+                            BootstrapDialog.show({
+                                type: BootstrapDialog.TYPE_SUCCESS,
+                                title: '成功 ',
+                                message: data.msg,
+                                size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
+                                onshown: function (dialogRef) {
+                                    setTimeout(function () {
+                                        dialogRef.close();
+                                    }, 1000);
+                                }
+                            });
+                            // $("#SysMenutable").bootstrapTable('refresh');
+
+                        } else {
+                            BootstrapDialog.show({
+                                type: BootstrapDialog.TYPE_DANGER,
+                                title: '错误 ',
+                                message: data.msg,
+                                size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
+                                onshown: function (dialogRef) {
+                                    setTimeout(function () {
+                                        dialogRef.close();
+                                    }, 1000);
+                                }
+                            });
+                        }
+                    });
+                    initSysMenuTable();
+                    $.ajaxSettings.async = true;
+                }
+            }, {
+                label: '取消',
+                action: function (dialogItself) {
+                    dialogItself.close();
+                }
+            }]
+        });
+    }
+
+
 
 // 格式化类型
     function typeFormatter(value, row, index) {
@@ -177,13 +236,17 @@ var sysMenuModle = (function () {
             type: BootstrapDialog.TYPE_DEFAULT,
             size: BootstrapDialog.SIZE_WIDE,
             closable: true,//右上角的关闭按钮
+            // max-height:,
+            cssClass:'dialogModalH ',
             buttons: [{
                 label: '保存',
                 cssClass: 'btn-primary',
                 action: function (dialogRef) {
                     dialogRef.getModalBody().find('form').find("button").trigger('click');
-                    initTable();
-                    dialogRef.close();
+                    // console.log(dialogRef.getModalBody())
+                    initSysMenuTable();
+
+                    // dialogRef.close();
                 }
             }, {
                 icon: 'glyphicon glyphicon-eye-close',
@@ -198,6 +261,8 @@ var sysMenuModle = (function () {
     return {
         SearchData: SearchData,
         toAddMenuPage: toAddMenuPage,
+        doDel: doDel
+
     }
 })();
 

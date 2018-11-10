@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="/common/main_head::mainHeader"></head>
+<head th:include="/common/main_head::mainHeader">
+    <style type="text/css">
+        .dialogModalH {
+            max-height: 200px;
+            overflow: scroll;
+        }
+
+        .modal-backdrop {
+            filter: alpha(opacity=0) !important;
+            opacity: 0 !important;
+        }
+    </style>
+</head>
 <body>
 <div id="wrapperZlc">
     <div id="page-innerZlc">
@@ -31,6 +43,9 @@
 
 <script th:src="@{/webjs/sys/sysMenu/SysMenuList.js}"></script>
 <script>
+    $(function () {
+        ToastrMessage.successMessage("成功了", "1000", "toast-top-center");
+    });
 
     function test() {
         var selRows = $table.bootstrapTable("getSelections");

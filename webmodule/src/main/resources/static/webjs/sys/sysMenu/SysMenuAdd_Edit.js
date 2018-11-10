@@ -169,31 +169,12 @@ var sysMenuAddEdit = (function () {
                 document.getElementById('sysMenuForm').reset();
                 if (data.code == 0) {
 
-                    $('#sysMenuAdd').modal('hide');
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_SUCCESS,
-                        title: '成功 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
-                    $("#SysMenutable").bootstrapTable('refresh');
+                    ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
+
+                    // $("#SysMenutable").bootstrapTable('refresh');
                 } else {
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_DANGER,
-                        title: '错误 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
+                    ToastrMessage.errorMessage(data.msg, "1000", "toast-top-center");
+
                 }
 
             });

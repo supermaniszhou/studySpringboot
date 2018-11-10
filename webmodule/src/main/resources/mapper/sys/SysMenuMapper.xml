@@ -320,9 +320,7 @@
             </if>
 
             <if test="flag=='exclusive'">
-                <if test="flag==null and flag==''">
-                    and MENU_PARENT not in (-1)
-                </if>
+                and MENU_PARENT not in (-1)
                 <if test="yesNo !=null ">
                     and YES_NO=0
                 </if>

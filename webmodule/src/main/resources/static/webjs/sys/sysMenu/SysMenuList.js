@@ -182,9 +182,8 @@ var sysMenuModle = (function () {
                 cssClass: 'btn-primary',
                 action: function (dialogRef) {
                     dialogRef.getModalBody().find('form').find("button").trigger('click');
-                    console.log(dialogRef.getModalBody().find('form').serialize())
-                    // dialogRef.close();
-
+                    initTable();
+                    dialogRef.close();
                 }
             }, {
                 icon: 'glyphicon glyphicon-eye-close',

@@ -1,70 +1,35 @@
 package com.zhou.entity.sys;
 
-import java.io.Serializable;
+import java.lang.*;
+import java.math.*;
+import java.io.*;
 import java.util.Date;
 
 public class SysUser implements Serializable {
-    private Integer id;
+    private Integer id;//
+    private String username;//姓名
+    private String password;//密码
+    private String email;//邮箱
+    private String address;//地址
+    private String phone;//联系方式
+    private Integer age;//年龄
+    private Integer sex;//性别
+    private String qq;//QQ号
+    private String weixin;//微信号
+    private String useridenty;//身份证号
+    private String isdel;//是否删除：0未删除，1：已删除
+    private String isdisable;//是否启用：0不启用，1：启用
+    private Date createtime;//创建时间
+    private Date updatetime;//修改时间
+    private Integer loginstatus;//登录状态
+    private String meno;//描述
+    private String realname;//真实姓名
+    private String userOrg;//所属机构
+    private Integer userHeight;//身高
+    private String picPath;//头像路径
+    private String userBirthday;//出生日期
 
-    private String username;
-
-    private String realname;
-
-    private String password;
-
-    private String email;
-
-    private String address;
-
-    private String phone;
-
-    private Integer age;
-
-    private Integer sex;
-
-    private String qq;
-
-    private String weixin;
-
-    private String useridenty;
-
-    private String isdel;
-
-    private String isdisable;
-
-    private String birthday;
-
-    private Date createtime;
-
-    private Date updatetime;
-
-    private Integer loginstatus;
-
-    private String meno;
-    private String confirmPassword;
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname;
-    }
-
-    public String getMeno() {
-        return meno;
-    }
-
-    public void setMeno(String meno) {
-        this.meno = meno;
+    public SysUser() {
     }
 
     public Integer getId() {
@@ -80,7 +45,7 @@ public class SysUser implements Serializable {
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
     public String getPassword() {
@@ -88,7 +53,7 @@ public class SysUser implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getEmail() {
@@ -96,7 +61,7 @@ public class SysUser implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getAddress() {
@@ -104,7 +69,7 @@ public class SysUser implements Serializable {
     }
 
     public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+        this.address = address;
     }
 
     public String getPhone() {
@@ -112,7 +77,7 @@ public class SysUser implements Serializable {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
     }
 
     public Integer getAge() {
@@ -136,7 +101,7 @@ public class SysUser implements Serializable {
     }
 
     public void setQq(String qq) {
-        this.qq = qq == null ? null : qq.trim();
+        this.qq = qq;
     }
 
     public String getWeixin() {
@@ -144,7 +109,7 @@ public class SysUser implements Serializable {
     }
 
     public void setWeixin(String weixin) {
-        this.weixin = weixin == null ? null : weixin.trim();
+        this.weixin = weixin;
     }
 
     public String getUseridenty() {
@@ -152,7 +117,7 @@ public class SysUser implements Serializable {
     }
 
     public void setUseridenty(String useridenty) {
-        this.useridenty = useridenty == null ? null : useridenty.trim();
+        this.useridenty = useridenty;
     }
 
     public String getIsdel() {
@@ -160,7 +125,7 @@ public class SysUser implements Serializable {
     }
 
     public void setIsdel(String isdel) {
-        this.isdel = isdel == null ? null : isdel.trim();
+        this.isdel = isdel;
     }
 
     public String getIsdisable() {
@@ -168,15 +133,7 @@ public class SysUser implements Serializable {
     }
 
     public void setIsdisable(String isdisable) {
-        this.isdisable = isdisable == null ? null : isdisable.trim();
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday == null ? null : birthday.trim();
+        this.isdisable = isdisable;
     }
 
     public Date getCreatetime() {
@@ -202,4 +159,54 @@ public class SysUser implements Serializable {
     public void setLoginstatus(Integer loginstatus) {
         this.loginstatus = loginstatus;
     }
+
+    public String getMeno() {
+        return meno;
+    }
+
+    public void setMeno(String meno) {
+        this.meno = meno;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getUserOrg() {
+        return userOrg;
+    }
+
+    public void setUserOrg(String userOrg) {
+        this.userOrg = userOrg;
+    }
+
+    public Integer getUserHeight() {
+        return userHeight;
+    }
+
+    public void setUserHeight(Integer userHeight) {
+        this.userHeight = userHeight;
+    }
+
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public String getUserBirthday() {
+        return userBirthday;
+    }
+
+    public void setUserBirthday(String userBirthday) {
+        this.userBirthday = userBirthday;
+    }
+
 }
+

@@ -1,24 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhou.mapper.sys.SysUserMapper">
+
     <sql id="searchCondition">
         <where>
             1=1
-            <if test="realname !=null and realname  !=''">AND realname=#{realname}</if>
-            <if test="username !=null and username  !=''">AND USERNAME LIKE '%'||#{username}||'%'</if>
-            <if test="useridenty !=null and useridenty  !=''">AND USERIDENTY like '%'||#{useridenty}||'%'</if>
+            <if test="id !=null and id !=''">
+                and ID=#{id}
+            </if>
+            <if test="username !=null and username !=''">
+                and USERNAME=#{username}
+            </if>
+            <if test="password !=null and password !=''">
+                and PASSWORD=#{password}
+            </if>
+            <if test="email !=null and email !=''">
+                and EMAIL=#{email}
+            </if>
+            <if test="address !=null and address !=''">
+                and ADDRESS=#{address}
+            </if>
+            <if test="phone !=null and phone !=''">
+                and PHONE=#{phone}
+            </if>
+            <if test="age !=null and age !=''">
+                and AGE=#{age}
+            </if>
+            <if test="sex !=null and sex !=''">
+                and SEX=#{sex}
+            </if>
+            <if test="qq !=null and qq !=''">
+                and QQ=#{qq}
+            </if>
+            <if test="weixin !=null and weixin !=''">
+                and WEIXIN=#{weixin}
+            </if>
+            <if test="useridenty !=null and useridenty !=''">
+                and USERIDENTY=#{useridenty}
+            </if>
+            <if test="isdel !=null and isdel !=''">
+                and ISDEL=#{isdel}
+            </if>
+            <if test="isdisable !=null and isdisable !=''">
+                and ISDISABLE=#{isdisable}
+            </if>
+            <if test="createtime !=null and createtime !=''">
+                and CREATETIME=#{createtime}
+            </if>
+            <if test="updatetime !=null and updatetime !=''">
+                and UPDATETIME=#{updatetime}
+            </if>
+            <if test="loginstatus !=null and loginstatus !=''">
+                and LOGINSTATUS=#{loginstatus}
+            </if>
+            <if test="meno !=null and meno !=''">
+                and MENO=#{meno}
+            </if>
+            <if test="realname !=null and realname !=''">
+                and REALNAME=#{realname}
+            </if>
+            <if test="userOrg !=null and userOrg !=''">
+                and USER_ORG=#{userOrg}
+            </if>
+            <if test="userHeight !=null and userHeight !=''">
+                and USER_HEIGHT=#{userHeight}
+            </if>
+            <if test="picPath !=null and picPath !=''">
+                and PIC_PATH=#{picPath}
+            </if>
+            <if test="userBirthday !=null and userBirthday !=''">
+                and USER_BIRTHDAY=#{userBirthday}
+            </if>
         </where>
     </sql>
 
     <select id="queryCount" parameterType="com.zhou.entity.sys.SysUser" resultType="int">
-        select count(1) from zlc.sys_user
+        select count(1) from ZLC.sys_user
         <include refid="searchCondition"></include>
     </select>
 
     <insert id="add" parameterType="com.zhou.entity.sys.SysUser">
         insert into ZLC.sys_user (
         <trim suffixOverrides=",">
-
+            <if test="id !=null and id !=''">
+                ID,
+            </if>
             <if test="username !=null and username !=''">
                 USERNAME,
             </if>
@@ -70,10 +136,24 @@
             <if test="realname !=null and realname !=''">
                 REALNAME,
             </if>
+            <if test="userOrg !=null and userOrg !=''">
+                USER_ORG,
+            </if>
+            <if test="userHeight !=null and userHeight !=''">
+                USER_HEIGHT,
+            </if>
+            <if test="picPath !=null and picPath !=''">
+                PIC_PATH,
+            </if>
+            <if test="userBirthday !=null and userBirthday !=''">
+                USER_BIRTHDAY,
+            </if>
         </trim>
         ) VALUES (
         <trim suffixOverrides=",">
-
+            <if test="id !=null and id !=''">
+                #{id},
+            </if>
             <if test="username !=null and username !=''">
                 #{username},
             </if>
@@ -125,6 +205,18 @@
             <if test="realname !=null and realname !=''">
                 #{realname},
             </if>
+            <if test="userOrg !=null and userOrg !=''">
+                #{userOrg},
+            </if>
+            <if test="userHeight !=null and userHeight !=''">
+                #{userHeight},
+            </if>
+            <if test="picPath !=null and picPath !=''">
+                #{picPath},
+            </if>
+            <if test="userBirthday !=null and userBirthday !=''">
+                #{userBirthday},
+            </if>
         </trim>
         )
     </insert>
@@ -132,6 +224,9 @@
     <update id="update" parameterType="com.zhou.entity.sys.SysUser">
         update ZLC.sys_user
         <trim prefix="set" suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                ID=#{id},
+            </if>
             <if test="username !=null and username !=''">
                 USERNAME=#{username},
             </if>
@@ -183,12 +278,87 @@
             <if test="realname !=null and realname !=''">
                 REALNAME=#{realname},
             </if>
+            <if test="userOrg !=null and userOrg !=''">
+                USER_ORG=#{userOrg},
+            </if>
+            <if test="userHeight !=null and userHeight !=''">
+                USER_HEIGHT=#{userHeight},
+            </if>
+            <if test="picPath !=null and picPath !=''">
+                PIC_PATH=#{picPath},
+            </if>
+            <if test="userBirthday !=null and userBirthday !=''">
+                USER_BIRTHDAY=#{userBirthday},
+            </if>
         </trim>
         <where>
             1=1
             <trim suffixOverrides=",">
                 <if test="id !=null and id !=''">
-                    and ID=#{id},
+                    and ID=#{id}
+                </if>
+                <if test="username !=null and username !=''">
+                    and USERNAME=#{username}
+                </if>
+                <if test="password !=null and password !=''">
+                    and PASSWORD=#{password}
+                </if>
+                <if test="email !=null and email !=''">
+                    and EMAIL=#{email}
+                </if>
+                <if test="address !=null and address !=''">
+                    and ADDRESS=#{address}
+                </if>
+                <if test="phone !=null and phone !=''">
+                    and PHONE=#{phone}
+                </if>
+                <if test="age !=null and age !=''">
+                    and AGE=#{age}
+                </if>
+                <if test="sex !=null and sex !=''">
+                    and SEX=#{sex}
+                </if>
+                <if test="qq !=null and qq !=''">
+                    and QQ=#{qq}
+                </if>
+                <if test="weixin !=null and weixin !=''">
+                    and WEIXIN=#{weixin}
+                </if>
+                <if test="useridenty !=null and useridenty !=''">
+                    and USERIDENTY=#{useridenty}
+                </if>
+                <if test="isdel !=null and isdel !=''">
+                    and ISDEL=#{isdel}
+                </if>
+                <if test="isdisable !=null and isdisable !=''">
+                    and ISDISABLE=#{isdisable}
+                </if>
+                <if test="createtime !=null and createtime !=''">
+                    and CREATETIME=#{createtime}
+                </if>
+                <if test="updatetime !=null and updatetime !=''">
+                    and UPDATETIME=#{updatetime}
+                </if>
+                <if test="loginstatus !=null and loginstatus !=''">
+                    and LOGINSTATUS=#{loginstatus}
+                </if>
+                <if test="meno !=null and meno !=''">
+                    and MENO=#{meno}
+                </if>
+                <if test="realname !=null and realname !=''">
+                    and REALNAME=#{realname}
+                </if>
+                <if test="userOrg !=null and userOrg !=''">
+                    and USER_ORG=#{userOrg}
+                </if>
+                <if test="userHeight !=null and userHeight !=''">
+                    and USER_HEIGHT=#{userHeight}
+                </if>
+                <if test="picPath !=null and picPath !=''">
+                    and PIC_PATH=#{picPath}
+                </if>
+                <if test="userBirthday !=null and userBirthday !=''">
+                    and USER_BIRTHDAY=#{userBirthday}
                 </if>
             </trim>
         </where>
@@ -196,33 +366,236 @@
 
     <delete id="delete" parameterType="com.zhou.entity.sys.SysUser">
         delete from ZLC.sys_user
-        <where>1=1
+        <where>
+            1=1
             <trim suffixOverrides=",">
                 <if test="id !=null and id !=''">
                     and ID=#{id},
                 </if>
+                <if test="username !=null and username !=''">
+                    and USERNAME=#{username},
+                </if>
+                <if test="password !=null and password !=''">
+                    and PASSWORD=#{password},
+                </if>
+                <if test="email !=null and email !=''">
+                    and EMAIL=#{email},
+                </if>
+                <if test="address !=null and address !=''">
+                    and ADDRESS=#{address},
+                </if>
+                <if test="phone !=null and phone !=''">
+                    and PHONE=#{phone},
+                </if>
+                <if test="age !=null and age !=''">
+                    and AGE=#{age},
+                </if>
+                <if test="sex !=null and sex !=''">
+                    and SEX=#{sex},
+                </if>
+                <if test="qq !=null and qq !=''">
+                    and QQ=#{qq},
+                </if>
+                <if test="weixin !=null and weixin !=''">
+                    and WEIXIN=#{weixin},
+                </if>
+                <if test="useridenty !=null and useridenty !=''">
+                    and USERIDENTY=#{useridenty},
+                </if>
+                <if test="isdel !=null and isdel !=''">
+                    and ISDEL=#{isdel},
+                </if>
+                <if test="isdisable !=null and isdisable !=''">
+                    and ISDISABLE=#{isdisable},
+                </if>
+                <if test="createtime !=null and createtime !=''">
+                    and CREATETIME=#{createtime},
+                </if>
+                <if test="updatetime !=null and updatetime !=''">
+                    and UPDATETIME=#{updatetime},
+                </if>
+                <if test="loginstatus !=null and loginstatus !=''">
+                    and LOGINSTATUS=#{loginstatus},
+                </if>
+                <if test="meno !=null and meno !=''">
+                    and MENO=#{meno},
+                </if>
+                <if test="realname !=null and realname !=''">
+                    and REALNAME=#{realname},
+                </if>
+                <if test="userOrg !=null and userOrg !=''">
+                    and USER_ORG=#{userOrg},
+                </if>
+                <if test="userHeight !=null and userHeight !=''">
+                    and USER_HEIGHT=#{userHeight},
+                </if>
+                <if test="picPath !=null and picPath !=''">
+                    and PIC_PATH=#{picPath},
+                </if>
+                <if test="userBirthday !=null and userBirthday !=''">
+                    and USER_BIRTHDAY=#{userBirthday},
+                </if>
             </trim>
+
         </where>
     </delete>
 
+    <select id="query" parameterType="com.zhou.entity.sys.SysUser" resultType="com.zhou.entity.sys.SysUser">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            USERNAME AS username,
+            PASSWORD AS password,
+            EMAIL AS email,
+            ADDRESS AS address,
+            PHONE AS phone,
+            AGE AS age,
+            SEX AS sex,
+            QQ AS qq,
+            WEIXIN AS weixin,
+            USERIDENTY AS useridenty,
+            ISDEL AS isdel,
+            ISDISABLE AS isdisable,
+            CREATETIME AS createtime,
+            UPDATETIME AS updatetime,
+            LOGINSTATUS AS loginstatus,
+            MENO AS meno,
+            REALNAME AS realname,
+            USER_ORG AS userOrg,
+            USER_HEIGHT AS userHeight,
+            PIC_PATH AS picPath,
+            USER_BIRTHDAY AS userBirthday,
+        </trim>
+        from ZLC.sys_user
+        <where>
+            1=1
+            <if test="id !=null and id !=''">
+                and ID=#{id}
+            </if>
+            <if test="username !=null and username !=''">
+                and USERNAME=#{username}
+            </if>
+            <if test="password !=null and password !=''">
+                and PASSWORD=#{password}
+            </if>
+            <if test="email !=null and email !=''">
+                and EMAIL=#{email}
+            </if>
+            <if test="address !=null and address !=''">
+                and ADDRESS=#{address}
+            </if>
+            <if test="phone !=null and phone !=''">
+                and PHONE=#{phone}
+            </if>
+            <if test="age !=null and age !=''">
+                and AGE=#{age}
+            </if>
+            <if test="sex !=null and sex !=''">
+                and SEX=#{sex}
+            </if>
+            <if test="qq !=null and qq !=''">
+                and QQ=#{qq}
+            </if>
+            <if test="weixin !=null and weixin !=''">
+                and WEIXIN=#{weixin}
+            </if>
+            <if test="useridenty !=null and useridenty !=''">
+                and USERIDENTY=#{useridenty}
+            </if>
+            <if test="isdel !=null and isdel !=''">
+                and ISDEL=#{isdel}
+            </if>
+            <if test="isdisable !=null and isdisable !=''">
+                and ISDISABLE=#{isdisable}
+            </if>
+            <if test="createtime !=null and createtime !=''">
+                and CREATETIME=#{createtime}
+            </if>
+            <if test="updatetime !=null and updatetime !=''">
+                and UPDATETIME=#{updatetime}
+            </if>
+            <if test="loginstatus !=null and loginstatus !=''">
+                and LOGINSTATUS=#{loginstatus}
+            </if>
+            <if test="meno !=null and meno !=''">
+                and MENO=#{meno}
+            </if>
+            <if test="realname !=null and realname !=''">
+                and REALNAME=#{realname}
+            </if>
+            <if test="userOrg !=null and userOrg !=''">
+                and USER_ORG=#{userOrg}
+            </if>
+            <if test="userHeight !=null and userHeight !=''">
+                and USER_HEIGHT=#{userHeight}
+            </if>
+            <if test="picPath !=null and picPath !=''">
+                and PIC_PATH=#{picPath}
+            </if>
+            <if test="userBirthday !=null and userBirthday !=''">
+                and USER_BIRTHDAY=#{userBirthday}
+            </if>
+        </where>
+    </select>
+
     <select id="queryList" parameterType="com.zhou.entity.sys.SysUser" resultType="com.zhou.entity.sys.SysUser">
-        select * from sys_user
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            USERNAME AS username,
+            PASSWORD AS password,
+            EMAIL AS email,
+            ADDRESS AS address,
+            PHONE AS phone,
+            AGE AS age,
+            SEX AS sex,
+            QQ AS qq,
+            WEIXIN AS weixin,
+            USERIDENTY AS useridenty,
+            ISDEL AS isdel,
+            ISDISABLE AS isdisable,
+            CREATETIME AS createtime,
+            UPDATETIME AS updatetime,
+            LOGINSTATUS AS loginstatus,
+            MENO AS meno,
+            REALNAME AS realname,
+            USER_ORG AS userOrg,
+            USER_HEIGHT AS userHeight,
+            PIC_PATH AS picPath,
+            USER_BIRTHDAY AS userBirthday,
+        </trim>
+        from ZLC.sys_user
         <include refid="searchCondition"></include>
-        order by id desc
+        order by id DESC
     </select>
 
     <select id="getAll" resultType="com.zhou.entity.sys.SysUser">
-        select * from sys_user
-    </select>
-
-    <select id="query" resultType="com.zhou.entity.sys.SysUser" parameterType="com.zhou.entity.sys.SysUser">
-        select * from ZLC.SYS_USER
-        <where>
-            1=1
-            <if test="id !=null and id !=''">and id=#{id}</if>
-            <if test="username !=null and username !=''">and username=#{username}</if>
-            <if test="useridenty !=null and useridenty !=''">and useridenty=#{useridenty}</if>
-        </where>
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            USERNAME AS username,
+            PASSWORD AS password,
+            EMAIL AS email,
+            ADDRESS AS address,
+            PHONE AS phone,
+            AGE AS age,
+            SEX AS sex,
+            QQ AS qq,
+            WEIXIN AS weixin,
+            USERIDENTY AS useridenty,
+            ISDEL AS isdel,
+            ISDISABLE AS isdisable,
+            CREATETIME AS createtime,
+            UPDATETIME AS updatetime,
+            LOGINSTATUS AS loginstatus,
+            MENO AS meno,
+            REALNAME AS realname,
+            USER_ORG AS userOrg,
+            USER_HEIGHT AS userHeight,
+            PIC_PATH AS picPath,
+            USER_BIRTHDAY AS userBirthday,
+        </trim>
+        from ZLC.sys_user
     </select>
 
 

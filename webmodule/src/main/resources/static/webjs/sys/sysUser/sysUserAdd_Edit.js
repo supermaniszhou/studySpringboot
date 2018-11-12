@@ -8,19 +8,12 @@ var sysUserAdd = (function () {
 //        live: 'disabled',
             message: 'This value is not valid',
             feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
+                // valid: 'glyphicon glyphicon-ok',
                 invalid: 'glyphicon glyphicon-remove',
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                id: {
-                    container: '#idError',
-                    validators: {
-                        notEmpty: {
-                            message: '不可为空！',
-                        }
-                    }
-                },
+
                 username: {
                     container: '#usernameError',
                     validators: {
@@ -60,6 +53,10 @@ var sysUserAdd = (function () {
                     validators: {
                         notEmpty: {
                             message: '邮箱不可为空！',
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+                            message: '邮箱地址不合法！'
                         }
                     }
                 },
@@ -75,8 +72,16 @@ var sysUserAdd = (function () {
                     container: '#phoneError',
                     validators: {
                         notEmpty: {
-                            message: '联系方式不可为空！',
+                            message: '手机号码不可为空！',
+                        },
+                        digits: {
+                            message: '值只能包含数字'
+                        },
+                        regexp: {
+                            regexp: /^[1][3,4,5,7,8][0-9]{9}$/,
+                            message: '手机号码不合法！'
                         }
+
                     }
                 },
                 age: {
@@ -84,6 +89,19 @@ var sysUserAdd = (function () {
                     validators: {
                         notEmpty: {
                             message: '年龄不可为空！',
+                        },
+                        digits: {
+                            message: '值只能包含数字'
+                        },
+                        lessThan: {
+                            value: 100,
+                            inclusive: true,
+                            message: '年龄必须小于100岁。'
+                        },
+                        greaterThan: {
+                            value: 10,
+                            inclusive: false,
+                            message: '年龄必须大于或等于10岁。'
                         }
                     }
                 },
@@ -101,7 +119,10 @@ var sysUserAdd = (function () {
                         notEmpty: {
                             message: 'QQ号不可为空！',
                         }
-                    }
+                    },
+                    digits: {
+                        message: '值只能包含数字'
+                    },
                 },
                 weixin: {
                     container: '#weixinError',
@@ -116,49 +137,15 @@ var sysUserAdd = (function () {
                     validators: {
                         notEmpty: {
                             message: '身份证号不可为空！',
+                        },
+                        regexp: {
+                            regexp: /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+                            message: '身份证号不合法'
                         }
+
                     }
                 },
-                isdel: {
-                    container: '#isdelError',
-                    validators: {
-                        notEmpty: {
-                            message: '是否删除：0未删除，1：已删除不可为空！',
-                        }
-                    }
-                },
-                isdisable: {
-                    container: '#isdisableError',
-                    validators: {
-                        notEmpty: {
-                            message: '是否启用：0不启用，1：启用不可为空！',
-                        }
-                    }
-                },
-                createtime: {
-                    container: '#createtimeError',
-                    validators: {
-                        notEmpty: {
-                            message: '创建时间不可为空！',
-                        }
-                    }
-                },
-                updatetime: {
-                    container: '#updatetimeError',
-                    validators: {
-                        notEmpty: {
-                            message: '修改时间不可为空！',
-                        }
-                    }
-                },
-                loginstatus: {
-                    container: '#loginstatusError',
-                    validators: {
-                        notEmpty: {
-                            message: '登录状态不可为空！',
-                        }
-                    }
-                },
+
                 meno: {
                     container: '#menoError',
                     validators: {
@@ -167,35 +154,29 @@ var sysUserAdd = (function () {
                         }
                     }
                 },
-                realname: {
-                    container: '#realnameError',
-                    validators: {
-                        notEmpty: {
-                            message: '真实姓名不可为空！',
-                        }
-                    }
-                },
-                userOrg: {
-                    container: '#userOrgError',
-                    validators: {
-                        notEmpty: {
-                            message: '所属机构不可为空！',
-                        }
-                    }
-                },
+
+
                 userHeight: {
                     container: '#userHeightError',
                     validators: {
-                        notEmpty: {
-                            message: '身高不可为空！',
+                        callback: {
+                            message: '值只能包含数字,并且不能大于300',
+                            callback: function (value, validator) {
+                                if (value != null && value != "") {
+                                    var reg=/^[1-9]{1}[0-9]{1,2}$/;
+                                    if(!reg.test(value)){
+                                        return false;
+                                    }
+                                }
+                            }
                         }
                     }
                 },
-                picPath: {
-                    container: '#picPathError',
+                userBirthday: {
+                    container: '#userBirthdayError',
                     validators: {
                         notEmpty: {
-                            message: '头像路径不可为空！',
+                            message: '出生日期不可为空！',
                         }
                     }
                 },

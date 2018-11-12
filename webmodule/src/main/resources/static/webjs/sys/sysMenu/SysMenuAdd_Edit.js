@@ -78,27 +78,20 @@ var sysMenuAddEdit = (function () {
         });
     }
 
-
-    function toAdd() {
-        document.getElementById('sysMenuForm').reset();
-        $(".modal-footer").html("");
-        $(".modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button><button type="button" class="btn btn-primary" onclick="sysMenuAddEdit.doAdd()">保存</button>');
-        $('#sysMenuAdd').modal('show');
-    }
-
     function doAdd() {
         var bootstrapValidator = $("#sysMenuForm").data('bootstrapValidator');
 
         //手动触发验证
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
+
             $.post("/sysMenu/doAdd", $("#sysMenuForm").serialize(), function (data) {
                 if (data.code == 0) {
                     //清空表单 并清除表单验证
                     document.getElementById('sysMenuForm').reset();
                     $("#sysMenuForm").data('bootstrapValidator').destroy();
+                    formValidator();//初始化验证
 
-                    formValidator();
                     ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
 
                 } else {
@@ -107,57 +100,8 @@ var sysMenuAddEdit = (function () {
                 }
 
             });
-        }
-    }
 
-    function toUpdate(id, flag) {
-        $.ajax({
-            url: "/sysMenu/toEdit",
-            async: true,
-            type: "POST",
-            data: {
-                id: id,
-                flag: flag
-            },
-            // 成功后开启模态框
-            success: showEdit,
-            error: function () {
-                BootstrapDialog.show({
-                    type: BootstrapDialog.TYPE_DANGER,
-                    title: '错误 ',
-                    message: "请求出错",
-                    size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                    onshown: function (dialogRef) {
-                        setTimeout(function () {
-                            dialogRef.close();
-                        }, 1000);
-                    }
-                });
-            },
-            dataType: "json"
-        });
-    }
-
-    function showEdit(data) {
-        var u = data.data;
-        $("#id").val(u.id);
-        $("#menuName").val(u.menuName);
-        $("#menuLevel").val(u.menuLevel);
-        $("#menuParent").val(u.menuParent);
-        $("#menuOrder").val(u.menuOrder);
-        $("#menuChild").val(u.menuChild);
-        $("#memo").val(u.memo);
-        $("#menuUrl").val(u.menuUrl);
-        //显示模态框
-        $(".modal-footer").html("");
-        $(".modal-title").html("");
-        if (data.flag == 'edit') {
-            $(".modal-title").html("修改");
-            $(".modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button><button type="button" class="btn btn-primary" onclick="sysMenuAddEdit.doEdit()">确认修改</button>');
-        } else if (data.flag == 'view') {
-            $(".modal-title").html("查看");
         }
-        $('#sysMenuAdd').modal('show');
     }
 
     function doEdit() {
@@ -165,27 +109,29 @@ var sysMenuAddEdit = (function () {
         //手动触发验证
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
+            //设为同步
+            // $.ajaxSettings.async = false;
             $.post("/sysMenu/doEdit", $("#sysMenuForm").serialize(), function (data) {
-                document.getElementById('sysMenuForm').reset();
+                // document.getElementById('sysMenuForm').reset();
+                $("#sysMenuForm").data('bootstrapValidator').destroy();
+                formValidator();//初始化验证
                 if (data.code == 0) {
-
+                    $("#returnStatus").val(data.code);
                     ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
-
                     // $("#SysMenutable").bootstrapTable('refresh');
                 } else {
                     ToastrMessage.errorMessage(data.msg, "1000", "toast-top-center");
-
                 }
 
             });
+            //设为异步
+            // $.ajaxSettings.async = true;
         }
     }
 
 
     return {
-        toAdd: toAdd,
         doAdd: doAdd,
-        toUpdate: toUpdate,
         doEdit: doEdit,
     };
 })();

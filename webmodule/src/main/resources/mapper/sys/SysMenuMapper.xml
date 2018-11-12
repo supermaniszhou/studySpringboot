@@ -116,16 +116,14 @@
     <update id="update" parameterType="com.zhou.entity.sys.SysMenu">
         update ZLC.sys_menu
         <trim prefix="set" suffixOverrides=",">
-            <if test="id !=null and id !=''">
-                ID=#{id},
-            </if>
+
             <if test="menuName !=null and menuName !=''">
                 MENU_NAME=#{menuName},
             </if>
-            <if test="menuLevel !=null and menuLevel !=''">
+            <if test="menuLevel !=null ">
                 MENU_LEVEL=#{menuLevel},
             </if>
-            <if test="menuParent !=null and menuParent !=''">
+            <if test="menuParent !=null ">
                 MENU_PARENT=#{menuParent},
             </if>
             <if test="menuOrder !=null and menuOrder !=''">
@@ -143,42 +141,15 @@
             <if test="menuIcon !=null and menuIcon !=''">
                 MENU_ICON=#{menuIcon},
             </if>
-            <if test="yesNo !=null and yesNo !=''">
+            <if test="yesNo !=null ">
                 YES_NO=#{yesNo},
             </if>
         </trim>
         <where>
             1=1
             <trim suffixOverrides=",">
-                <if test="id !=null and id !=''">
+                <if test="id !=null ">
                     and ID=#{id}
-                </if>
-                <if test="menuName !=null and menuName !=''">
-                    and MENU_NAME=#{menuName}
-                </if>
-                <if test="menuLevel !=null and menuLevel !=''">
-                    and MENU_LEVEL=#{menuLevel}
-                </if>
-                <if test="menuParent !=null and menuParent !=''">
-                    and MENU_PARENT=#{menuParent}
-                </if>
-                <if test="menuOrder !=null and menuOrder !=''">
-                    and MENU_ORDER=#{menuOrder}
-                </if>
-                <if test="menuChild !=null and menuChild !=''">
-                    and MENU_CHILD=#{menuChild}
-                </if>
-                <if test="memo !=null and memo !=''">
-                    and MEMO=#{memo}
-                </if>
-                <if test="menuUrl !=null and menuUrl !=''">
-                    and MENU_URL=#{menuUrl}
-                </if>
-                <if test="menuIcon !=null and menuIcon !=''">
-                    and MENU_ICON=#{menuIcon}
-                </if>
-                <if test="yesNo !=null and yesNo !=''">
-                    and YES_NO=#{yesNo}
                 </if>
             </trim>
         </where>

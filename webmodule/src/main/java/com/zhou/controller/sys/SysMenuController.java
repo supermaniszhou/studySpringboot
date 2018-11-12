@@ -72,18 +72,19 @@ public class SysMenuController extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "toEdit")
-    @ResponseBody
-    public Map<String, Object> toEdit(@RequestParam(value = "id") String id, @RequestParam("flag") String flag) {
+    @RequestMapping(value = "toEditMenu")
+    public ModelAndView toEditMenu(@RequestParam(value = "id") String id,
+                                   @RequestParam("flag") String flag, Model model) {
         SysMenu sysMenu = null;
         try {
             SysMenu obj = new SysMenu();
             obj.setId(Integer.parseInt(id));
             sysMenu = (SysMenu) sysMenuService.queryObj(obj);
+            model.addAttribute("sysMenu",sysMenu);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return responseTo(SUCCESS_FLAG, SUCCESS_MSG, sysMenu, flag);
+        return new ModelAndView(VIEW_PATH + "sysMenu/sysMenu_edit");
     }
 
     @RequestMapping(value = "doEdit")
@@ -122,14 +123,14 @@ public class SysMenuController extends BaseController {
             if (null != flag && !"".equals(flag)) {
                 menu.setFlag(flag);
                 menu.setYesNo(0);
-            }  else {
+            } else {
                 menu.setFlag(flag);
             }
             sysMenuList = sysMenuService.getAll(menu);
             //获取一级菜单
             for (SysMenu sysMenu : sysMenuList) {
                 Map<String, Object> map = new LinkedHashMap<>();
-                if(null != sysMenu.getMenuParent()){
+                if (null != sysMenu.getMenuParent()) {
                     if (sysMenu.getMenuParent() == 0 || sysMenu.getMenuParent() == -1) {
                         map.put("id", sysMenu.getId());
                         map.put("text", sysMenu.getMenuName());

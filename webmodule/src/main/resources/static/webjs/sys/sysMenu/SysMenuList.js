@@ -1,22 +1,9 @@
 var sysMenuModle = (function () {
 
     $(function () {
-
         initSysMenuTable();
-        $("[data-toggle='tooltip']").tooltip();
     });
-    //初始化操作按钮的方法
-    // window.operateEvents = {
-    //     'click .RoleOfadd': function (e, value, row, index) {
-    //         add(row.id);
-    //     },
-    //     'click .RoleOfdelete': function (e, value, row, index) {
-    //         del(row.id);
-    //     },
-    //     'click .RoleOfedit': function (e, value, row, index) {
-    //         update(row.id);
-    //     }
-    // };
+
 
     function initSysMenuTable() {
         $.post("/sysMenu/getSysMenuData", {}, function (data) {
@@ -101,10 +88,69 @@ var sysMenuModle = (function () {
     }
 
     function opeate(value, row, index) {
-        var html = '<a  href="javascript:void(0)"  data-toggle="tooltip" data-placement="top" title="修改" onclick="sysMenuAddEdit.toUpdate(' + row.id + ',\'edit\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
-        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a    href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="查看" onclick="sysMenuAddEdit.toUpdate(' + row.id + ',\'view\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
+        var html = '<a  href="javascript:void(0)"  data-toggle="tooltip" data-placement="top" title="修改" onclick="sysMenuModle.toUpdateMenu(' + row.id + ',\'edit\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a    href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="查看" onclick="sysMenuModle.toUpdate(' + row.id + ',\'view\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
         html += '&nbsp;&nbsp;&nbsp;&nbsp;<a   href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="删除" onclick="sysMenuModle.doDel(' + row.id + ')" ><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>';
         return html;
+    }
+
+    /**
+     * 跳转到新增页面并可以提交表单数据
+     * */
+    function toAddMenuPage() {
+        BootstrapDialog.show({
+            title: '新增',
+            message: $('<div></div>').load('/sysMenu/toAddMenuPage'),
+            draggable: false,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            cssClass: 'dialogModalH ',
+            buttons: [{
+                label: '保存',
+                cssClass: 'btn-primary',
+                action: function (dialogRef) {
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
+                    initSysMenuTable();
+                    // dialogRef.close();
+                }
+            }, {
+                icon: 'glyphicon glyphicon-eye-close',
+                label: '关闭',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
+
+
+    function toUpdateMenu(id, flag) {
+        BootstrapDialog.show({
+            title: '修改',
+            message: $('<div></div>').load('/sysMenu/toEditMenu?id=' + id + "&flag=" + flag),
+            draggable: false,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            cssClass: 'dialogModalH ',
+            buttons: [{
+                label: '确认修改',
+                cssClass: 'btn-primary',
+                action: function (dialogRef) {
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
+                    initSysMenuTable();
+                    // dialogRef.close();
+                }
+            }, {
+                icon: 'glyphicon glyphicon-eye-close',
+                label: '关闭',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+
     }
 
     function doDel(id) {
@@ -161,29 +207,43 @@ var sysMenuModle = (function () {
     }
 
 
+    /*
+    // 格式化类型
+        function typeFormatter(value, row, index) {
+            if (value === 'menu') {
+                return '菜单';
+            }
+            if (value === 'button') {
+                return '按钮';
+            }
+            if (value === 'api') {
+                return '接口';
+            }
+            return '-';
+        }
 
-// 格式化类型
-    function typeFormatter(value, row, index) {
-        if (value === 'menu') {
-            return '菜单';
+        // 格式化状态
+        function statusFormatter(value, row, index) {
+            if (value === 1) {
+                return '<span class="label label-success">正常</span>';
+            } else {
+                return '<span class="label label-default">锁定</span>';
+            }
         }
-        if (value === 'button') {
-            return '按钮';
-        }
-        if (value === 'api') {
-            return '接口';
-        }
-        return '-';
-    }
 
-    // 格式化状态
-    function statusFormatter(value, row, index) {
-        if (value === 1) {
-            return '<span class="label label-success">正常</span>';
-        } else {
-            return '<span class="label label-default">锁定</span>';
-        }
-    }
+        // 初始化操作按钮的方法
+        window.operateEvents = {
+            'click .RoleOfadd': function (e, value, row, index) {
+                add(row.id);
+            },
+            'click .RoleOfdelete': function (e, value, row, index) {
+                del(row.id);
+            },
+            'click .RoleOfedit': function (e, value, row, index) {
+                update(row.id);
+            }
+        };
+    */
 
     /**
      * 选中父项时，同时选中子项
@@ -225,43 +285,12 @@ var sysMenuModle = (function () {
         $('#SysMenutable').bootstrapTable('refresh', {pageNumber: 1});
     }
 
-    /**
-     * 跳转到新增页面并可以提交表单数据
-     * */
-    function toAddMenuPage() {
-        BootstrapDialog.show({
-            title: '新增',
-            message: $('<div></div>').load('/sysMenu/toAddMenuPage'),
-            draggable: false,
-            type: BootstrapDialog.TYPE_DEFAULT,
-            size: BootstrapDialog.SIZE_WIDE,
-            closable: true,//右上角的关闭按钮
-            // max-height:,
-            cssClass:'dialogModalH ',
-            buttons: [{
-                label: '保存',
-                cssClass: 'btn-primary',
-                action: function (dialogRef) {
-                    dialogRef.getModalBody().find('form').find("button").trigger('click');
-                    // console.log(dialogRef.getModalBody())
-                    initSysMenuTable();
-
-                    // dialogRef.close();
-                }
-            }, {
-                icon: 'glyphicon glyphicon-eye-close',
-                label: '关闭',
-                action: function (dialog) {
-                    dialog.close();
-                }
-            }]
-        });
-    }
 
     return {
         SearchData: SearchData,
         toAddMenuPage: toAddMenuPage,
-        doDel: doDel
+        toUpdateMenu: toUpdateMenu,
+        doDel: doDel,
 
     }
 })();

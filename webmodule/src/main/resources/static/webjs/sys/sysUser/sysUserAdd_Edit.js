@@ -1,5 +1,9 @@
 var sysUserAdd = (function () {
     $(function () {
+        sysUserFormValidator();
+    });
+    
+    function sysUserFormValidator() {
         $('#sysUserForm').bootstrapValidator({
 //        live: 'disabled',
             message: 'This value is not valid',
@@ -179,40 +183,36 @@ var sysUserAdd = (function () {
                 },
             }
         });
-    });
-
-    function toAdd() {
-        document.getElementById('sysUserForm').reset();
-        $(".modal-footer").html("");
-        $(".modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button><button type="button" class="btn btn-primary" onclick="sysUserAdd.doAdd()">保存</button>');
-        $('#sysUserAdd').modal('show');
     }
 
-    function doAdd() {
-        // alert(22);
+
+    function doAddUser() {
         var bootstrapValidator = $("#sysUserForm").data('bootstrapValidator');
         //手动触发验证
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
             $.post("/user/doAdd", $("#sysUserForm").serialize(), function (data) {
-                document.getElementById('sysUserForm').reset();
                 if (data.code == 0) {
                     document.getElementById('sysUserForm').reset();
-                    $('#sysUserAdd').modal('hide');
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_SUCCESS,
-                        title: '成功 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
-                    $("#table2").bootstrapTable('refresh');
+                    $("#sysUserForm").data('bootstrapValidator').destroy();
+                    sysUserFormValidator();//初始化验证
+                    ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
+                    // $('#sysUserAdd').modal('hide');
+                    // BootstrapDialog.show({
+                    //     type: BootstrapDialog.TYPE_SUCCESS,
+                    //     title: '成功 ',
+                    //     message: data.msg,
+                    //     size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
+                    //     onshown: function (dialogRef) {
+                    //         setTimeout(function () {
+                    //             dialogRef.close();
+                    //         }, 1000);
+                    //     }
+                    // });
+                    // $("#table2").bootstrapTable('refresh');
                 } else {
-                    BootstrapDialog.show({
+                    ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");
+                    /*BootstrapDialog.show({
                         type: BootstrapDialog.TYPE_DANGER,
                         title: '错误 ',
                         message: data.msg,
@@ -222,7 +222,7 @@ var sysUserAdd = (function () {
                                 dialogRef.close();
                             }, 1000);
                         }
-                    });
+                    });*/
                 }
 
             });
@@ -376,8 +376,7 @@ var sysUserAdd = (function () {
     }
 
     return {
-        toAdd: toAdd,
-        doAdd: doAdd,
+        doAddUser: doAddUser,
         toUpdate: toUpdate,
         doEdit: doEdit,
         doDel: doDel

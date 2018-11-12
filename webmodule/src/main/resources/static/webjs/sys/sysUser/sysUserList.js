@@ -77,8 +77,6 @@ var userModle = (function () {
         return html;
     }
 
-
-
 //查询条件
     function queryParams(params) {
         return {

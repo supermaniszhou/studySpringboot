@@ -2,7 +2,7 @@ var sysUserAdd = (function () {
     $(function () {
         sysUserFormValidator();
     });
-    
+
     function sysUserFormValidator() {
         $('#sysUserForm').bootstrapValidator({
 //        live: 'disabled',
@@ -25,7 +25,16 @@ var sysUserAdd = (function () {
                     container: '#usernameError',
                     validators: {
                         notEmpty: {
-                            message: '姓名不可为空！',
+                            message: '账户名不可为空！',
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 20,
+                            message: '长度为6~20个字符(字母或数字)'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_\.]+$/,
+                            message: '只能是字母或数字'
                         }
                     }
                 },
@@ -34,6 +43,15 @@ var sysUserAdd = (function () {
                     validators: {
                         notEmpty: {
                             message: '密码不可为空！',
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 20,
+                            message: '长度为6~20个字符(字母、数字、特殊字符)'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_\.]+[~'!@#￥$%^&*()-+_=:]+[a-zA-Z0-9_\.]*$/,
+                            message: '字母、数字、特殊字符'
                         }
                     }
                 },
@@ -274,10 +292,10 @@ var sysUserAdd = (function () {
         //显示模态框
         $(".modal-footer").html("");
         $(".modal-title").html("");
-        if(data.flag=='edit'){
+        if (data.flag == 'edit') {
             $(".modal-title").html("修改");
             $(".modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button><button type="button" class="btn btn-primary" onclick="sysUserAdd.doEdit()">确认修改</button>');
-        }else if(data.flag=='view'){
+        } else if (data.flag == 'view') {
             $(".modal-title").html("查看");
         }
         $('#sysUserAdd').modal('show');

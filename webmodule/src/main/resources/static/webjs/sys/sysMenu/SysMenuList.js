@@ -89,7 +89,7 @@ var sysMenuModle = (function () {
 
     function opeate(value, row, index) {
         var html = '<a  href="javascript:void(0)"  data-toggle="tooltip" data-placement="top" title="修改" onclick="sysMenuModle.toUpdateMenu(' + row.id + ',\'edit\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
-        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a    href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="查看" onclick="sysMenuModle.toUpdate(' + row.id + ',\'view\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a    href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="查看" onclick="sysMenuModle.toViewMenu(' + row.id + ',\'view\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
         html += '&nbsp;&nbsp;&nbsp;&nbsp;<a   href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="删除" onclick="sysMenuModle.doDel(' + row.id + ')" ><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>';
         return html;
     }
@@ -151,6 +151,25 @@ var sysMenuModle = (function () {
             }]
         });
 
+    }
+
+    function toViewMenu(id, flag) {
+        BootstrapDialog.show({
+            title: '查看',
+            message: $('<div></div>').load('/sysMenu/toEditMenu?id=' + id + "&flag=" + flag),
+            draggable: false,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            cssClass: 'dialogModalH ',
+            buttons: [{
+                icon: 'glyphicon glyphicon-eye-close',
+                label: '关闭',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
     }
 
     function doDel(id) {
@@ -290,6 +309,7 @@ var sysMenuModle = (function () {
         SearchData: SearchData,
         toAddMenuPage: toAddMenuPage,
         toUpdateMenu: toUpdateMenu,
+        toViewMenu: toViewMenu,
         doDel: doDel,
 
     }

@@ -16,10 +16,14 @@
     filter: blur(15px);
 }
 
+
 body {
     font-family: "微软雅黑";
     font-size: 14px;
+    height: 100%;
+    overflow: auto;
     background: url(../images/1494318631621.jpg) fixed center center;
+    background-size: 100% 100%;
 }
 
 .logo_box {

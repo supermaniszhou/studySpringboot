@@ -36,6 +36,11 @@ public class ${className}Controller extends BaseController {
         return new ModelAndView(VIEW_PATH + "${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}_list");
     }
 
+    @RequestMapping("/toadd")
+    public ModelAndView toadd() {
+        return new ModelAndView(VIEW_PATH + "${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}_add");
+    }
+
     @RequestMapping("/get${className}Data")
     @ResponseBody
     public Map<String, Object> get${className}Data(@RequestParam(value = "pageSize", required = false) int pageSize,

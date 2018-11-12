@@ -1,0 +1,10 @@
+.zlc-table-td {
+    vertical-align: middle !important;
+    text-align: center;
+    color: #030303;
+    width: 120px;
+}
+
+.zlc-form-group-margin {
+    margin-bottom: 0px !important;
+}

@@ -94,8 +94,36 @@ var userModle = (function () {
         $('#table2').bootstrapTable('refresh', {pageNumber: 1});
     }
 
+    function toAddUserPage() {
+        BootstrapDialog.show({
+            title: '新增',
+            message: $('<div></div>').load('/user/toadd'),
+            draggable: false,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            cssClass: 'dialogModalH ',
+            buttons: [{
+                label: '保存',
+                cssClass: 'btn-primary',
+                action: function (dialogRef) {
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
+                    // initSysMenuTable();
+                    // dialogRef.close();
+                }
+            }, {
+                icon: 'glyphicon glyphicon-eye-close',
+                label: '关闭',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
+
     return {
-        SearchData: SearchData
+        SearchData: SearchData,
+        toAddUserPage: toAddUserPage
     }
 })();
 

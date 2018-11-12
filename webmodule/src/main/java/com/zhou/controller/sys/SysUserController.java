@@ -67,7 +67,7 @@ public class SysUserController extends BaseController {
 
     @RequestMapping("/toadd")
     public ModelAndView toadd() {
-        return new ModelAndView(VIEW_PATH + "user/user_add");
+        return new ModelAndView(VIEW_PATH + "user/sysUser_add");
     }
 
     @RequestMapping(value = "/doAdd")

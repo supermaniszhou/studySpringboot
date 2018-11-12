@@ -9,67 +9,174 @@ var sysUserAdd = (function () {
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                username: {
-                    message: 'The username is not valid',
+                id: {
+                    container: '#idError',
                     validators: {
                         notEmpty: {
-                            message: '账号名称不可以为空！',
-                            callback: function (value, validator) {
-                                flag = false;
-                            }
-                        },
-                        stringLength: {
-                            min: 3,
-                            max: 30,
-                            message: '账号长度3-30字符！'
-                        },
-                        regexp: {
-                            regexp: /^[a-zA-Z0-9_\.]+$/,
-                            message: '账号只能是字母和数字！'
-                        },
-                        different: {
-                            field: 'password',
-                            message: 'The username and password cannot be the same as each other'
+                            message: '不可为空！',
+                        }
+                    }
+                },
+                username: {
+                    container: '#usernameError',
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不可为空！',
                         }
                     }
                 },
                 password: {
+                    container: '#passwordError',
                     validators: {
                         notEmpty: {
-                            message: '密码不可以为空'
-                        },
-                        identical: {
-                            field: 'confirmPassword',
-                            message: '密码和确认密码不一致'
-                        },
-                        different: {
-                            field: 'username',
-                            message: '密码不可以为账号'
+                            message: '密码不可为空！',
                         }
                     }
                 },
                 email: {
+                    container: '#emailError',
                     validators: {
-                        emailAddress: {
-                            message: 'The input is not a valid email address'
+                        notEmpty: {
+                            message: '邮箱不可为空！',
                         }
                     }
                 },
-                confirmPassword: {
+                address: {
+                    container: '#addressError',
                     validators: {
                         notEmpty: {
-                            message: '确认密码不可以为空'
-                        },
-                        identical: {
-                            field: 'password',
-                            message: '确认密码不正确'
-                        },
-                        different: {
-                            field: 'username',
-                            message: '确认密码不可以为账号名'
+                            message: '地址不可为空！',
                         }
                     }
-                }
+                },
+                phone: {
+                    container: '#phoneError',
+                    validators: {
+                        notEmpty: {
+                            message: '联系方式不可为空！',
+                        }
+                    }
+                },
+                age: {
+                    container: '#ageError',
+                    validators: {
+                        notEmpty: {
+                            message: '年龄不可为空！',
+                        }
+                    }
+                },
+                sex: {
+                    container: '#sexError',
+                    validators: {
+                        notEmpty: {
+                            message: '性别不可为空！',
+                        }
+                    }
+                },
+                qq: {
+                    container: '#qqError',
+                    validators: {
+                        notEmpty: {
+                            message: 'QQ号不可为空！',
+                        }
+                    }
+                },
+                weixin: {
+                    container: '#weixinError',
+                    validators: {
+                        notEmpty: {
+                            message: '微信号不可为空！',
+                        }
+                    }
+                },
+                useridenty: {
+                    container: '#useridentyError',
+                    validators: {
+                        notEmpty: {
+                            message: '身份证号不可为空！',
+                        }
+                    }
+                },
+                isdel: {
+                    container: '#isdelError',
+                    validators: {
+                        notEmpty: {
+                            message: '是否删除：0未删除，1：已删除不可为空！',
+                        }
+                    }
+                },
+                isdisable: {
+                    container: '#isdisableError',
+                    validators: {
+                        notEmpty: {
+                            message: '是否启用：0不启用，1：启用不可为空！',
+                        }
+                    }
+                },
+                createtime: {
+                    container: '#createtimeError',
+                    validators: {
+                        notEmpty: {
+                            message: '创建时间不可为空！',
+                        }
+                    }
+                },
+                updatetime: {
+                    container: '#updatetimeError',
+                    validators: {
+                        notEmpty: {
+                            message: '修改时间不可为空！',
+                        }
+                    }
+                },
+                loginstatus: {
+                    container: '#loginstatusError',
+                    validators: {
+                        notEmpty: {
+                            message: '登录状态不可为空！',
+                        }
+                    }
+                },
+                meno: {
+                    container: '#menoError',
+                    validators: {
+                        notEmpty: {
+                            message: '描述不可为空！',
+                        }
+                    }
+                },
+                realname: {
+                    container: '#realnameError',
+                    validators: {
+                        notEmpty: {
+                            message: '真实姓名不可为空！',
+                        }
+                    }
+                },
+                userOrg: {
+                    container: '#userOrgError',
+                    validators: {
+                        notEmpty: {
+                            message: '所属机构不可为空！',
+                        }
+                    }
+                },
+                userHeight: {
+                    container: '#userHeightError',
+                    validators: {
+                        notEmpty: {
+                            message: '身高不可为空！',
+                        }
+                    }
+                },
+                picPath: {
+                    container: '#picPathError',
+                    validators: {
+                        notEmpty: {
+                            message: '头像路径不可为空！',
+                        }
+                    }
+                },
             }
         });
     });
@@ -82,6 +189,7 @@ var sysUserAdd = (function () {
     }
 
     function doAdd() {
+        // alert(22);
         var bootstrapValidator = $("#sysUserForm").data('bootstrapValidator');
         //手动触发验证
         bootstrapValidator.validate();

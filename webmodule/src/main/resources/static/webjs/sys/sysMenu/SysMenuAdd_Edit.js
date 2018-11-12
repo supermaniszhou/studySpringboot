@@ -27,6 +27,7 @@ var sysMenuAddEdit = (function () {
              * disabled,submitted 当点击提交时验证并展示错误信息
              */
             // live: 'disabled',
+
             message: '不能为空！',
             /**
              * 指定验证后验证字段的提示字体图标。（默认是bootstrap风格）
@@ -59,6 +60,7 @@ var sysMenuAddEdit = (function () {
             fields: {
 
                 menuName: {
+                    container: '#menuNameError',
                     validators: {
                         notEmpty: {
                             message: '菜单名称不可以为空！',
@@ -67,6 +69,7 @@ var sysMenuAddEdit = (function () {
                 }
                 ,
                 menuUrl: {
+                    container: '#menuUrlError',
                     validators: {
                         notEmpty: {
                             message: '地址不可以为空！',

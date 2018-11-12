@@ -1,6 +1,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="/common/main_head::mainHeader"></head>
 <body>
+<style type="text/css">
+    #sysUserForm .table td {
+        border:none
+    }
+</style>
 <div style="height: 500px;overflow-y: scroll">
     <form class="form-horizontal" id="sysUserForm" style="margin-left: 30px;margin-right: 30px;">
         <div class="form-group">
@@ -8,7 +13,7 @@
                 <table class="table ">
                     <tbody>
                     <tr>
-                        <td class="zlc-table-td"></td>
+                        <td class="zlc-table-td "></td>
                         <td>
                             <div class="form-group zlc-form-group-margin">
                                 <input type="text" name="id" class="form-control" id="id" placeholder="">

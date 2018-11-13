@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SysLogServiceImpl implements SysLogService<SysLog> {
+public class SysLogServiceImpl implements SysLogService {
     @Autowired
-    private SysLogMapper<SysLog> mapper;
+    private SysLogMapper mapper;
 
     @Override
     public int queryCount(SysLog sysLog) {

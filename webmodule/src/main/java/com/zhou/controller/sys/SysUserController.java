@@ -25,23 +25,8 @@ public class SysUserController extends BaseController {
     @Autowired
     private SysUserService userService;
 
-
-    @RequestMapping("/main")
-    public ModelAndView toMain() {
-        return new ModelAndView(VIEW_PATH + "main");
-    }
-
-    @RequestMapping(value = "/list")
-    @ResponseBody
-    public List<SysUser> getList() {
-        return userService.getAll();
-    }
-
-
     @RequestMapping(value = "/toUserList")
     public ModelAndView toUserList(Model model) {
-        List<SysUser> list = userService.getAll();
-        model.addAttribute("user", list);
         return new ModelAndView(VIEW_PATH + "user/user_list");
     }
 
@@ -52,17 +37,13 @@ public class SysUserController extends BaseController {
                                            @RequestParam(value = "username", required = false) String username,
                                            @RequestParam(value = "identy", required = false) String identy) {
 
-        Map<String, Object> map = new HashedMap();
         SysUser sysUser = new SysUser();
         sysUser.setUsername(username);
         sysUser.setUseridenty(identy);
-        int count = userService.queryCount(sysUser);
-        List<SysUser> list = userService.queryList(sysUser, pageIndex, pageSize);
+        List<SysUser> list = userService.selectPageList(sysUser, pageIndex, pageSize);
         PageInfo<SysUser> pageInfo = new PageInfo<>(list);
 
-        map.put("total", pageInfo.getTotal());
-        map.put("rows", list);
-        return map;
+        return responseTo(pageInfo.getTotal(), list);
     }
 
     @RequestMapping("/toadd")
@@ -74,7 +55,7 @@ public class SysUserController extends BaseController {
     @ResponseBody
     public Map<String, Object> doAdd(SysUser sysUser) {
         try {
-            userService.addObj(sysUser);
+            userService.insertSelective(sysUser);
         } catch (Exception e) {
             e.printStackTrace();
             return error();
@@ -88,8 +69,8 @@ public class SysUserController extends BaseController {
         SysUser sysUser = null;
         try {
             SysUser user = new SysUser();
-            user.setId(Integer.parseInt(id));
-            sysUser = (SysUser) userService.queryObj(user);
+            user.setId(Long.parseLong(id));
+            sysUser = userService.selectBySysUser(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,7 +81,7 @@ public class SysUserController extends BaseController {
     @ResponseBody
     public Map<String, Object> doEdit(SysUser sysUser) {
         try {
-            userService.updateObj(sysUser);
+            userService.updateByPrimaryKeySelective(sysUser);
         } catch (Exception e) {
             e.printStackTrace();
             return error();
@@ -110,11 +91,11 @@ public class SysUserController extends BaseController {
 
     @RequestMapping(value = "doDel")
     @ResponseBody
-    public Map<String, Object> doDel(@RequestParam(value = "id", required = true) Integer id) {
+    public Map<String, Object> doDel(@RequestParam(value = "id", required = true) Long id) {
         try {
             SysUser sysUser = new SysUser();
             sysUser.setId(id);
-            userService.deleteObj(sysUser);
+            userService.deleteByPrimaryKey(id);
         } catch (Exception e) {
             e.printStackTrace();
             return error();
@@ -123,12 +104,12 @@ public class SysUserController extends BaseController {
     }
 
     @RequestMapping("/toView")
-    public ModelAndView toView(@RequestParam("id") Integer id, Model model) {
+    public ModelAndView toView(@RequestParam("id") Long id, Model model) {
         SysUser sysUser = null;
         try {
             SysUser user = new SysUser();
             user.setId(id);
-            sysUser = (SysUser) userService.queryObj(user);
+            sysUser = userService.selectBySysUser(user);
         } catch (Exception e) {
             e.printStackTrace();
         }

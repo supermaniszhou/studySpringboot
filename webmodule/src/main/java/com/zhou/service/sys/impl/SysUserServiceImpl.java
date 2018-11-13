@@ -8,56 +8,53 @@ import com.zhou.service.sys.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Created by Administrator on 2018/4/19.
  */
 @Service
-public class SysUserServiceImpl implements SysUserService<SysUser> {
+public class SysUserServiceImpl implements SysUserService {
 
     @Autowired
-    private SysUserMapper<SysUser> userMapper;
+    private SysUserMapper userMapper;
 
     @Override
-    public int queryCount(SysUser sysUser) {
-        return userMapper.queryCount(sysUser);
+    public int deleteByPrimaryKey(Long id) {
+        return userMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public void addObj(SysUser sysUser) {
-        userMapper.add(sysUser);
+    public int insert(SysUser record) {
+        return userMapper.insert(record);
     }
 
     @Override
-    public void deleteObj(SysUser sysUser) {
-        userMapper.delete(sysUser);
+    public int insertSelective(SysUser record) {
+        return userMapper.insertSelective(record);
     }
 
     @Override
-    public void updateObj(SysUser sysUser) {
-        userMapper.update(sysUser);
+    public SysUser selectByPrimaryKey(Long id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public SysUser queryObj(SysUser sysUser) {
-        return userMapper.query(sysUser);
+    public int updateByPrimaryKeySelective(SysUser record) {
+        return userMapper.updateByPrimaryKeySelective(record);
     }
 
+    @Override
+    public int updateByPrimaryKey(SysUser record) {
+        return userMapper.updateByPrimaryKey(record);
+    }
 
     @Override
-    public Page<SysUser> queryList(SysUser sysUser, int page, int pagesize) {
+    public Page<SysUser> selectPageList(SysUser t, int page, int pagesize) {
         PageHelper.startPage(page, pagesize);
-        return userMapper.queryList(sysUser);
+        return userMapper.selectPageList(t);
     }
 
     @Override
-    public List<SysUser> getAll() {
-        return userMapper.getAll();
-    }
-
-    @Override
-    public List<SysUser> getAll(SysUser sysUser) {
-        return userMapper.getAll(sysUser);
+    public SysUser selectBySysUser(SysUser sysUser) {
+        return userMapper.selectObject(sysUser);
     }
 }

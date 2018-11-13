@@ -15,31 +15,34 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="${spring.datasource.cfApp.driver-class-name}"
-                        connectionURL="${spring.datasource.cfApp.url}" userId="${spring.datasource.cfApp.username}" password="${spring.datasource.cfApp.password}">
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
         </jdbcConnection>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成ENTITY的包名和位置-->
-        <javaModelGenerator targetPackage="com.cf.hczz.mybatis" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.zhou.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成MAPPER的包名和位置-->
-        <sqlMapGenerator targetPackage="resources.sqlmapper" targetProject="src/main/">
+        <sqlMapGenerator targetPackage="resources.mybatis" targetProject="src/main/">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cf.hczz.mybatis" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhou.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="A_WORK" domainObjectName="Work" schema="${spring.datasource.cfApp.username}"
+        <table tableName="sys_user" domainObjectName="SysUser"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"
-                      />
+        />
+        <!--schema="${spring.datasource.schema}"-->
     </context>
 </generatorConfiguration>

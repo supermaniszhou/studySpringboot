@@ -1,602 +1,357 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhou.mybatis.sys.SysUserMapper">
-
-    <sql id="searchCondition">
-        <where>
-            1=1
-            <if test="id !=null and id !=''">
-                and ID=#{id}
-            </if>
-            <if test="username !=null and username !=''">
-                and USERNAME=#{username}
-            </if>
-            <if test="password !=null and password !=''">
-                and PASSWORD=#{password}
-            </if>
-            <if test="email !=null and email !=''">
-                and EMAIL=#{email}
-            </if>
-            <if test="address !=null and address !=''">
-                and ADDRESS=#{address}
-            </if>
-            <if test="phone !=null and phone !=''">
-                and PHONE=#{phone}
-            </if>
-            <if test="age !=null and age !=''">
-                and AGE=#{age}
-            </if>
-            <if test="sex !=null and sex !=''">
-                and SEX=#{sex}
-            </if>
-            <if test="qq !=null and qq !=''">
-                and QQ=#{qq}
-            </if>
-            <if test="weixin !=null and weixin !=''">
-                and WEIXIN=#{weixin}
-            </if>
-            <if test="useridenty !=null and useridenty !=''">
-                and USERIDENTY=#{useridenty}
-            </if>
-            <if test="isdel !=null and isdel !=''">
-                and ISDEL=#{isdel}
-            </if>
-            <if test="isdisable !=null and isdisable !=''">
-                and ISDISABLE=#{isdisable}
-            </if>
-            <if test="createtime !=null and createtime !=''">
-                and CREATETIME=#{createtime}
-            </if>
-            <if test="updatetime !=null and updatetime !=''">
-                and UPDATETIME=#{updatetime}
-            </if>
-            <if test="loginstatus !=null and loginstatus !=''">
-                and LOGINSTATUS=#{loginstatus}
-            </if>
-            <if test="meno !=null and meno !=''">
-                and MENO=#{meno}
-            </if>
-            <if test="realname !=null and realname !=''">
-                and REALNAME=#{realname}
-            </if>
-            <if test="userOrg !=null and userOrg !=''">
-                and USER_ORG=#{userOrg}
-            </if>
-            <if test="userHeight !=null and userHeight !=''">
-                and USER_HEIGHT=#{userHeight}
-            </if>
-            <if test="picPath !=null and picPath !=''">
-                and PIC_PATH=#{picPath}
-            </if>
-            <if test="userBirthday !=null and userBirthday !=''">
-                and USER_BIRTHDAY=#{userBirthday}
-            </if>
-        </where>
-    </sql>
-
-    <select id="queryCount" parameterType="com.zhou.entity.sys.SysUser" resultType="int">
-        select count(1) from ZLC.sys_user
-        <include refid="searchCondition"></include>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.mapper.sys.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.zhou.entity.sys.SysUser">
+        <id column="ID" jdbcType="DECIMAL" property="id"/>
+        <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+        <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
+        <result column="ADDRESS" jdbcType="VARCHAR" property="address"/>
+        <result column="PHONE" jdbcType="VARCHAR" property="phone"/>
+        <result column="AGE" jdbcType="DECIMAL" property="age"/>
+        <result column="SEX" jdbcType="DECIMAL" property="sex"/>
+        <result column="QQ" jdbcType="VARCHAR" property="qq"/>
+        <result column="WEIXIN" jdbcType="VARCHAR" property="weixin"/>
+        <result column="USERIDENTY" jdbcType="VARCHAR" property="useridenty"/>
+        <result column="ISDEL" jdbcType="VARCHAR" property="isdel"/>
+        <result column="ISDISABLE" jdbcType="VARCHAR" property="isdisable"/>
+        <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="LOGINSTATUS" jdbcType="DECIMAL" property="loginstatus"/>
+        <result column="MENO" jdbcType="VARCHAR" property="meno"/>
+        <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
+        <result column="USER_ORG" jdbcType="VARCHAR" property="userOrg"/>
+        <result column="USER_HEIGHT" jdbcType="DECIMAL" property="userHeight"/>
+        <result column="PIC_PATH" jdbcType="VARCHAR" property="picPath"/>
+        <result column="USER_BIRTHDAY" jdbcType="VARCHAR" property="userBirthday"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, USERNAME, PASSWORD, EMAIL, ADDRESS, PHONE, AGE, SEX, QQ, WEIXIN, USERIDENTY, 
+    ISDEL, ISDISABLE, CREATETIME, UPDATETIME, LOGINSTATUS, MENO, REALNAME, USER_ORG, 
+    USER_HEIGHT, PIC_PATH, USER_BIRTHDAY
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from SYS_USER
+        where ID = #{id,jdbcType=DECIMAL}
     </select>
-
-    <insert id="add" parameterType="com.zhou.entity.sys.SysUser">
-        insert into ZLC.sys_user (
-        <trim suffixOverrides=",">
-            <if test="id !=null and id !=''">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SYS_USER
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+    <insert id="insert" parameterType="com.zhou.entity.sys.SysUser">
+    insert into SYS_USER (ID, USERNAME, PASSWORD, 
+      EMAIL, ADDRESS, PHONE, 
+      AGE, SEX, QQ, WEIXIN, 
+      USERIDENTY, ISDEL, ISDISABLE, 
+      CREATETIME, UPDATETIME, LOGINSTATUS, 
+      MENO, REALNAME, USER_ORG, 
+      USER_HEIGHT, PIC_PATH, USER_BIRTHDAY
+      )
+    values (#{id,jdbcType=DECIMAL}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{age,jdbcType=DECIMAL}, #{sex,jdbcType=DECIMAL}, #{qq,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR}, 
+      #{useridenty,jdbcType=VARCHAR}, #{isdel,jdbcType=VARCHAR}, #{isdisable,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{loginstatus,jdbcType=DECIMAL}, 
+      #{meno,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{userOrg,jdbcType=VARCHAR}, 
+      #{userHeight,jdbcType=DECIMAL}, #{picPath,jdbcType=VARCHAR}, #{userBirthday,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.zhou.entity.sys.SysUser">
+        insert into SYS_USER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
                 ID,
             </if>
-            <if test="username !=null and username !=''">
+            <if test="username != null">
                 USERNAME,
             </if>
-            <if test="password !=null and password !=''">
+            <if test="password != null">
                 PASSWORD,
             </if>
-            <if test="email !=null and email !=''">
+            <if test="email != null">
                 EMAIL,
             </if>
-            <if test="address !=null and address !=''">
+            <if test="address != null">
                 ADDRESS,
             </if>
-            <if test="phone !=null and phone !=''">
+            <if test="phone != null">
                 PHONE,
             </if>
-            <if test="age !=null and age !=''">
+            <if test="age != null">
                 AGE,
             </if>
-            <if test="sex !=null and sex !=''">
+            <if test="sex != null">
                 SEX,
             </if>
-            <if test="qq !=null and qq !=''">
+            <if test="qq != null">
                 QQ,
             </if>
-            <if test="weixin !=null and weixin !=''">
+            <if test="weixin != null">
                 WEIXIN,
             </if>
-            <if test="useridenty !=null and useridenty !=''">
+            <if test="useridenty != null">
                 USERIDENTY,
             </if>
-            <if test="isdel !=null and isdel !=''">
+            <if test="isdel != null">
                 ISDEL,
             </if>
-            <if test="isdisable !=null and isdisable !=''">
+            <if test="isdisable != null">
                 ISDISABLE,
             </if>
-            <if test="createtime !=null and createtime !=''">
+            <if test="createtime != null">
                 CREATETIME,
             </if>
-            <if test="updatetime !=null and updatetime !=''">
+            <if test="updatetime != null">
                 UPDATETIME,
             </if>
-            <if test="loginstatus !=null and loginstatus !=''">
+            <if test="loginstatus != null">
                 LOGINSTATUS,
             </if>
-            <if test="meno !=null and meno !=''">
+            <if test="meno != null">
                 MENO,
             </if>
-            <if test="realname !=null and realname !=''">
+            <if test="realname != null">
                 REALNAME,
             </if>
-            <if test="userOrg !=null and userOrg !=''">
+            <if test="userOrg != null">
                 USER_ORG,
             </if>
-            <if test="userHeight !=null and userHeight !=''">
+            <if test="userHeight != null">
                 USER_HEIGHT,
             </if>
-            <if test="picPath !=null and picPath !=''">
+            <if test="picPath != null">
                 PIC_PATH,
             </if>
-            <if test="userBirthday !=null and userBirthday !=''">
+            <if test="userBirthday != null">
                 USER_BIRTHDAY,
             </if>
         </trim>
-        ) VALUES (
-        <trim suffixOverrides=",">
-            <if test="id !=null and id !=''">
-                #{id},
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=DECIMAL},
             </if>
-            <if test="username !=null and username !=''">
-                #{username},
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
             </if>
-            <if test="password !=null and password !=''">
-                #{password},
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
             </if>
-            <if test="email !=null and email !=''">
-                #{email},
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
             </if>
-            <if test="address !=null and address !=''">
-                #{address},
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
             </if>
-            <if test="phone !=null and phone !=''">
-                #{phone},
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
             </if>
-            <if test="age !=null and age !=''">
-                #{age},
+            <if test="age != null">
+                #{age,jdbcType=DECIMAL},
             </if>
-            <if test="sex !=null and sex !=''">
-                #{sex},
+            <if test="sex != null">
+                #{sex,jdbcType=DECIMAL},
             </if>
-            <if test="qq !=null and qq !=''">
-                #{qq},
+            <if test="qq != null">
+                #{qq,jdbcType=VARCHAR},
             </if>
-            <if test="weixin !=null and weixin !=''">
-                #{weixin},
+            <if test="weixin != null">
+                #{weixin,jdbcType=VARCHAR},
             </if>
-            <if test="useridenty !=null and useridenty !=''">
-                #{useridenty},
+            <if test="useridenty != null">
+                #{useridenty,jdbcType=VARCHAR},
             </if>
-            <if test="isdel !=null and isdel !=''">
-                #{isdel},
+            <if test="isdel != null">
+                #{isdel,jdbcType=VARCHAR},
             </if>
-            <if test="isdisable !=null and isdisable !=''">
-                #{isdisable},
+            <if test="isdisable != null">
+                #{isdisable,jdbcType=VARCHAR},
             </if>
-            <if test="createtime !=null and createtime !=''">
-                #{createtime},
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="updatetime !=null and updatetime !=''">
-                #{updatetime},
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
             </if>
-            <if test="loginstatus !=null and loginstatus !=''">
-                #{loginstatus},
+            <if test="loginstatus != null">
+                #{loginstatus,jdbcType=DECIMAL},
             </if>
-            <if test="meno !=null and meno !=''">
-                #{meno},
+            <if test="meno != null">
+                #{meno,jdbcType=VARCHAR},
             </if>
-            <if test="realname !=null and realname !=''">
-                #{realname},
+            <if test="realname != null">
+                #{realname,jdbcType=VARCHAR},
             </if>
-            <if test="userOrg !=null and userOrg !=''">
-                #{userOrg},
+            <if test="userOrg != null">
+                #{userOrg,jdbcType=VARCHAR},
             </if>
-            <if test="userHeight !=null and userHeight !=''">
-                #{userHeight},
+            <if test="userHeight != null">
+                #{userHeight,jdbcType=DECIMAL},
             </if>
-            <if test="picPath !=null and picPath !=''">
-                #{picPath},
+            <if test="picPath != null">
+                #{picPath,jdbcType=VARCHAR},
             </if>
-            <if test="userBirthday !=null and userBirthday !=''">
-                #{userBirthday},
+            <if test="userBirthday != null">
+                #{userBirthday,jdbcType=VARCHAR},
             </if>
         </trim>
-        )
     </insert>
-
-    <update id="update" parameterType="com.zhou.entity.sys.SysUser">
-        update ZLC.sys_user
-        <trim prefix="set" suffixOverrides=",">
-            <if test="id !=null and id !=''">
-                ID=#{id},
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhou.entity.sys.SysUser">
+        update SYS_USER
+        <set>
+            <if test="username != null">
+                USERNAME = #{username,jdbcType=VARCHAR},
             </if>
-            <if test="username !=null and username !=''">
-                USERNAME=#{username},
+            <if test="password != null">
+                PASSWORD = #{password,jdbcType=VARCHAR},
             </if>
-            <if test="password !=null and password !=''">
-                PASSWORD=#{password},
+            <if test="email != null">
+                EMAIL = #{email,jdbcType=VARCHAR},
             </if>
-            <if test="email !=null and email !=''">
-                EMAIL=#{email},
+            <if test="address != null">
+                ADDRESS = #{address,jdbcType=VARCHAR},
             </if>
-            <if test="address !=null and address !=''">
-                ADDRESS=#{address},
+            <if test="phone != null">
+                PHONE = #{phone,jdbcType=VARCHAR},
             </if>
-            <if test="phone !=null and phone !=''">
-                PHONE=#{phone},
+            <if test="age != null">
+                AGE = #{age,jdbcType=DECIMAL},
             </if>
-            <if test="age !=null and age !=''">
-                AGE=#{age},
+            <if test="sex != null">
+                SEX = #{sex,jdbcType=DECIMAL},
             </if>
-            <if test="sex !=null and sex !=''">
-                SEX=#{sex},
+            <if test="qq != null">
+                QQ = #{qq,jdbcType=VARCHAR},
             </if>
-            <if test="qq !=null and qq !=''">
-                QQ=#{qq},
+            <if test="weixin != null">
+                WEIXIN = #{weixin,jdbcType=VARCHAR},
             </if>
-            <if test="weixin !=null and weixin !=''">
-                WEIXIN=#{weixin},
+            <if test="useridenty != null">
+                USERIDENTY = #{useridenty,jdbcType=VARCHAR},
             </if>
-            <if test="useridenty !=null and useridenty !=''">
-                USERIDENTY=#{useridenty},
+            <if test="isdel != null">
+                ISDEL = #{isdel,jdbcType=VARCHAR},
             </if>
-            <if test="isdel !=null and isdel !=''">
-                ISDEL=#{isdel},
+            <if test="isdisable != null">
+                ISDISABLE = #{isdisable,jdbcType=VARCHAR},
             </if>
-            <if test="isdisable !=null and isdisable !=''">
-                ISDISABLE=#{isdisable},
+            <if test="createtime != null">
+                CREATETIME = #{createtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="createtime !=null and createtime !=''">
-                CREATETIME=#{createtime},
+            <if test="updatetime != null">
+                UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
             </if>
-            <if test="updatetime !=null and updatetime !=''">
-                UPDATETIME=#{updatetime},
+            <if test="loginstatus != null">
+                LOGINSTATUS = #{loginstatus,jdbcType=DECIMAL},
             </if>
-            <if test="loginstatus !=null and loginstatus !=''">
-                LOGINSTATUS=#{loginstatus},
+            <if test="meno != null">
+                MENO = #{meno,jdbcType=VARCHAR},
             </if>
-            <if test="meno !=null and meno !=''">
-                MENO=#{meno},
+            <if test="realname != null">
+                REALNAME = #{realname,jdbcType=VARCHAR},
             </if>
-            <if test="realname !=null and realname !=''">
-                REALNAME=#{realname},
+            <if test="userOrg != null">
+                USER_ORG = #{userOrg,jdbcType=VARCHAR},
             </if>
-            <if test="userOrg !=null and userOrg !=''">
-                USER_ORG=#{userOrg},
+            <if test="userHeight != null">
+                USER_HEIGHT = #{userHeight,jdbcType=DECIMAL},
             </if>
-            <if test="userHeight !=null and userHeight !=''">
-                USER_HEIGHT=#{userHeight},
+            <if test="picPath != null">
+                PIC_PATH = #{picPath,jdbcType=VARCHAR},
             </if>
-            <if test="picPath !=null and picPath !=''">
-                PIC_PATH=#{picPath},
+            <if test="userBirthday != null">
+                USER_BIRTHDAY = #{userBirthday,jdbcType=VARCHAR},
             </if>
-            <if test="userBirthday !=null and userBirthday !=''">
-                USER_BIRTHDAY=#{userBirthday},
-            </if>
-        </trim>
-        <where>
-            1=1
-            <trim suffixOverrides=",">
-                <if test="id !=null and id !=''">
-                    and ID=#{id}
-                </if>
-                <if test="username !=null and username !=''">
-                    and USERNAME=#{username}
-                </if>
-                <if test="password !=null and password !=''">
-                    and PASSWORD=#{password}
-                </if>
-                <if test="email !=null and email !=''">
-                    and EMAIL=#{email}
-                </if>
-                <if test="address !=null and address !=''">
-                    and ADDRESS=#{address}
-                </if>
-                <if test="phone !=null and phone !=''">
-                    and PHONE=#{phone}
-                </if>
-                <if test="age !=null and age !=''">
-                    and AGE=#{age}
-                </if>
-                <if test="sex !=null and sex !=''">
-                    and SEX=#{sex}
-                </if>
-                <if test="qq !=null and qq !=''">
-                    and QQ=#{qq}
-                </if>
-                <if test="weixin !=null and weixin !=''">
-                    and WEIXIN=#{weixin}
-                </if>
-                <if test="useridenty !=null and useridenty !=''">
-                    and USERIDENTY=#{useridenty}
-                </if>
-                <if test="isdel !=null and isdel !=''">
-                    and ISDEL=#{isdel}
-                </if>
-                <if test="isdisable !=null and isdisable !=''">
-                    and ISDISABLE=#{isdisable}
-                </if>
-                <if test="createtime !=null and createtime !=''">
-                    and CREATETIME=#{createtime}
-                </if>
-                <if test="updatetime !=null and updatetime !=''">
-                    and UPDATETIME=#{updatetime}
-                </if>
-                <if test="loginstatus !=null and loginstatus !=''">
-                    and LOGINSTATUS=#{loginstatus}
-                </if>
-                <if test="meno !=null and meno !=''">
-                    and MENO=#{meno}
-                </if>
-                <if test="realname !=null and realname !=''">
-                    and REALNAME=#{realname}
-                </if>
-                <if test="userOrg !=null and userOrg !=''">
-                    and USER_ORG=#{userOrg}
-                </if>
-                <if test="userHeight !=null and userHeight !=''">
-                    and USER_HEIGHT=#{userHeight}
-                </if>
-                <if test="picPath !=null and picPath !=''">
-                    and PIC_PATH=#{picPath}
-                </if>
-                <if test="userBirthday !=null and userBirthday !=''">
-                    and USER_BIRTHDAY=#{userBirthday}
-                </if>
-            </trim>
-        </where>
+        </set>
+        where ID = #{id,jdbcType=DECIMAL}
     </update>
-
-    <delete id="delete" parameterType="com.zhou.entity.sys.SysUser">
-        delete from ZLC.sys_user
+    <update id="updateByPrimaryKey" parameterType="com.zhou.entity.sys.SysUser">
+    update SYS_USER
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=DECIMAL},
+      SEX = #{sex,jdbcType=DECIMAL},
+      QQ = #{qq,jdbcType=VARCHAR},
+      WEIXIN = #{weixin,jdbcType=VARCHAR},
+      USERIDENTY = #{useridenty,jdbcType=VARCHAR},
+      ISDEL = #{isdel,jdbcType=VARCHAR},
+      ISDISABLE = #{isdisable,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      LOGINSTATUS = #{loginstatus,jdbcType=DECIMAL},
+      MENO = #{meno,jdbcType=VARCHAR},
+      REALNAME = #{realname,jdbcType=VARCHAR},
+      USER_ORG = #{userOrg,jdbcType=VARCHAR},
+      USER_HEIGHT = #{userHeight,jdbcType=DECIMAL},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      USER_BIRTHDAY = #{userBirthday,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+    <select id="selectObject" parameterType="com.zhou.entity.sys.SysUser" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>  FROM SYS_USER
         <where>
-            1=1
-            <trim suffixOverrides=",">
-                <if test="id !=null and id !=''">
-                    and ID=#{id},
-                </if>
-                <if test="username !=null and username !=''">
-                    and USERNAME=#{username},
-                </if>
-                <if test="password !=null and password !=''">
-                    and PASSWORD=#{password},
-                </if>
-                <if test="email !=null and email !=''">
-                    and EMAIL=#{email},
-                </if>
-                <if test="address !=null and address !=''">
-                    and ADDRESS=#{address},
-                </if>
-                <if test="phone !=null and phone !=''">
-                    and PHONE=#{phone},
-                </if>
-                <if test="age !=null and age !=''">
-                    and AGE=#{age},
-                </if>
-                <if test="sex !=null and sex !=''">
-                    and SEX=#{sex},
-                </if>
-                <if test="qq !=null and qq !=''">
-                    and QQ=#{qq},
-                </if>
-                <if test="weixin !=null and weixin !=''">
-                    and WEIXIN=#{weixin},
-                </if>
-                <if test="useridenty !=null and useridenty !=''">
-                    and USERIDENTY=#{useridenty},
-                </if>
-                <if test="isdel !=null and isdel !=''">
-                    and ISDEL=#{isdel},
-                </if>
-                <if test="isdisable !=null and isdisable !=''">
-                    and ISDISABLE=#{isdisable},
-                </if>
-                <if test="createtime !=null and createtime !=''">
-                    and CREATETIME=#{createtime},
-                </if>
-                <if test="updatetime !=null and updatetime !=''">
-                    and UPDATETIME=#{updatetime},
-                </if>
-                <if test="loginstatus !=null and loginstatus !=''">
-                    and LOGINSTATUS=#{loginstatus},
-                </if>
-                <if test="meno !=null and meno !=''">
-                    and MENO=#{meno},
-                </if>
-                <if test="realname !=null and realname !=''">
-                    and REALNAME=#{realname},
-                </if>
-                <if test="userOrg !=null and userOrg !=''">
-                    and USER_ORG=#{userOrg},
-                </if>
-                <if test="userHeight !=null and userHeight !=''">
-                    and USER_HEIGHT=#{userHeight},
-                </if>
-                <if test="picPath !=null and picPath !=''">
-                    and PIC_PATH=#{picPath},
-                </if>
-                <if test="userBirthday !=null and userBirthday !=''">
-                    and USER_BIRTHDAY=#{userBirthday},
-                </if>
-            </trim>
-
-        </where>
-    </delete>
-
-    <select id="query" parameterType="com.zhou.entity.sys.SysUser" resultType="com.zhou.entity.sys.SysUser">
-        select
-        <trim suffixOverrides=",">
-            ID AS id,
-            USERNAME AS username,
-            PASSWORD AS password,
-            EMAIL AS email,
-            ADDRESS AS address,
-            PHONE AS phone,
-            AGE AS age,
-            SEX AS sex,
-            QQ AS qq,
-            WEIXIN AS weixin,
-            USERIDENTY AS useridenty,
-            ISDEL AS isdel,
-            ISDISABLE AS isdisable,
-            CREATETIME AS createtime,
-            UPDATETIME AS updatetime,
-            LOGINSTATUS AS loginstatus,
-            MENO AS meno,
-            REALNAME AS realname,
-            USER_ORG AS userOrg,
-            USER_HEIGHT AS userHeight,
-            PIC_PATH AS picPath,
-            USER_BIRTHDAY AS userBirthday,
-        </trim>
-        from ZLC.sys_user
-        <where>
-            1=1
-            <if test="id !=null and id !=''">
-                and ID=#{id}
-            </if>
             <if test="username !=null and username !=''">
-                and USERNAME=#{username}
+                and USERNAME = #{username,jdbcType=VARCHAR}
             </if>
             <if test="password !=null and password !=''">
-                and PASSWORD=#{password}
-            </if>
-            <if test="email !=null and email !=''">
-                and EMAIL=#{email}
-            </if>
-            <if test="address !=null and address !=''">
-                and ADDRESS=#{address}
-            </if>
-            <if test="phone !=null and phone !=''">
-                and PHONE=#{phone}
-            </if>
-            <if test="age !=null and age !=''">
-                and AGE=#{age}
-            </if>
-            <if test="sex !=null and sex !=''">
-                and SEX=#{sex}
-            </if>
-            <if test="qq !=null and qq !=''">
-                and QQ=#{qq}
-            </if>
-            <if test="weixin !=null and weixin !=''">
-                and WEIXIN=#{weixin}
+                and PASSWORD = #{password,jdbcType=VARCHAR}
             </if>
             <if test="useridenty !=null and useridenty !=''">
-                and USERIDENTY=#{useridenty}
-            </if>
-            <if test="isdel !=null and isdel !=''">
-                and ISDEL=#{isdel}
-            </if>
-            <if test="isdisable !=null and isdisable !=''">
-                and ISDISABLE=#{isdisable}
-            </if>
-            <if test="createtime !=null and createtime !=''">
-                and CREATETIME=#{createtime}
-            </if>
-            <if test="updatetime !=null and updatetime !=''">
-                and UPDATETIME=#{updatetime}
-            </if>
-            <if test="loginstatus !=null and loginstatus !=''">
-                and LOGINSTATUS=#{loginstatus}
-            </if>
-            <if test="meno !=null and meno !=''">
-                and MENO=#{meno}
-            </if>
-            <if test="realname !=null and realname !=''">
-                and REALNAME=#{realname}
-            </if>
-            <if test="userOrg !=null and userOrg !=''">
-                and USER_ORG=#{userOrg}
-            </if>
-            <if test="userHeight !=null and userHeight !=''">
-                and USER_HEIGHT=#{userHeight}
-            </if>
-            <if test="picPath !=null and picPath !=''">
-                and PIC_PATH=#{picPath}
-            </if>
-            <if test="userBirthday !=null and userBirthday !=''">
-                and USER_BIRTHDAY=#{userBirthday}
+                and USERIDENTY = #{useridenty,jdbcType=VARCHAR}
             </if>
         </where>
     </select>
 
-    <select id="queryList" parameterType="com.zhou.entity.sys.SysUser" resultType="com.zhou.entity.sys.SysUser">
-        select
-        <trim suffixOverrides=",">
-            ID AS id,
-            USERNAME AS username,
-            PASSWORD AS password,
-            EMAIL AS email,
-            ADDRESS AS address,
-            PHONE AS phone,
-            AGE AS age,
-            SEX AS sex,
-            QQ AS qq,
-            WEIXIN AS weixin,
-            USERIDENTY AS useridenty,
-            ISDEL AS isdel,
-            ISDISABLE AS isdisable,
-            CREATETIME AS createtime,
-            UPDATETIME AS updatetime,
-            LOGINSTATUS AS loginstatus,
-            MENO AS meno,
-            REALNAME AS realname,
-            USER_ORG AS userOrg,
-            USER_HEIGHT AS userHeight,
-            PIC_PATH AS picPath,
-            USER_BIRTHDAY AS userBirthday,
-        </trim>
-        from ZLC.sys_user
-        <include refid="searchCondition"></include>
-        order by id DESC
+    <select id="selectPageList" parameterType="com.zhou.entity.sys.SysUser" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>  FROM SYS_USER
+        <where>
+            <if test="username != null and username!=''">
+                and USERNAME = #{username,jdbcType=VARCHAR}
+            </if>
+
+            <if test="address != null and address!=''">
+                and ADDRESS = #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null and phone!=''">
+                and PHONE = #{phone,jdbcType=VARCHAR}
+            </if>
+
+            <if test="sex != null and sex!=''">
+                and SEX = #{sex,jdbcType=DECIMAL}
+            </if>
+
+            <if test="useridenty != null and  useridenty!=''">
+                and USERIDENTY = #{useridenty,jdbcType=VARCHAR}
+            </if>
+            <if test="isdel != null and isdel!=''">
+                and ISDEL = #{isdel,jdbcType=VARCHAR}
+            </if>
+            <if test="isdisable != null and isdisable!=''">
+                and ISDISABLE = #{isdisable,jdbcType=VARCHAR}
+            </if>
+            <if test="createtime != null and createtime!=''">
+                and CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="loginstatus != null and loginstatus!=''">
+                and LOGINSTATUS = #{loginstatus,jdbcType=DECIMAL}
+            </if>
+
+            <if test="realname != null and realname!=''">
+                and REALNAME = #{realname,jdbcType=VARCHAR}
+            </if>
+            <if test="userOrg != null and userOrg!=''">
+                and USER_ORG = #{userOrg,jdbcType=VARCHAR}
+            </if>
+
+            <if test="picPath != null and picPath!=''">
+                and PIC_PATH = #{picPath,jdbcType=VARCHAR}
+            </if>
+
+        </where>
     </select>
-
-    <select id="getAll" resultType="com.zhou.entity.sys.SysUser">
-        select
-        <trim suffixOverrides=",">
-            ID AS id,
-            USERNAME AS username,
-            PASSWORD AS password,
-            EMAIL AS email,
-            ADDRESS AS address,
-            PHONE AS phone,
-            AGE AS age,
-            SEX AS sex,
-            QQ AS qq,
-            WEIXIN AS weixin,
-            USERIDENTY AS useridenty,
-            ISDEL AS isdel,
-            ISDISABLE AS isdisable,
-            CREATETIME AS createtime,
-            UPDATETIME AS updatetime,
-            LOGINSTATUS AS loginstatus,
-            MENO AS meno,
-            REALNAME AS realname,
-            USER_ORG AS userOrg,
-            USER_HEIGHT AS userHeight,
-            PIC_PATH AS picPath,
-            USER_BIRTHDAY AS userBirthday,
-        </trim>
-        from ZLC.sys_user
-    </select>
-
-
 </mapper>

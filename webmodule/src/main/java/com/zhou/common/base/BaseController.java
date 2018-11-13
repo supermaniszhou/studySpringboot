@@ -30,6 +30,13 @@ public class BaseController {
 
     }
 
+    public static final Map<String, Object> responseTo(long total, Object obj) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("total", total);
+        map.put("rows", obj);
+        return map;
+    }
+
     public static final Map<String, Object> responseTo(String flag, String msg) {
         Map<String, Object> map = new HashMap<>();
         map.put("code", flag);
@@ -37,16 +44,16 @@ public class BaseController {
         return map;
     }
 
-    public static final Map<String, Object> responseTo(String flag, String msg, int count, List list) {
+    public static final Map<String, Object> responseTo(String flag, String msg, long count, Object list) {
         Map<String, Object> map = new HashMap<>();
         map.put("code", flag);
         map.put("msg", msg);
-        map.put("count", count);
-        map.put("data", list);
+        map.put("total", count);
+        map.put("rows", list);
         return map;
     }
 
-    public static final Map<String, Object> responseTo(String flag, String msg, Object obj,String s) {
+    public static final Map<String, Object> responseTo(String flag, String msg, Object obj, String s) {
         Map<String, Object> map = new HashMap<>();
         map.put("code", flag);
         map.put("msg", msg);

@@ -1,17 +1,23 @@
 package com.zhou.mapper.sys;
 
+
 import com.github.pagehelper.Page;
 import com.zhou.entity.sys.SysUser;
-import com.zhou.mapper.SqlMapper.CommonMapper;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
+public interface SysUserMapper {
+    int deleteByPrimaryKey(Long id);
 
+    int insert(SysUser record);
 
-/**
- * Created by Administrator on 2017/12/25 0025.
- */
-@Repository
-public interface SysUserMapper<T extends SysUser> extends CommonMapper<T> {
-    
+    int insertSelective(SysUser record);
+
+    SysUser selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(SysUser record);
+
+    int updateByPrimaryKey(SysUser record);
+
+    Page<SysUser> selectPageList(SysUser t);
+
+    SysUser selectObject(SysUser t);
 }

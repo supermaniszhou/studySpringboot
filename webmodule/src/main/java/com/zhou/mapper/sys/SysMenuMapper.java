@@ -1,10 +1,28 @@
 package com.zhou.mapper.sys;
 
+import com.github.pagehelper.Page;
 import com.zhou.entity.sys.SysMenu;
-import com.zhou.mapper.SqlMapper.CommonMapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 @Repository
-public interface SysMenuMapper<T extends SysMenu> extends CommonMapper<T> {
+public interface SysMenuMapper {
+
+    int queryCount(SysMenu t);
+
+    void add(SysMenu t);
+
+    void delete(SysMenu t);
+
+    void update(SysMenu t);
+
+    SysMenu query(SysMenu t);
+
+    Page<SysMenu> queryList(SysMenu t);
+
+    List<SysMenu> getAll();
+
+    List<SysMenu> getAll(SysMenu t);
 }

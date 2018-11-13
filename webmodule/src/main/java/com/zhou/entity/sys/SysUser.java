@@ -1,42 +1,57 @@
 package com.zhou.entity.sys;
 
-import java.lang.*;
-import java.math.*;
-import java.io.*;
 import java.util.Date;
 
-public class SysUser implements Serializable {
-    private Integer id;//
-    private String username;//姓名
-    private String password;//密码
-    private String email;//邮箱
-    private String address;//地址
-    private String phone;//联系方式
-    private Integer age;//年龄
-    private Integer sex;//性别
-    private String qq;//QQ号
-    private String weixin;//微信号
-    private String useridenty;//身份证号
-    private String isdel;//是否删除：0未删除，1：已删除
-    private String isdisable;//是否启用：0不启用，1：启用
-    private Date createtime;//创建时间
-    private Date updatetime;//修改时间
-    private Integer loginstatus;//登录状态
-    private String meno;//描述
-    private String realname;//真实姓名
-    private String userOrg;//所属机构
-    private Integer userHeight;//身高
-    private String picPath;//头像路径
-    private String userBirthday;//出生日期
+public class SysUser {
+    private Long id;
 
-    public SysUser() {
-    }
+    private String username;
 
-    public Integer getId() {
+    private String password;
+
+    private String email;
+
+    private String address;
+
+    private String phone;
+
+    private Short age;
+
+    private Short sex;
+
+    private String qq;
+
+    private String weixin;
+
+    private String useridenty;
+
+    private String isdel;
+
+    private String isdisable;
+
+    private Date createtime;
+
+    private Date updatetime;
+
+    private Short loginstatus;
+
+    private String meno;
+
+    private String realname;
+
+    private String userOrg;
+
+    private Short userHeight;
+
+    private String picPath;
+
+    private String userBirthday;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -45,7 +60,7 @@ public class SysUser implements Serializable {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -53,7 +68,7 @@ public class SysUser implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public String getEmail() {
@@ -61,7 +76,7 @@ public class SysUser implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? null : email.trim();
     }
 
     public String getAddress() {
@@ -69,7 +84,7 @@ public class SysUser implements Serializable {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
     public String getPhone() {
@@ -77,22 +92,22 @@ public class SysUser implements Serializable {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone = phone == null ? null : phone.trim();
     }
 
-    public Integer getAge() {
+    public Short getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(Short age) {
         this.age = age;
     }
 
-    public Integer getSex() {
+    public Short getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(Short sex) {
         this.sex = sex;
     }
 
@@ -101,7 +116,7 @@ public class SysUser implements Serializable {
     }
 
     public void setQq(String qq) {
-        this.qq = qq;
+        this.qq = qq == null ? null : qq.trim();
     }
 
     public String getWeixin() {
@@ -109,7 +124,7 @@ public class SysUser implements Serializable {
     }
 
     public void setWeixin(String weixin) {
-        this.weixin = weixin;
+        this.weixin = weixin == null ? null : weixin.trim();
     }
 
     public String getUseridenty() {
@@ -117,7 +132,7 @@ public class SysUser implements Serializable {
     }
 
     public void setUseridenty(String useridenty) {
-        this.useridenty = useridenty;
+        this.useridenty = useridenty == null ? null : useridenty.trim();
     }
 
     public String getIsdel() {
@@ -125,7 +140,7 @@ public class SysUser implements Serializable {
     }
 
     public void setIsdel(String isdel) {
-        this.isdel = isdel;
+        this.isdel = isdel == null ? null : isdel.trim();
     }
 
     public String getIsdisable() {
@@ -133,7 +148,7 @@ public class SysUser implements Serializable {
     }
 
     public void setIsdisable(String isdisable) {
-        this.isdisable = isdisable;
+        this.isdisable = isdisable == null ? null : isdisable.trim();
     }
 
     public Date getCreatetime() {
@@ -152,11 +167,11 @@ public class SysUser implements Serializable {
         this.updatetime = updatetime;
     }
 
-    public Integer getLoginstatus() {
+    public Short getLoginstatus() {
         return loginstatus;
     }
 
-    public void setLoginstatus(Integer loginstatus) {
+    public void setLoginstatus(Short loginstatus) {
         this.loginstatus = loginstatus;
     }
 
@@ -165,7 +180,7 @@ public class SysUser implements Serializable {
     }
 
     public void setMeno(String meno) {
-        this.meno = meno;
+        this.meno = meno == null ? null : meno.trim();
     }
 
     public String getRealname() {
@@ -173,7 +188,7 @@ public class SysUser implements Serializable {
     }
 
     public void setRealname(String realname) {
-        this.realname = realname;
+        this.realname = realname == null ? null : realname.trim();
     }
 
     public String getUserOrg() {
@@ -181,14 +196,14 @@ public class SysUser implements Serializable {
     }
 
     public void setUserOrg(String userOrg) {
-        this.userOrg = userOrg;
+        this.userOrg = userOrg == null ? null : userOrg.trim();
     }
 
-    public Integer getUserHeight() {
+    public Short getUserHeight() {
         return userHeight;
     }
 
-    public void setUserHeight(Integer userHeight) {
+    public void setUserHeight(Short userHeight) {
         this.userHeight = userHeight;
     }
 
@@ -197,7 +212,7 @@ public class SysUser implements Serializable {
     }
 
     public void setPicPath(String picPath) {
-        this.picPath = picPath;
+        this.picPath = picPath == null ? null : picPath.trim();
     }
 
     public String getUserBirthday() {
@@ -205,8 +220,6 @@ public class SysUser implements Serializable {
     }
 
     public void setUserBirthday(String userBirthday) {
-        this.userBirthday = userBirthday;
+        this.userBirthday = userBirthday == null ? null : userBirthday.trim();
     }
-
 }
-

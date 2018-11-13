@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SysMenuServiceImpl implements SysMenuService<SysMenu> {
+public class SysMenuServiceImpl implements SysMenuService {
     @Autowired
-    private SysMenuMapper<SysMenu> sysMenuMapper;
+    private SysMenuMapper sysMenuMapper;
 
     @Override
     public int queryCount(SysMenu sysMenu) {

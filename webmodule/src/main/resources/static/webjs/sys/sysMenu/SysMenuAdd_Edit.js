@@ -1,5 +1,19 @@
 var sysMenuAddEdit = (function () {
     $(function () {
+        $(".bootstrap-dialog").removeAttr("tabindex");
+        var h = ($(window).height() - 250);
+        $(".form-horizontal").css({"height": h + "px"});
+
+        $("#menuParent").select2();
+
+        $.post("/sysMenu/getMenuList", {flag: "up"}, function (data) {
+            alert(2);
+            console.log(data);
+            $("#menuParent").select2ToTree({treeData: {dataArr: data}, maximumSelectionLength: 5});
+
+        });
+
+
         formValidator();
     });
 

@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping(value = "/login")
 public class LoginController extends BaseController {
     @Autowired
-    private SysUserService<SysUser> userService;
+    private SysUserService userService;
     @Autowired
     private RedisTemplate<String, Object> template;
 
@@ -44,7 +44,7 @@ public class LoginController extends BaseController {
         try {
             String usernamepwd = sysUser.getUsername().concat(sysUser.getPassword());
             try {
-                user = userService.queryObj(sysUser);
+                user = userService.selectBySysUser(sysUser);
             } catch (Exception e) {
                 e.printStackTrace();
             }

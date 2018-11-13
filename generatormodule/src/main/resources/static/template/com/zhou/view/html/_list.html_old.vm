@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+
+<body>
+<div id="wrapperZlc">
+    <div id="page-innerZlc">
+        <div style="margin-top: 10px;">
+            <div class="layui-form-item">
+                #foreach($fr in $fieldRemarks.entrySet())
+                    <div class="layui-inline">
+                        <label for="${fr.key}for" class="layui-form-label">${fr.value}</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="form-control" id="${fr.key}for" name="${fr.key}" placeholder="">
+                        </div>
+                    </div>
+                #end
+            </div>
+
+            <div class="layui-inline">
+                <button type="button" class="btn btn-default" onclick="${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle.SearchData();">
+                    查询
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" data-toggle="modal" onclick="${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit.toAdd();">新增</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="${className}table">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="${className.substring(0,1).toLowerCase()}${className.substring(1)}Add" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 700px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    新增
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="container" style="height: 500px;overflow-y:scroll;">
+                    <div class="row">
+                        <section>
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <form class="form-horizontal"
+                                      id="${className.substring(0,1).toLowerCase()}${className.substring(1)}Form"
+                                      style="margin-top: 10px;">
+                                    <table>
+                                        #foreach($fr in $fieldRemarks.entrySet())
+                                            <tr>
+                                                <td class="tdZ" align="right">
+                                                    <label class="control-label">${fr.value}</label>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group" style="margin-left: 50px">
+                                                        <input class="form-control" name="${fr.key}" id="${fr.key}"
+                                                               type="text" placeholder=""/>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        #end
+                                    </table>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/sys/${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}List.js}"></script>
+<script th:src="@{/js/sys/${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}Add_Edit.js}"></script>
+</body>
+</html>

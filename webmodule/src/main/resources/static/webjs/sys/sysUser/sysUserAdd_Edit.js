@@ -8,12 +8,10 @@ var sysUserAdd = (function () {
 //        live: 'disabled',
             message: 'This value is not valid',
             feedbackIcons: {
-                // valid: 'glyphicon glyphicon-ok',
                 invalid: 'glyphicon glyphicon-remove',
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-
                 username: {
                     container: '#usernameError',
                     validators: {
@@ -31,7 +29,7 @@ var sysUserAdd = (function () {
                         }
                     }
                 },
-                password: {
+                /*password: {
                     container: '#passwordError',
                     validators: {
                         notEmpty: {
@@ -47,7 +45,7 @@ var sysUserAdd = (function () {
                             message: '字母、数字、特殊字符'
                         }
                     }
-                },
+                },*/
                 email: {
                     container: '#emailError',
                     validators: {
@@ -154,9 +152,7 @@ var sysUserAdd = (function () {
                         }
                     }
                 },
-
-
-                userHeight: {
+                /*userHeight: {
                     container: '#userHeightError',
                     validators: {
                         callback: {
@@ -171,7 +167,7 @@ var sysUserAdd = (function () {
                             }
                         }
                     }
-                },
+                },*/
                 userBirthday: {
                     container: '#userBirthdayError',
                     validators: {
@@ -208,7 +204,7 @@ var sysUserAdd = (function () {
                     //         }, 1000);
                     //     }
                     // });
-                    // $("#table2").bootstrapTable('refresh');
+                    //$("#table2").bootstrapTable('refresh');
                 } else {
                     ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");
                     /*BootstrapDialog.show({
@@ -226,6 +222,7 @@ var sysUserAdd = (function () {
 
             });
         }
+        return false;
     }
 
     function toUpdate(id, flag) {

@@ -93,7 +93,7 @@ var userModle = (function () {
     }
 
     function toAddUserPage() {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             title: '新增',
             message: $('<div></div>').load('/user/toadd'),
             draggable: false,
@@ -107,7 +107,8 @@ var userModle = (function () {
                 action: function (dialogRef) {
                     dialogRef.getModalBody().find('form').find("button").trigger('click');
                     // initSysMenuTable();
-                    // dialogRef.close();
+                    //$('#table2').bootstrapTable('refresh');
+                    dialogRef.close();
                 }
             }, {
                 icon: 'glyphicon glyphicon-eye-close',

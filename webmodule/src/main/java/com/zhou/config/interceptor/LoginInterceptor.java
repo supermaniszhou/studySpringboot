@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,5 +70,24 @@ public class LoginInterceptor implements HandlerInterceptor {
     public String[] IGNORE_URI() {
         String[] uris = {"/login/loginpage", "/login/login", "css"};
         return uris;
+    }
+
+    private void toLoginPage(HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter out = null;
+
+        try {
+            response.setContentType("text/html;charset=utf-8");
+            out = response.getWriter();
+            out.println("<html>");
+            out.println("<script>");
+            out.println("window.open ('" + request.getContextPath() + "/','_top')");
+            out.println("</script>");
+            out.println("</html>");
+        } catch (IOException var8) {
+            var8.printStackTrace();
+        } finally {
+            out.close();
+        }
+
     }
 }

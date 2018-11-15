@@ -51,7 +51,7 @@
                     <td class="zlc-table-td">密码</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="password" class="form-control" id="password" placeholder="">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="">
                         </div>
                     </td>
                     <td>
@@ -59,17 +59,17 @@
                     </td>
                 </tr>
                 <tr>
-
-
-                    <td class="zlc-table-td">邮箱</td>
+                    <td class="zlc-table-td">身高</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="email" class="form-control" id="email" placeholder="">
+                            <input type="text" name="userHeight" class="form-control" id="userHeight"
+                                   placeholder="">
                         </div>
                     </td>
                     <td>
-                        <div id="emailError"></div>
+                        <div id="userHeightError"></div>
                     </td>
+
 
                     <td class="zlc-table-td">所属机构</td>
                     <td>
@@ -151,22 +151,21 @@
 
                 <tr>
 
-                    <td class="zlc-table-td">身高</td>
+                    <td class="zlc-table-td">邮箱</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="userHeight" class="form-control" id="userHeight"
-                                   placeholder="">
+                            <input type="text" name="email" class="form-control" id="email" placeholder="">
                         </div>
                     </td>
                     <td>
-                        <div id="userHeightError"></div>
+                        <div id="emailError"></div>
                     </td>
 
 
                     <td class="zlc-table-td">是否启用</td>
                     <td valign="middle">
                         <div class="form-group zlc-form-group-margin">
-                            <label><input type="radio" name="isdisable" placeholder="" value="0"><strong
+                            <label><input type="radio" name="isdisable" placeholder="" value="0" checked><strong
                                     style="cursor: pointer;margin-left: 5px;">启用</strong></label>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <label><input type="radio" name="isdisable" placeholder="" value="1"><strong
@@ -179,23 +178,24 @@
 
 
                 </tr>
-                <tr>
+               <!-- <tr>
                     <td class="zlc-table-td">出生日期</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="userBirthday" class="form-control" id="userBirthday"  placeholder="">
+                            <input type="text" name="userBirthday" class="form-control" id="userBirthday"
+                                               onClick="WdatePicker()" placeholder="">
                         </div>
                     </td>
                     <td>
                         <div id="userBirthdayError"></div>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td class="zlc-table-td">描述</td>
                     <td colspan="4">
                         <div class="form-group zlc-form-group-margin">
-                            <textarea type="text" name="meno" class="form-control" id="meno" rows="3"
-                                      placeholder=""></textarea>
+                                            <textarea type="text" name="meno" class="form-control" id="meno" rows="3"
+                                                      placeholder=""></textarea>
                         </div>
                     </td>
                     <td>
@@ -213,7 +213,7 @@
                     <td>
                         <div id="picPathError"></div>
                     </td>
-
+                </tr>
                 </tbody>
             </table>
         </div>

@@ -5,7 +5,11 @@ import java.util.Date;
 public class SysUser {
     private Long id;
 
+    private String realname;
+
     private String username;
+
+    private String useridenty;
 
     private String password;
 
@@ -23,7 +27,7 @@ public class SysUser {
 
     private String weixin;
 
-    private String useridenty;
+
 
     private String isdel;
 
@@ -37,7 +41,7 @@ public class SysUser {
 
     private String meno;
 
-    private String realname;
+
 
     private String userOrg;
 

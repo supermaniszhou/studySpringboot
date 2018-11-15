@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/12/25 0025.
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 public class SysUserController extends BaseController {
     @Autowired
@@ -51,9 +52,9 @@ public class SysUserController extends BaseController {
         return new ModelAndView(VIEW_PATH + "user/sysUser_add");
     }
 
-    @RequestMapping(value = "/doAdd")
-    @ResponseBody
-    public Map<String, Object> doAdd(SysUser sysUser) {
+    @RequestMapping(value = "/doAddSysUser")
+    public Map<String, Object> doAddSysUser(SysUser sysUser) {
+        System.out.println("-----------------------------");
         try {
             userService.insertSelective(sysUser);
         } catch (Exception e) {

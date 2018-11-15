@@ -8,7 +8,7 @@ var userModle = (function () {
         contentType: "application/x-www-form-urlencoded",
         pagination: true,
         pageNumber: 1,
-        pageSize: 5,
+        pageSize: 10,
         pageList: [10, 20, 50, 100],
         sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
         striped: false,                   //是否显示行间隔色
@@ -17,12 +17,15 @@ var userModle = (function () {
         height: 500,
         paginationPreText: "上一页",
         paginationNextText: "下一页",
-        search: false,
-        sortName: 'username',//根据哪个字段排序
-        sortOrder: 'asc',
+        // search: true,
+        // sortName: 'username',//根据哪个字段排序
+
+        sortable:true, //是否启用排序
+        sortOrder: 'asc',//排序方式
+
         showColumns: true,
         showRefresh: true,
-        detailView: true,
+        detailView: false,
         detailFormatter: function (index, row) {
             return "账号:" + row.username + ";名字：" + row.realname + "；电话：" + row.phone;
         },
@@ -31,27 +34,22 @@ var userModle = (function () {
             , {
                 field: 'id',
                 title: 'id',
-                sortable: true,
                 visible: false
             }, {
                 field: 'username',
                 title: '名字',
                 width: '10%',
-                sortable: true
             }, {
                 field: 'age',
-                title: '年龄'
-                , sortable: true,
+                title: '年龄',
                 width: '10%'
             }, {
                 field: 'address',
                 title: '地址',
-                sortable: true,
                 width: 'auto'
             }, {
                 field: 'sex',
                 title: '性别',
-                sortable: true,
                 width: '10%',
                 formatter: function (value, row) {
                     if (value == 2) {
@@ -108,6 +106,8 @@ var userModle = (function () {
                     dialogRef.getModalBody().find('form').find("button").trigger('click');
                     // initSysMenuTable();
                     // dialogRef.close();
+                    $("#table2").bootstrapTable('refresh');
+
                 }
             }, {
                 icon: 'glyphicon glyphicon-eye-close',

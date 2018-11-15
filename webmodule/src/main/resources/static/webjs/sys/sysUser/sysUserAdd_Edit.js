@@ -8,46 +8,46 @@ var sysUserAdd = (function () {
 //        live: 'disabled',
             message: 'This value is not valid',
             feedbackIcons: {
-                // valid: 'glyphicon glyphicon-ok',
+                valid: 'glyphicon glyphicon-ok',
                 invalid: 'glyphicon glyphicon-remove',
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
 
-                username: {
-                    container: '#usernameError',
-                    validators: {
-                        notEmpty: {
-                            message: '账户名不可为空！',
-                        },
-                        stringLength: {
-                            min: 6,
-                            max: 20,
-                            message: '长度为6~20个字符(字母或数字)'
-                        },
-                        regexp: {
-                            regexp: /^[a-zA-Z0-9_\.]+$/,
-                            message: '只能是字母或数字'
-                        }
-                    }
-                },
-                password: {
-                    container: '#passwordError',
-                    validators: {
-                        notEmpty: {
-                            message: '密码不可为空！',
-                        },
-                        stringLength: {
-                            min: 6,
-                            max: 20,
-                            message: '长度为6~20个字符(字母、数字、特殊字符)'
-                        },
-                        regexp: {
-                            regexp: /^[a-zA-Z0-9_\.]+[~'!@#￥$%^&*()-+_=:]+[a-zA-Z0-9_\.]*$/,
-                            message: '字母、数字、特殊字符'
-                        }
-                    }
-                },
+                // username: {
+                //     container: '#usernameError',
+                //     validators: {
+                //         notEmpty: {
+                //             message: '账户名不可为空！',
+                //         },
+                //         stringLength: {
+                //             min: 6,
+                //             max: 20,
+                //             message: '长度为6~20个字符(字母或数字)'
+                //         },
+                //         regexp: {
+                //             regexp: /^[a-zA-Z0-9_\.]+$/,
+                //             message: '只能是字母或数字'
+                //         }
+                //     }
+                // },
+                // password: {
+                //     container: '#passwordError',
+                //     validators: {
+                //         notEmpty: {
+                //             message: '密码不可为空！',
+                //         },
+                //         stringLength: {
+                //             min: 6,
+                //             max: 20,
+                //             message: '长度为6~20个字符(字母、数字、特殊字符)'
+                //         },
+                //         regexp: {
+                //             regexp: /^[a-zA-Z0-9_\.]+[a-zA-Z0-9_\.~'!@#￥$%^&*()-+_=:``]*$/,
+                //             message: '字母、数字、特殊字符'
+                //         }
+                //     }
+                // },
                 email: {
                     container: '#emailError',
                     validators: {
@@ -154,24 +154,6 @@ var sysUserAdd = (function () {
                         }
                     }
                 },
-
-
-                userHeight: {
-                    container: '#userHeightError',
-                    validators: {
-                        callback: {
-                            message: '值只能包含数字,并且不能大于300',
-                            callback: function (value, validator) {
-                                if (value != null && value != "") {
-                                    var reg=/^[1-9]{1}[0-9]{1,2}$/;
-                                    if(!reg.test(value)){
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
                 userBirthday: {
                     container: '#userBirthdayError',
                     validators: {
@@ -180,6 +162,16 @@ var sysUserAdd = (function () {
                         }
                     }
                 },
+                userHeight: {
+                    container: '#userHeightError',
+                    validators: {
+                        regexp: {
+                            regexp: /^[1-9]{1}[0-9]{1,2}$/,
+                            message: '值只能包含数字,并且不能大于300',
+                        }
+                    }
+                },
+
             }
         });
     }
@@ -190,24 +182,13 @@ var sysUserAdd = (function () {
         //手动触发验证
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
-            $.post("/user/doAdd", $("#sysUserForm").serialize(), function (data) {
+            $.post("/user/doAddSysUser", $("#sysUserForm").serialize(), function (data) {
                 if (data.code == 0) {
                     document.getElementById('sysUserForm').reset();
                     $("#sysUserForm").data('bootstrapValidator').destroy();
                     sysUserFormValidator();//初始化验证
                     ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
-                    // $('#sysUserAdd').modal('hide');
-                    // BootstrapDialog.show({
-                    //     type: BootstrapDialog.TYPE_SUCCESS,
-                    //     title: '成功 ',
-                    //     message: data.msg,
-                    //     size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                    //     onshown: function (dialogRef) {
-                    //         setTimeout(function () {
-                    //             dialogRef.close();
-                    //         }, 1000);
-                    //     }
-                    // });
+
                     // $("#table2").bootstrapTable('refresh');
                 } else {
                     ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");

@@ -178,6 +178,8 @@ var sysUserAdd = (function () {
             $.ajaxSettings.async = false;
             $.post("/user/doAddSysUser", $("#sysUserForm").serialize(), function (data) {
                 if (data.code == 0) {
+                    $(".bootstrap-dialog").attr("tabindex","-1");
+
                     document.getElementById('sysUserForm').reset();
                     $("#sysUserForm").data('bootstrapValidator').destroy();
                     sysUserFormValidator();//初始化验证

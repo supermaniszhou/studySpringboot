@@ -13,26 +13,32 @@ var userModle = (function () {
             uniqueId: "id",
             method: "post",
             contentType: "application/x-www-form-urlencoded",
-            pagination: true,
-            pageNumber: 1,
-            pageSize: 10,
-            pageList: [10, 20, 50, 100],
-            sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
+            undefinedText: "",//当数据为 undefined 时显示的字符
             striped: false,                   //是否显示行间隔色
             cache: false,
+
+            pagination: true,
+            sortable: true, //是否启用排序
+            sortOrder: "asc",//排序方式
+            sortName: 'age',//根据哪个字段排序
+
+            sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
+
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 25, 50, 100],
+
+            // search: true,
             uniqueId: "id",                       //每一行的唯一标识，一般为主键列
             height: 500,
+
             paginationPreText: "上一页",
             paginationNextText: "下一页",
-            // search: true,
-            // sortName: 'username',//根据哪个字段排序
-
-            sortable: true, //是否启用排序
-            sortOrder: 'asc',//排序方式
-
+            silentSort: true,
             showColumns: true,
             showRefresh: true,
             detailView: false,
+            clickToSelect: true,                //是否启用点击选中行
             detailFormatter: function (index, row) {
                 return "账号:" + row.username + ";名字：" + row.realname + "；电话：" + row.phone;
             },
@@ -49,7 +55,8 @@ var userModle = (function () {
                 }, {
                     field: 'age',
                     title: '年龄',
-                    width: '10%'
+                    width: '10%',
+                    sortable: true,
                 }, {
                     field: 'address',
                     title: '地址',
@@ -99,24 +106,28 @@ var userModle = (function () {
     }
 
     function toAddUserPage() {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             title: '新增',
             message: $('<div></div>').load('/user/toadd'),
-            draggable: false,
+            draggable: true,//移动弹框
             type: BootstrapDialog.TYPE_DEFAULT,
             size: BootstrapDialog.SIZE_WIDE,
             closable: true,//右上角的关闭按钮
-            cssClass: 'dialogModalH ',
+            // cssClass: ' ',
+            closeByBackdrop: false,//点击遮罩关闭弹框
+            closeByKeyboard: false,
             buttons: [{
                 label: '保存',
                 cssClass: 'btn-primary',
                 action: function (dialogRef) {
                     dialogRef.getModalBody().find('form').find("button").trigger('click');
+                    $("#sysUserTable").bootstrapTable('refresh');
                     var val = dialogRef.getModalBody().find('#flagInput').val();
-                    $('#sysUserTable').bootstrapTable('refresh', {pageNumber: 1});
                     if (val == "success") {
+                        SearchData();
                         dialogRef.close();
                     }
+
                 }
             }, {
                 icon: 'glyphicon glyphicon-eye-close',
@@ -129,21 +140,22 @@ var userModle = (function () {
     }
 
     function toEditUserPage(id) {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             title: '修改',
-            message: $('<div></div>').load('/user/toEditSysUser?id='+id),
-            draggable: false,
+            message: $('<div></div>').load('/user/toEditSysUser?id=' + id),
+            draggable: true,
             type: BootstrapDialog.TYPE_DEFAULT,
             size: BootstrapDialog.SIZE_WIDE,
             closable: true,//右上角的关闭按钮
-            cssClass: 'dialogModalH ',
+            // cssClass: '',
+            backdrop: false,
             buttons: [{
                 label: '保存',
                 cssClass: 'btn-primary',
                 action: function (dialogRef) {
                     dialogRef.getModalBody().find('form').find("button").trigger('click');
                     var val = dialogRef.getModalBody().find('#flagInput').val();
-                    $('#sysUserTable').bootstrapTable('refresh', {pageNumber: 1});
+                    $("#sysUserTable").bootstrapTable('refresh');
                     if (val == "success") {
                         dialogRef.close();
                     }
@@ -161,7 +173,7 @@ var userModle = (function () {
     function toViewUserPage(id) {
         BootstrapDialog.show({
             title: '查看',
-            message: $('<div></div>').load('/user/toEditSysUser?id='+id),
+            message: $('<div></div>').load('/user/toEditSysUser?id=' + id),
             draggable: false,
             type: BootstrapDialog.TYPE_DEFAULT,
             size: BootstrapDialog.SIZE_WIDE,
@@ -169,7 +181,7 @@ var userModle = (function () {
             cssClass: 'dialogModalH ',
         });
     }
-    
+
     function doDelSysUser(id) {
         BootstrapDialog.show({
             size: BootstrapDialog.SIZE_SMALL,
@@ -201,6 +213,7 @@ var userModle = (function () {
             }]
         });
     }
+
     return {
         SearchData: SearchData,
         toAddUserPage: toAddUserPage,

@@ -1,6 +1,6 @@
 package ${controllerP};
 
-import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zhou.base.BaseController;
 import ${entityP}.${className};
 import ${serviceP}.${className}Service;
@@ -36,33 +36,31 @@ public class ${className}Controller extends BaseController {
         return new ModelAndView(VIEW_PATH + "${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}_list");
     }
 
-    @RequestMapping("/toadd")
-    public ModelAndView toadd() {
+    @RequestMapping("/get${className}Data")
+    public Map<String, Object> get${className}Data(@RequestParam(value = "pageSize", required = false) int pageSize,
+                                                   @RequestParam(value = "pageIndex", required = false) int pageIndex) {
+
+        ${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)} = new ${className}();
+        List<${className}> list=null;
+        PageInfo<${className}> pageInfo=null;
+        try {
+            list = ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.query${className}List(${className.substring(0,1).toLowerCase()}${className.substring(1)}, pageIndex, pageSize);
+            pageInfo = new PageInfo<>(list);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return responseTo(pageInfo.getTotal(), list);;
+    }
+
+    @RequestMapping("/toadd${className}")
+    public ModelAndView toadd${className}() {
         return new ModelAndView(VIEW_PATH + "${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}_add");
     }
 
-    @RequestMapping("/get${className}Data")
-    @ResponseBody
-    public Map<String, Object> get${className}Data(@RequestParam(value = "pageSize", required = false) int pageSize,
-                                           @RequestParam(value = "pageIndex", required = false) int pageIndex) {
-
-        Map<String, Object> map = new HashedMap();
-        ${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)} = new ${className}();
-        int count = ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.queryCount(${className.substring(0,1).toLowerCase()}${className.substring(1)});
-        List<${className}> list = ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.queryList(${className.substring(0,1).toLowerCase()}${className.substring(1)}, pageIndex, pageSize);
-
-        map.put("total", count);
-        map.put("rows", list);
-        return map;
-    }
-
-
-
-    @RequestMapping(value = "/doAdd")
-    @ResponseBody
-    public Map<String, Object> doAdd(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+    @RequestMapping(value = "/doAdd${className}")
+    public Map<String, Object> doAdd${className}(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
         try {
-            ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.addObj(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+            ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.insertSelective(${className.substring(0,1).toLowerCase()}${className.substring(1)});
         } catch (Exception e) {
             e.printStackTrace();
             return error();
@@ -70,25 +68,22 @@ public class ${className}Controller extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "toEdit")
-    @ResponseBody
-    public Map<String, Object> toEdit(@RequestParam(value = "id") String id, @RequestParam("flag") String flag) {
+    @RequestMapping(value = "toEdit${className}")
+    public ModelAndView toEdit${className}(@RequestParam(value = "id") long id, Model model) {
         ${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)} = null;
         try {
-            ${className} obj = new ${className}();
-            obj.setId(Integer.parseInt(id));
-            ${className.substring(0,1).toLowerCase()}${className.substring(1)} = (${className}) ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.queryObj(obj);
+            ${className.substring(0,1).toLowerCase()}${className.substring(1)} = (${className}) ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.selectByPrimaryKey(id);
+            model.addAttribute("${className.substring(0,1).toLowerCase()}${className.substring(1)}", ${className.substring(0,1).toLowerCase()}${className.substring(1)});
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return responseTo(SUCCESS_FLAG, SUCCESS_MSG, ${className.substring(0,1).toLowerCase()}${className.substring(1)}, flag);
+        return new ModelAndView(VIEW_PATH + "${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}_edit");
     }
 
-    @RequestMapping(value = "doEdit")
-    @ResponseBody
-    public Map<String, Object> doEdit(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+    @RequestMapping(value = "doEdit${className}")
+    public Map<String, Object> doEdit${className}(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
         try {
-            ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.updateObj(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+            ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.updateByPrimaryKeySelective(${className.substring(0,1).toLowerCase()}${className.substring(1)});
         } catch (Exception e) {
             e.printStackTrace();
             return error();
@@ -96,13 +91,10 @@ public class ${className}Controller extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "doDel")
-    @ResponseBody
-    public Map<String, Object> doDel(@RequestParam(value = "id", required = true) Integer id) {
+    @RequestMapping(value = "doDel${className}")
+    public Map<String, Object> doDel${className}(@RequestParam(value = "id", required = true) long id) {
         try {
-            ${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)} = new ${className}();
-            ${className.substring(0,1).toLowerCase()}${className.substring(1)}.setId(id);
-            ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.deleteObj(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+            ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.deleteByPrimaryKey(id);
         } catch (Exception e) {
             e.printStackTrace();
             return error();

@@ -29,8 +29,8 @@ public class SysUserController extends BaseController {
 
 
     @InitBinder
-    public void initBinder(WebDataBinder binder){
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
@@ -73,23 +73,20 @@ public class SysUserController extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "toEdit")
-    @ResponseBody
-    public Map<String, Object> toEdit(@RequestParam(value = "id") String id, @RequestParam("flag") String flag) {
+    @RequestMapping(value = "toEditSysUser")
+    public ModelAndView toEdit(@RequestParam(value = "id") long id, Model model) {
         SysUser sysUser = null;
         try {
-            SysUser user = new SysUser();
-            user.setId(Long.parseLong(id));
-            sysUser = userService.selectBySysUser(user);
+            sysUser = userService.selectByPrimaryKey(id);
+            model.addAttribute("sysUser", sysUser);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return responseTo(SUCCESS_FLAG, SUCCESS_MSG, sysUser, flag);
+        return new ModelAndView(VIEW_PATH + "user/sysUser_edit");
     }
 
-    @RequestMapping(value = "doEdit")
-    @ResponseBody
-    public Map<String, Object> doEdit(SysUser sysUser) {
+    @RequestMapping(value = "doEditSysUser")
+    public Map<String, Object> doEditSysUser(SysUser sysUser) {
         try {
             userService.updateByPrimaryKeySelective(sysUser);
         } catch (Exception e) {
@@ -99,12 +96,9 @@ public class SysUserController extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "doDel")
-    @ResponseBody
-    public Map<String, Object> doDel(@RequestParam(value = "id", required = true) Long id) {
+    @RequestMapping(value = "doDelSysUser")
+    public Map<String, Object> doDelSysUser(@RequestParam(value = "id", required = true) Long id) {
         try {
-            SysUser sysUser = new SysUser();
-            sysUser.setId(id);
             userService.deleteByPrimaryKey(id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,17 +107,5 @@ public class SysUserController extends BaseController {
         return success();
     }
 
-    @RequestMapping("/toView")
-    public ModelAndView toView(@RequestParam("id") Long id, Model model) {
-        SysUser sysUser = null;
-        try {
-            SysUser user = new SysUser();
-            user.setId(id);
-            sysUser = userService.selectBySysUser(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        model.addAttribute("sysUser", sysUser);
-        return new ModelAndView(VIEW_PATH + "user/user_view");
-    }
+
 }

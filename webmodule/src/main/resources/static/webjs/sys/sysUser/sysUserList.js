@@ -5,6 +5,7 @@ var userModle = (function () {
     });
 
     function initSysUserTable() {
+        // $('#sysUserTable').bootstrapTable('destroy');
         $('#sysUserTable').bootstrapTable({
             url: '/user/getUserData',
             queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
@@ -76,13 +77,13 @@ var userModle = (function () {
     }
 
     function opeate(value, row, index) {
-        var html = '<a title="修改" href="javascript:void(0)" onclick="sysUserAdd.toUpdate(' + row.id + ',\'edit\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
-        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="查看" href="javascript:void(0)" onclick="sysUserAdd.toUpdate(' + row.id + ',\'view\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
-        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="删除" href="javascript:void(0)" onclick="sysUserAdd.doDel(' + row.id + ')" ><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>';
+        var html = '<a title="修改" href="javascript:void(0)" onclick="userModle.toEditUserPage(\'' + row.id + '\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="查看" href="javascript:void(0)" onclick="userModle.toViewUserPage(\'' + row.id + '\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="删除" href="javascript:void(0)" onclick="userModle.doDelSysUser(\'' + row.id + '\')" ><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>';
         return html;
     }
 
-//查询条件
+    //查询条件
     function queryParams(params) {
         return {
             pageSize: params.pageSize,
@@ -92,7 +93,7 @@ var userModle = (function () {
         };
     }
 
-//查询事件
+    //查询事件
     function SearchData() {
         $('#sysUserTable').bootstrapTable('refresh', {pageNumber: 1});
     }
@@ -112,10 +113,10 @@ var userModle = (function () {
                 action: function (dialogRef) {
                     dialogRef.getModalBody().find('form').find("button").trigger('click');
                     var val = dialogRef.getModalBody().find('#flagInput').val();
+                    $('#sysUserTable').bootstrapTable('refresh', {pageNumber: 1});
                     if (val == "success") {
                         dialogRef.close();
                     }
-                    $('#sysUserTable').bootstrapTable('refresh', {pageNumber: 1});
                 }
             }, {
                 icon: 'glyphicon glyphicon-eye-close',
@@ -127,9 +128,85 @@ var userModle = (function () {
         });
     }
 
+    function toEditUserPage(id) {
+        BootstrapDialog.show({
+            title: '修改',
+            message: $('<div></div>').load('/user/toEditSysUser?id='+id),
+            draggable: false,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            cssClass: 'dialogModalH ',
+            buttons: [{
+                label: '保存',
+                cssClass: 'btn-primary',
+                action: function (dialogRef) {
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
+                    var val = dialogRef.getModalBody().find('#flagInput').val();
+                    $('#sysUserTable').bootstrapTable('refresh', {pageNumber: 1});
+                    if (val == "success") {
+                        dialogRef.close();
+                    }
+                }
+            }, {
+                icon: 'glyphicon glyphicon-eye-close',
+                label: '关闭',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
+
+    function toViewUserPage(id) {
+        BootstrapDialog.show({
+            title: '查看',
+            message: $('<div></div>').load('/user/toEditSysUser?id='+id),
+            draggable: false,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            cssClass: 'dialogModalH ',
+        });
+    }
+    
+    function doDelSysUser(id) {
+        BootstrapDialog.show({
+            size: BootstrapDialog.SIZE_SMALL,
+            type: BootstrapDialog.TYPE_DANGER,
+            message: '你确认删除吗？',
+            buttons: [{
+                label: '确认删除',
+                cssClass: 'btn-primary',
+                data: {
+                    js: 'btn-confirm',
+                    'user-id': '3'
+                },
+                action: function (dialogItself) {
+                    $.post("/user/doDelSysUser", {id: id}, function (data) {
+                        dialogItself.close();
+                        if (data.code == 0) {
+                            ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
+                            $("#table2").bootstrapTable('refresh');
+                        } else {
+                            ToastrMessage.successMessage(data.msg, "2000", "toast-top-center");
+                        }
+                    });
+                }
+            }, {
+                label: '取消',
+                action: function (dialogItself) {
+                    dialogItself.close();
+                }
+            }]
+        });
+    }
     return {
         SearchData: SearchData,
-        toAddUserPage: toAddUserPage
+        toAddUserPage: toAddUserPage,
+        toEditUserPage: toEditUserPage,
+        toViewUserPage: toViewUserPage,
+        doDelSysUser: doDelSysUser,
     }
 })();
 

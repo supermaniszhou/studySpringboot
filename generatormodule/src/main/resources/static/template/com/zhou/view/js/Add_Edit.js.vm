@@ -1,5 +1,9 @@
 var ${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit = (function () {
     $(function () {
+        ${className.substring(0,1).toLowerCase()}${className.substring(1)}FormValidator();
+    });
+    
+    function ${className.substring(0,1).toLowerCase()}${className.substring(1)}FormValidator() {
         $('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').bootstrapValidator({
 //        live: 'disabled',
             message: 'This value is not valid',
@@ -22,194 +26,59 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit = 
                 #end
             }
         });
-    });
-
-    function toAdd() {
-        document.getElementById('${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').reset();
-        $(".modal-footer").html("");
-        $(".modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button><button type="button" class="btn btn-primary" onclick="${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit.doAdd()">保存</button>');
-        $('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Add').modal('show');
     }
 
-    function doAdd() {
+
+    function doAdd${className}() {
         var bootstrapValidator = $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form").data('bootstrapValidator');
         //手动触发验证
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
-            $.post("/${className.substring(0,1).toLowerCase()}${className.substring(1)}/doAdd", $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form").serialize(), function (data) {
+            //异步请求改同步
+            $.ajaxSettings.async = false;
+            $.post("/${className.substring(0,1).toLowerCase()}${className.substring(1)}/doAdd${className}", $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form").serialize(), function (data) {
+                if (data.code == 0) {
+                    document.getElementById('${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').reset();
+                    $('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').data('bootstrapValidator').destroy();
+                    ${className.substring(0,1).toLowerCase()}${className.substring(1)}FormValidator();
+                    ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
+                    $("#flagInput").val("success");
+                } else {
+                    ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");
+                    $("#flagInput").val("error");
+                }
+            });
+            $.ajaxSettings.async = true;
+        }
+    }
+
+
+    function doEdit${className}() {
+        var bootstrapValidator = $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form").data('bootstrapValidator');
+        //手动触发验证
+        bootstrapValidator.validate();
+        if (bootstrapValidator.isValid()) {
+            $.ajaxSettings.async = false;
+            $.post("/${className.substring(0,1).toLowerCase()}${className.substring(1)}/doEdit${className}", $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form").serialize(), function (data) {
                 document.getElementById('${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').reset();
                 if (data.code == 0) {
                     document.getElementById('${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').reset();
-                    $('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Add').modal('hide');
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_SUCCESS,
-                        title: '成功 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
+                    $('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').data('bootstrapValidator').destroy();
+                    ${className.substring(0,1).toLowerCase()}${className.substring(1)}FormValidator();
+                    ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
+                    $("#flagInput").val("success");
                     $("#${className}table").bootstrapTable('refresh');
                 } else {
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_DANGER,
-                        title: '错误 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
+                    ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");
+                    $("#flagInput").val("error");
                 }
-
             });
+            $.ajaxSettings.async = true;
         }
-    }
-
-    function toUpdate(id, flag) {
-        $.ajax({
-            url: "/${className.substring(0,1).toLowerCase()}${className.substring(1)}/toEdit",
-            async: true,
-            type: "POST",
-            data: {
-                id: id,
-                flag: flag
-            },
-            // 成功后开启模态框
-            success: showEdit,
-            error: function () {
-                BootstrapDialog.show({
-                    type: BootstrapDialog.TYPE_DANGER,
-                    title: '错误 ',
-                    message: "请求出错",
-                    size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                    onshown: function (dialogRef) {
-                        setTimeout(function () {
-                            dialogRef.close();
-                        }, 1000);
-                    }
-                });
-            },
-            dataType: "json"
-        });
-    }
-
-    function showEdit(data) {
-        var u = data.data;
-        #foreach($f in $fieldList)
-            $("#${f}").val(u.${f});
-        #end
-        //显示模态框
-        $(".modal-footer").html("");
-        $(".modal-title").html("");
-        if(data.flag=='edit'){
-            $(".modal-title").html("修改");
-            $(".modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button><button type="button" class="btn btn-primary" onclick="${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit.doEdit()">确认修改</button>');
-        }else if(data.flag=='view'){
-            $(".modal-title").html("查看");
-        }
-        $('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Add').modal('show');
-    }
-
-    function doEdit() {
-        var bootstrapValidator = $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form").data('bootstrapValidator');
-        //手动触发验证
-        bootstrapValidator.validate();
-        if (bootstrapValidator.isValid()) {
-            $.post("/${className.substring(0,1).toLowerCase()}${className.substring(1)}/doEdit", $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form").serialize(), function (data) {
-                document.getElementById('${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').reset();
-                if (data.code == 0) {
-
-                    $('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Add').modal('hide');
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_SUCCESS,
-                        title: '成功 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
-                    $("#${className}table").bootstrapTable('refresh');
-                } else {
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_DANGER,
-                        title: '错误 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });
-                }
-
-            });
-        }
-    }
-
-    function doDel(id) {
-        BootstrapDialog.show({
-            size: BootstrapDialog.SIZE_SMALL,
-            type: BootstrapDialog.TYPE_DANGER,
-            message: '你确认删除吗？',
-            buttons: [{
-                label: '确认删除',
-                cssClass: 'btn-primary',
-
-                action: function (dialogItself) {
-                    $.post("/${className.substring(0,1).toLowerCase()}${className.substring(1)}/doDel", {id: id}, function (data) {
-                        dialogItself.close();
-                        if (data.code == 0) {
-                            BootstrapDialog.show({
-                                type: BootstrapDialog.TYPE_SUCCESS,
-                                title: '成功 ',
-                                message: data.msg,
-                                size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                                onshown: function (dialogRef) {
-                                    setTimeout(function () {
-                                        dialogRef.close();
-                                    }, 1000);
-                                }
-                            });
-                            $("#${className}table").bootstrapTable('refresh');
-                        } else {
-                            BootstrapDialog.show({
-                                type: BootstrapDialog.TYPE_DANGER,
-                                title: '错误 ',
-                                message: data.msg,
-                                size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                                onshown: function (dialogRef) {
-                                    setTimeout(function () {
-                                        dialogRef.close();
-                                    }, 1000);
-                                }
-                            });
-                        }
-                    });
-                }
-            }, {
-                label: '取消',
-                action: function (dialogItself) {
-                    dialogItself.close();
-                }
-            }]
-        });
     }
 
     return {
-        toAdd: toAdd,
-        doAdd: doAdd,
-        toUpdate: toUpdate,
-        doEdit: doEdit,
-        doDel: doDel
+        doAdd${className}: doAdd${className},
+        doEdit${className}: doEdit${className},
     };
 })();

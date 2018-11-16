@@ -27,7 +27,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <table id="${className}table">
+                <table id="${className.substring(0,1).toLowerCase()}${className.substring(1)}table">
                 </table>
             </div>
         </div>

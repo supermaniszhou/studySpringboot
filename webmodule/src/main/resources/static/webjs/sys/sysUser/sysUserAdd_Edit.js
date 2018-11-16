@@ -182,16 +182,18 @@ var sysUserAdd = (function () {
         //手动触发验证
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
+            $.ajaxSettings.async = false;
             $.post("/user/doAddSysUser", $("#sysUserForm").serialize(), function (data) {
                 if (data.code == 0) {
                     document.getElementById('sysUserForm').reset();
                     $("#sysUserForm").data('bootstrapValidator').destroy();
                     sysUserFormValidator();//初始化验证
                     ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
-
+                    $("#flagInput").val("success");
                     // $("#table2").bootstrapTable('refresh');
                 } else {
                     ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");
+                    $("#flagInput").val("error");
                     /*BootstrapDialog.show({
                         type: BootstrapDialog.TYPE_DANGER,
                         title: '错误 ',
@@ -206,6 +208,7 @@ var sysUserAdd = (function () {
                 }
 
             });
+            $.ajaxSettings.async = true;
         }
     }
 

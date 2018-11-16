@@ -22,12 +22,13 @@
                 <button type="button" class="btn btn-default" onclick="userModle.SearchData();">查询</button>
                 &nbsp;&nbsp;&nbsp;
                 <a class="btn btn-primary" data-toggle="modal" onclick="userModle.toAddUserPage();">新增</a>
+                <a class="btn btn-primary" data-toggle="modal" onclick="test();">test</a>
             </form>
 
         </div>
         <div class="row">
             <div class="col-md-12">
-                <table id="table2">
+                <table id="sysUserTable">
                 </table>
             </div>
         </div>
@@ -36,4 +37,34 @@
 
 <script th:src="@{/webjs/sys/sysUser/sysUserList.js}"></script>
 </body>
+<script>
+    function test() {
+        BootstrapDialog.show({
+            title: 'Manipulating Buttons',
+            message: function(dialog) {
+                var $content = $('<div><button class="btn btn-success">Revert button status right now.</button></div>');
+                var $footerButton = dialog.getButton('btn-1');
+                $content.find('button').parent("div").parent("div").parent("div").parent("div").prev("div").html();
+                console.log($content.find('button').parent().parent().parent().parent().prev("div").html());
+                // $content.find('button').click({$footerButton: $footerButton}, function(event) {
+                //     event.data.$footerButton.enable();
+                //     event.data.$footerButton.stopSpin();
+                //     dialog.setClosable(true);
+                // });
+
+                return $content;
+            },
+            buttons: [{
+                id: 'btn-1',
+                label: 'Click to disable and spin.',
+                action: function(dialog) {
+                    var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
+                    $button.disable();
+                    $button.spin();
+                    dialog.setClosable(false);
+                }
+            }]
+        });
+    }
+</script>
 </html>

@@ -1,72 +1,79 @@
 var userModle = (function () {
-    $('#table2').bootstrapTable({
-        url: '/user/getUserData',
-        queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
-        queryParams: queryParams,
-        uniqueId: "id",
-        method: "post",
-        contentType: "application/x-www-form-urlencoded",
-        pagination: true,
-        pageNumber: 1,
-        pageSize: 10,
-        pageList: [10, 20, 50, 100],
-        sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
-        striped: false,                   //是否显示行间隔色
-        cache: false,
-        uniqueId: "id",                       //每一行的唯一标识，一般为主键列
-        height: 500,
-        paginationPreText: "上一页",
-        paginationNextText: "下一页",
-        // search: true,
-        // sortName: 'username',//根据哪个字段排序
 
-        sortable:true, //是否启用排序
-        sortOrder: 'asc',//排序方式
-
-        showColumns: true,
-        showRefresh: true,
-        detailView: false,
-        detailFormatter: function (index, row) {
-            return "账号:" + row.username + ";名字：" + row.realname + "；电话：" + row.phone;
-        },
-        columns: [
-            {checkbox: true, width: '5%'}
-            , {
-                field: 'id',
-                title: 'id',
-                visible: false
-            }, {
-                field: 'username',
-                title: '名字',
-                width: '10%',
-            }, {
-                field: 'age',
-                title: '年龄',
-                width: '10%'
-            }, {
-                field: 'address',
-                title: '地址',
-                width: 'auto'
-            }, {
-                field: 'sex',
-                title: '性别',
-                width: '10%',
-                formatter: function (value, row) {
-                    if (value == 2) {
-                        return "女";
-                    } else if (value == 1) {
-                        return "男";
-                    }
-                }
-            },
-            {
-                title: '操作',
-                field: 'id',
-                width: '20%',
-                formatter: opeate
-            }
-        ]
+    $(function () {
+        initSysUserTable();
     });
+
+    function initSysUserTable() {
+        $('#sysUserTable').bootstrapTable({
+            url: '/user/getUserData',
+            queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+            queryParams: queryParams,
+            uniqueId: "id",
+            method: "post",
+            contentType: "application/x-www-form-urlencoded",
+            pagination: true,
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 20, 50, 100],
+            sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
+            striped: false,                   //是否显示行间隔色
+            cache: false,
+            uniqueId: "id",                       //每一行的唯一标识，一般为主键列
+            height: 500,
+            paginationPreText: "上一页",
+            paginationNextText: "下一页",
+            // search: true,
+            // sortName: 'username',//根据哪个字段排序
+
+            sortable: true, //是否启用排序
+            sortOrder: 'asc',//排序方式
+
+            showColumns: true,
+            showRefresh: true,
+            detailView: false,
+            detailFormatter: function (index, row) {
+                return "账号:" + row.username + ";名字：" + row.realname + "；电话：" + row.phone;
+            },
+            columns: [
+                {checkbox: true, width: '5%'}
+                , {
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                }, {
+                    field: 'username',
+                    title: '名字',
+                    width: '10%',
+                }, {
+                    field: 'age',
+                    title: '年龄',
+                    width: '10%'
+                }, {
+                    field: 'address',
+                    title: '地址',
+                    width: 'auto'
+                }, {
+                    field: 'sex',
+                    title: '性别',
+                    width: '10%',
+                    formatter: function (value, row) {
+                        if (value == 2) {
+                            return "女";
+                        } else if (value == 1) {
+                            return "男";
+                        }
+                    }
+                },
+                {
+                    title: '操作',
+                    field: 'id',
+                    width: '20%',
+                    formatter: opeate
+                }
+            ]
+        });
+    }
 
     function opeate(value, row, index) {
         var html = '<a title="修改" href="javascript:void(0)" onclick="sysUserAdd.toUpdate(' + row.id + ',\'edit\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
@@ -87,7 +94,7 @@ var userModle = (function () {
 
 //查询事件
     function SearchData() {
-        $('#table2').bootstrapTable('refresh', {pageNumber: 1});
+        $('#sysUserTable').bootstrapTable('refresh', {pageNumber: 1});
     }
 
     function toAddUserPage() {
@@ -104,10 +111,11 @@ var userModle = (function () {
                 cssClass: 'btn-primary',
                 action: function (dialogRef) {
                     dialogRef.getModalBody().find('form').find("button").trigger('click');
-                    // initSysMenuTable();
-                    // dialogRef.close();
-                    $("#table2").bootstrapTable('refresh');
-
+                    var val = dialogRef.getModalBody().find('#flagInput').val();
+                    if (val == "success") {
+                        dialogRef.close();
+                    }
+                    $('#sysUserTable').bootstrapTable('refresh', {pageNumber: 1});
                 }
             }, {
                 icon: 'glyphicon glyphicon-eye-close',

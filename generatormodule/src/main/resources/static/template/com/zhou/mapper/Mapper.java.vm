@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ${className}Mapper<T extends $className> extends CommonMapper<T> {
+public interface ${className}Mapper {
 }

@@ -22,7 +22,7 @@
                     查询
                 </button>
                 &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-primary" data-toggle="modal" onclick="${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit.toAdd();">新增</a>
+                <a class="btn btn-primary" data-toggle="modal" onclick="${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit.toAdd${className}();">新增</a>
             </div>
         </div>
         <div class="row">
@@ -34,55 +34,6 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="${className.substring(0,1).toLowerCase()}${className.substring(1)}Add" tabindex="-1"
-     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 700px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    新增
-                </h4>
-            </div>
-            <div class="modal-body">
-                <div class="container" style="height: 500px;overflow-y:scroll;">
-                    <div class="row">
-                        <section>
-                            <div class="col-lg-6 col-lg-offset-1">
-                                <form class="form-horizontal"
-                                      id="${className.substring(0,1).toLowerCase()}${className.substring(1)}Form"
-                                      style="margin-top: 10px;">
-                                    <table>
-                                        #foreach($fr in $fieldRemarks.entrySet())
-                                            <tr>
-                                                <td class="tdZ" align="right">
-                                                    <label class="control-label">${fr.value}</label>
-                                                </td>
-                                                <td>
-                                                    <div class="form-group" style="margin-left: 50px">
-                                                        <input class="form-control" name="${fr.key}" id="${fr.key}"
-                                                               type="text" placeholder=""/>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        #end
-                                    </table>
-                                </form>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
 <script th:src="@{/js/sys/${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}List.js}"></script>
-<script th:src="@{/js/sys/${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}Add_Edit.js}"></script>
 </body>
 </html>

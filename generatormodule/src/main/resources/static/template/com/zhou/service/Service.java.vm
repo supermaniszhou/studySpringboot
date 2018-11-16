@@ -3,5 +3,21 @@ package ${serviceP};
 import ${entityP}.${className};
 
 
-public interface ${className}Service<T extends ${className}> extends CommonService<T> {
+public interface ${className}Service {
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)});
+
+    int insertSelective(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)});
+
+    ${className} selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)});
+
+    int updateByPrimaryKey(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)});
+
+    Page<${className}> selectPageList(${className} t, int page, int pagesize);
+
+    ${className} selectBySysUser(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)});
 }

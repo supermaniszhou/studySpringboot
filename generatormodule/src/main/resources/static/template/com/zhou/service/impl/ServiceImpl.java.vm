@@ -11,43 +11,48 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ${className}ServiceImpl implements ${className}Service<${className}> {
+public class ${className}ServiceImpl implements ${className}Service {
     @Autowired
-    private ${className}Mapper<${className}> mapper;
+    private ${className}Mapper mapper;
 
     @Override
-    public int queryCount(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
-        return mapper.queryCount(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    public int deleteByPrimaryKey(Long id) {
+        return mapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public void addObj(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
-        mapper.add(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    public int insert(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        return mapper.insert(${className.substring(0,1).toLowerCase()}${className.substring(1)});
     }
 
     @Override
-    public void deleteObj(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
-        mapper.delete(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    public int insertSelective(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        return mapper.insertSelective(${className.substring(0,1).toLowerCase()}${className.substring(1)});
     }
 
     @Override
-    public void updateObj(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
-        mapper.update(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    public ${className} selectByPrimaryKey(Long id) {
+        return mapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public ${className} queryObj(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
-        return mapper.query(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    public int updateByPrimaryKeySelective(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        return mapper.updateByPrimaryKeySelective(${className.substring(0,1).toLowerCase()}${className.substring(1)});
     }
 
     @Override
-    public Page<${className}> queryList(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}, int page, int pagesize) {
+    public int updateByPrimaryKey(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        return mapper.updateByPrimaryKey(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    }
+
+    @Override
+    public Page<${className}> selectPageList(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}, int page, int pagesize) {
         PageHelper.startPage(page, pagesize);
-        return mapper.queryList(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+        return mapper.selectPageList(${className.substring(0,1).toLowerCase()}${className.substring(1)});
     }
 
     @Override
-    public List<${className}> getAll() {
-        return mapper.getAll();
+    public ${className} selectBySysUser(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        return mapper.selectObject(${className.substring(0,1).toLowerCase()}${className.substring(1)});
     }
 }

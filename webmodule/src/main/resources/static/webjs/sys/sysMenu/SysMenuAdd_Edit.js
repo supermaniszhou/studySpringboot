@@ -7,8 +7,6 @@ var sysMenuAddEdit = (function () {
         $("#menuParent").select2();
 
         $.post("/sysMenu/getMenuList", {flag: "up"}, function (data) {
-            alert(2);
-            console.log(data);
             $("#menuParent").select2ToTree({treeData: {dataArr: data}, maximumSelectionLength: 5});
 
         });

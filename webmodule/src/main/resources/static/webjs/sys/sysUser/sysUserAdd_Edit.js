@@ -187,17 +187,6 @@ var sysUserAdd = (function () {
                 } else {
                     ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");
                     $("#flagInput").val("error");
-                    /*BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_DANGER,
-                        title: '错误 ',
-                        message: data.msg,
-                        size: BootstrapDialog.SIZE_SMALL,//size为小，默认的对话框比较宽
-                        onshown: function (dialogRef) {
-                            setTimeout(function () {
-                                dialogRef.close();
-                            }, 1000);
-                        }
-                    });*/
                 }
 
             });

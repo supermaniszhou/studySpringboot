@@ -187,7 +187,7 @@ var userModle = (function () {
                         dialogItself.close();
                         if (data.code == 0) {
                             ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
-                            $("#table2").bootstrapTable('refresh');
+                            $("#sysUserTable").bootstrapTable('refresh');
                         } else {
                             ToastrMessage.successMessage(data.msg, "2000", "toast-top-center");
                         }

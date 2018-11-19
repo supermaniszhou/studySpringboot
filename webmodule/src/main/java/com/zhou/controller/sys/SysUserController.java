@@ -50,8 +50,14 @@ public class SysUserController extends BaseController {
         SysUser sysUser = new SysUser();
         sysUser.setUsername(username);
         sysUser.setUseridenty(identy);
-        List<SysUser> list = userService.selectPageList(sysUser, pageIndex, pageSize);
-        PageInfo<SysUser> pageInfo = new PageInfo<>(list);
+        List<SysUser> list = null;
+        PageInfo<SysUser> pageInfo = null;
+        try {
+            list = userService.selectPageList(sysUser, pageIndex, pageSize);
+            pageInfo = new PageInfo<>(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return responseTo(pageInfo.getTotal(), list);
     }

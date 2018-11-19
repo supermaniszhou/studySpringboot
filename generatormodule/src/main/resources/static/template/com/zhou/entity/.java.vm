@@ -5,7 +5,8 @@ import java.lang.*;
 import java.math.*;
 import java.io.*;
 import java.util.*;
-@Data
+@Setter
+@Getter
 public class $className implements Serializable{
 #foreach($sysuser in $list)
     private $sysuser.get(0) $sysuser.get(1);//$sysuser.get(2)

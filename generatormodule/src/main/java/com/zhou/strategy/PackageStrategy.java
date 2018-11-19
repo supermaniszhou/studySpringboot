@@ -7,5 +7,5 @@ public class PackageStrategy {
     public static final String SERVICE = PREFIX.concat("service.sys");
     public static final String SERVICE_IMPL = PREFIX.concat("service.sys.impl");
     public static final String CONTROLLER = PREFIX.concat("controller.sys");
-//    public static final String CONTROLLER = PREFIX.concat("controller.sys");
+    public static final String JS_PATH = "/webjs/sys/";//js 引用路径
 }

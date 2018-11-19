@@ -54,6 +54,7 @@ public class VolecityOperate {
                 ctx.put("serviceP", PackageStrategy.SERVICE);
                 ctx.put("serviceImplP", PackageStrategy.SERVICE_IMPL);
                 ctx.put("controllerP", PackageStrategy.CONTROLLER);
+                ctx.put("jsP",PackageStrategy.JS_PATH);
 
                 ctx.put("columnFieldmap", columnFieldmap);
                 ctx.put("fieldRemarks", fieldRemarks);

@@ -34,6 +34,6 @@
     </div>
 </div>
 
-<script th:src="@{/js/sys/${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}List.js}"></script>
+<script th:src="@{${jsP}${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}List.js}"></script>
 </body>
 </html>

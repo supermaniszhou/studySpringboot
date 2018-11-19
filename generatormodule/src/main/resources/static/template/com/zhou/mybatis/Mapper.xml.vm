@@ -93,16 +93,20 @@
         update ${tableName}
         <trim prefix="set" suffixOverrides="," >
         #foreach($column in $columnFieldmap.entrySet())
+            #if(${column.key} !='ID')
             <if test="$column.value !=null ">
                 ${column.key}=#{${column.value}},
             </if>
+            #end
         #end
         </trim>
         <where>
             #foreach($column in $columnFieldmap.entrySet())
+                #if(${column.key} =='ID')
             <if test="$column.value !=null">
                and ${column.key}=#{${column.value}}
             </if>
+                #end
             #end
         </where>
     </update>

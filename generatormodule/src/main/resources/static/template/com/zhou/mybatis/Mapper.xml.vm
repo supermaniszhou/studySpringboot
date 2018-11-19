@@ -47,7 +47,7 @@
 </delete>
 
     <insert id="insert" parameterType="${entityP}.${className}">
-        insert into ${className} (
+        insert into ${tableName} (
     #set($fun=0)
     #foreach($column in $columnFieldmap.entrySet())
         #set($f=$columnFieldmap.size() - 1)
@@ -72,7 +72,7 @@
     </insert>
 
     <insert id="insertSelective" parameterType="${entityP}.${className}">
-        insert into ${className}
+        insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
             #foreach($column in $columnFieldmap.entrySet())
                 <if test="$column.value !=null">
@@ -108,7 +108,7 @@
     </update>
 
     <update id="updateByPrimaryKey" parameterType="${entityP}.${className}">
-        update ${className}
+        update ${tableName}
         <trim prefix="set" suffixOverrides="," >
             #foreach($column in $columnFieldmap.entrySet())
                 <if test="$column.value !=null ">

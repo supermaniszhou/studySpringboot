@@ -146,7 +146,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
         });
     }
 
-    function doDel${className.substring(0,1).toLowerCase()}${className.substring(1)}(id) {
+    function doDel${className}(id) {
         BootstrapDialog.show({
             size: BootstrapDialog.SIZE_SMALL,
             type: BootstrapDialog.TYPE_DANGER,

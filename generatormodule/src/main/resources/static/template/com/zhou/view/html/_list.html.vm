@@ -22,7 +22,7 @@
                     查询
                 </button>
                 &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-primary" data-toggle="modal" onclick="${className.substring(0,1).toLowerCase()}${className.substring(1)}AddEdit.toAdd${className}();">新增</a>
+                <a class="btn btn-primary" data-toggle="modal" onclick="${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle.toAdd${className}();">新增</a>
             </div>
         </div>
         <div class="row">

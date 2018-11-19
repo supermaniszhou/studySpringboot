@@ -123,6 +123,7 @@
         <where>
             #foreach($column in $columnFieldmap.entrySet())
                 <if test="$column.value !=null">
+
                     and ${column.key}=#{${column.value}}
                 </if>
             #end

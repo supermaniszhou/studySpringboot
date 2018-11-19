@@ -30,19 +30,19 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
         columns: [
             {checkbox: true, width: '5%'},
             #foreach($column in $fieldRemarks.entrySet())
-
-                {
-                    field: '${column.key}',
-                    title: '${column.value}',
-                    sortable: true
-                    ## visible: false
-                },
+            {
+                field: '${column.key}',
+                title: '${column.value}',
+                sortable: true
+                align: 'center',
+                visible: true
+            },
             #end
-
             {
                 title: '操作',
                 field: 'id',
                 width: '20%',
+                align: 'center',
                 formatter: opeate
             }
         ]

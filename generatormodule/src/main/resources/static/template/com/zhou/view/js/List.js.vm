@@ -3,7 +3,6 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
         url: '/${className.substring(0,1).toLowerCase()}${className.substring(1)}/get${className}Data',
         queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
         queryParams: queryParams,
-        uniqueId: "id",
         method: "post",
         contentType: "application/x-www-form-urlencoded",
         undefinedText: "",//当数据为 undefined 时显示的字符
@@ -14,7 +13,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
         sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
         striped: false,                   //是否显示行间隔色
         cache: false,
-        uniqueId: "id",                       //每一行的唯一标识，一般为主键列
+        //uniqueId: "id",                       //每一行的唯一标识，一般为主键列
         height: 500,
         paginationPreText: "上一页",
         paginationNextText: "下一页",

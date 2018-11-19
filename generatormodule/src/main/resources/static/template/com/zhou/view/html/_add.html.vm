@@ -6,7 +6,7 @@
         border: none
     }
 </style>
-<div style="height: 500px;overflow-y: scroll">
+<div style="height: 500px;overflow-y: auto">
     <form class="form-horizontal" id="${className.substring(0,1).toLowerCase()}${className.substring(1)}Form" style="margin-left: 30px;margin-right: 30px;">
 
         <div class="table-responsive">
@@ -48,8 +48,8 @@
     $(function () {
         //必须要添加的   否则select2 搜索框无法输入
         $(".bootstrap-dialog").removeAttr("tabindex");
-        var h = ($(window).height() - 250);
-        $(".form-horizontal").css({"height": h + "px"});
+        // var h = ($(window).height() - 250);
+        // $(".form-horizontal").css({"height": h + "px"});
     });
 </script>
 </html>

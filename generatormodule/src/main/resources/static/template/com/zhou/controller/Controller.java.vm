@@ -35,14 +35,12 @@ public class ${className}Controller extends BaseController {
     }
 
     @RequestMapping("/get${className}Data")
-    public Map<String, Object> get${className}Data(@RequestParam(value = "pageSize", required = false) int pageSize,
-                                                   @RequestParam(value = "pageIndex", required = false) int pageIndex) {
+    public Map<String, Object> get${className}Data(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
 
-        ${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)} = new ${className}();
         List<${className}> list=null;
         PageInfo<${className}> pageInfo=null;
         try {
-            list = ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.selectPageList(${className.substring(0,1).toLowerCase()}${className.substring(1)}, pageIndex, pageSize);
+            list = ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.selectPageList(${className.substring(0,1).toLowerCase()}${className.substring(1)}, ${className.substring(0,1).toLowerCase()}${className.substring(1)}.getPageIndex(), ${className.substring(0,1).toLowerCase()}${className.substring(1)}.getPageSize());
             pageInfo = new PageInfo<>(list);
         }catch (Exception e){
             e.printStackTrace();

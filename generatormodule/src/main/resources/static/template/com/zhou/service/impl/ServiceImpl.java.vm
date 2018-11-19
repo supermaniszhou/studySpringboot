@@ -48,11 +48,11 @@ public class ${className}ServiceImpl implements ${className}Service {
     @Override
     public Page<${className}> selectPageList(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}, int page, int pagesize) {
         PageHelper.startPage(page, pagesize);
-        return mapper.selectPageList(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+        return mapper.select${className}All(${className.substring(0,1).toLowerCase()}${className.substring(1)});
     }
 
     @Override
-    public ${className} selectBySysUser(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
-        return mapper.selectObject(${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    public ${className} select${className}byCondition(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
+        return mapper.select${className}byCondition(${className.substring(0,1).toLowerCase()}${className.substring(1)});
     }
 }

@@ -1,10 +1,27 @@
 package ${mapperP};
 
 import ${entityP}.${className};
-import com.zhou.mapper.SqlMapper.CommonMapper;
+import com.github.pagehelper.Page;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 @Repository
 public interface ${className}Mapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(${className} record);
+
+    int insertSelective(${className} record);
+
+    ${className} selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(${className} record);
+
+    int updateByPrimaryKey(${className} record);
+
+    Page<${className}> select${className}All(${className} record);
+
+    ${className} select${className}byCondition(${className} record);
 }

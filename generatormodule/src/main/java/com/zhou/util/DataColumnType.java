@@ -41,19 +41,18 @@ public class DataColumnType {
      * @param type 字段类型
      * @return JAVA类型
      */
-    public static String processOracleType(String type) {
+    public static String processOracleType(String type,String length) {
         String t = type.toUpperCase();
-        if (t.contains("CHAR")) {
+        if (t.contains("CHAR") || t.contains("VARCHAR2")|| t.contains("VARCHAR")) {
             return "String";
         } else if (t.contains("DATE") || t.contains("TIMESTAMP")) {
             return "Date";
         } else if (t.contains("NUMBER")) {
-//            if (t.matches("NUMBER\\(+\\d{1}+\\)")) {
-//                return "Integer";
-//            } else if (t.matches("NUMBER\\(+\\d{2}+\\)")) {
-//                return "Long";
-//            }
-            return "Integer";
+            if (length.trim().length()==1) {
+                return "Integer";
+            } else if (length.trim().length()==2) {
+                return "Long";
+            }
         } else if (t.contains("FLOAT")) {
             return "Float";
         } else if (t.contains("BLOB")) {

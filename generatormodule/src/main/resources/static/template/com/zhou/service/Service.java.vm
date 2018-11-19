@@ -19,5 +19,5 @@ public interface ${className}Service {
 
     Page<${className}> selectPageList(${className} t, int page, int pagesize);
 
-    ${className} selectBySysUser(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)});
+    ${className} select${className}byCondition(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)});
 }

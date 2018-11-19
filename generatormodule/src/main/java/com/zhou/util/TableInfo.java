@@ -53,8 +53,9 @@ public class TableInfo {
                                 String columnName = resultSet.getString("COLUMN_NAME");
                                 String memo = StringUtils.trimToEmpty(resultSet.getString("REMARKS"));
                                 tableSchem = resultSet.getString("TABLE_SCHEM");
+                                String lent=resultSet.getString("COLUMN_SIZE");//获取字段类型的长度
 
-                                list.add(DataColumnType.processOracleType(typeName));
+                                list.add(DataColumnType.processOracleType(typeName,lent));
                                 list.add(NamingStrategy.underlineToCamel(columnName));
                                 list.add(memo);
                                 mapLinkedList.add(list);

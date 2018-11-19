@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="/common/main_head::mainHeader"></head>
+<style type="text/css">
+    #Form .table td {
+        border: 0px;
+    }
+</style>
 <!-- 列表-->
 <body>
-<form class="form-horizontal" id="sysRoleForm" style="margin-right: 30px;">
+<form class="form-horizontal" id="Form" style="margin-right: 30px;">
     <table class="table">
         <tr>
             #foreach($fr in $fieldRemarks.entrySet())

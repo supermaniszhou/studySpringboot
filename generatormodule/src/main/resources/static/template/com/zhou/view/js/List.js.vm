@@ -145,7 +145,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
             // cssClass: ' ',
         });
     }
-
+//删除
     function doDel${className}(id) {
         BootstrapDialog.show({
             size: BootstrapDialog.SIZE_SMALL,

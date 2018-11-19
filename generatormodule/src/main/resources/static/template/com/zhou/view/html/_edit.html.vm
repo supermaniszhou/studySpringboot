@@ -21,7 +21,7 @@
                         <td class="zlc-table-td">${fr.value}</td>
                         <td>
                             <div class="form-group zlc-form-group-margin">
-                                <input type="text" name="${fr.key}" class="form-control" id="${fr.key}"  th:value="\${${className.substring(0,1).toLowerCase()}${className.substring(1)}\.${fr.key}\}"  placeholder=""/>
+                                <input type="text" name="${fr.key}" class="form-control" id="${fr.key}"  th:value="${${className.substring(0,1).toLowerCase()}${className.substring(1)}.${fr.key}}"  placeholder=""/>
                             </div>
                         </td>
                         <td><div id="${fr.key}Error"></div></td>

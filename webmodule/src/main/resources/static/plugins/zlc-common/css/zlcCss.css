@@ -11,3 +11,11 @@
 .zlc-dialog-top{
     margin-top: 100px;
 }
+
+.zlc-table-td-text {
+    padding: 15px !important;
+    vertical-align: middle !important;
+    text-align: right;
+    color: #030303;
+    width: 110px;
+}

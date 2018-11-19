@@ -39,9 +39,9 @@
     <!-- 左侧导航区域 -->
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
-            <ul class="layui-nav layui-nav-tree" id="treeUl">
+            <div id="treeUl">
 
-            </ul>
+            </div>
         </div>
     </div>
     <div class="layui-body">
@@ -68,7 +68,8 @@
             window.location.href = "/login/logOut";
         });
         initTreeMenu();
-
+        $("#treeUl").find("ul li").css("background-color","#35424e");
+        // color:undefined;background-color:undefined;
         //一个低门槛的演示,更多需求看源码
         //基于bootstrap tab的自定义多标签的jquery实用插件，滚动条依赖jquery.scrollbar，图标依赖font-awesome
         nthTabs.addTab({
@@ -92,7 +93,8 @@
                 selectedBackColor: '#718D7C',
                 highlightSelected: true,
                 onhoverColor: '#35424e',
-                selectedIcon: 'glyphicon glyphicon-arrow-right'
+                selectedIcon: 'glyphicon glyphicon-arrow-right',
+                showBorder:false,
             });
             $('#treeUl').treeview('collapseAll', {silent: true});
             $('#treeUl').on('nodeSelected', function (event, data) {

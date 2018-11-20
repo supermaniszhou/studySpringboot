@@ -58,6 +58,8 @@
     $(function () {
         //必须要添加的   否则select2 搜索框无法输入
         $(".bootstrap-dialog").removeAttr("tabindex");
+
+        $(":radio[name='isEnable'][value='"+[[${sysRole.isEnable}]]+"']").prop("checked",true);
     });
 </script>
 </html>

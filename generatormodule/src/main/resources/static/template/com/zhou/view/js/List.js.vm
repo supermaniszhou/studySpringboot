@@ -61,9 +61,8 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
             pageSize: params.pageSize,
             pageIndex: params.pageNumber,
     #foreach($fr in $fieldRemarks.entrySet())
-        ${fr.key}:$.trim($("#${fr.key}").val())
+        ${fr.key}:$.trim($("#${fr.key}").val()),
     #end
-            // username: $.trim($("#usernameForm").val()),
         };
     }
 

@@ -19,11 +19,33 @@
                         <tr>
                         #end
                         <td class="zlc-table-td">${fr.value}</td>
-                        <td>
+                        #if(${fr.key.indexOf("Radio")} != -1 || ${fr.key.indexOf("radio")} != -1)
+                        <td valign="middle">
                             <div class="form-group zlc-form-group-margin">
-                                <input type="text" name="${fr.key}" class="form-control" id="${fr.key}" placeholder=""/>
+                                <label>
+                                    <input type="radio" name="${fr.key}" placeholder="" value="0" checked>
+                                    <strong style="cursor: pointer;margin-left: 5px;">启用</strong>
+                                </label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label>
+                                    <input type="radio" name="${fr.key}" placeholder="" value="1">
+                                    <strong style="cursor: pointer;margin-left: 5px;">不启用</strong>
+                                </label>
                             </div>
                         </td>
+                        #elseif(${fr.key.indexOf("Time")} != -1 || ${fr.key.indexOf("time")} != -1)
+                        <td>
+                            <div class="form-group zlc-form-group-margin">
+                                <input type="text" name="${fr.key}" onClick="WdatePicker()"  class="form-control" id="${fr.key}" placeholder=""/>
+                            </div>
+                        </td>
+                        #else
+                        <td>
+                        <div class="form-group zlc-form-group-margin">
+                            <input type="text" name="${fr.key}" class="form-control" id="${fr.key}" placeholder=""/>
+                        </div>
+                        </td>
+                        #end
                         <td><div id="${fr.key}Error"></div></td>
                         #set($i = $i + 1)
                         #set($fun = $i % 2)

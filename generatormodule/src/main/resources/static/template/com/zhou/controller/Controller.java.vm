@@ -64,7 +64,7 @@ public class ${className}Controller extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "toEdit${className}")
+    @RequestMapping(value = "/toEdit${className}")
     public ModelAndView toEdit${className}(@RequestParam(value = "id") long id, Model model) {
         ${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)} = null;
         try {
@@ -76,7 +76,7 @@ public class ${className}Controller extends BaseController {
         return new ModelAndView(VIEW_PATH + "${className.substring(0,1).toLowerCase()}${className.substring(1)}/${className}_edit");
     }
 
-    @RequestMapping(value = "doEdit${className}")
+    @RequestMapping(value = "/doEdit${className}")
     public Map<String, Object> doEdit${className}(${className} ${className.substring(0,1).toLowerCase()}${className.substring(1)}) {
         try {
             ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.updateByPrimaryKeySelective(${className.substring(0,1).toLowerCase()}${className.substring(1)});
@@ -87,7 +87,7 @@ public class ${className}Controller extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "doDel${className}")
+    @RequestMapping(value = "/doDel${className}")
     public Map<String, Object> doDel${className}(@RequestParam(value = "id", required = true) long id) {
         try {
             ${className.substring(0,1).toLowerCase()}${className.substring(1)}Service.deleteByPrimaryKey(id);

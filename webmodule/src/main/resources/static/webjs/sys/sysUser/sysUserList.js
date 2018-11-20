@@ -171,7 +171,7 @@ var userModle = (function () {
     }
 
     function toViewUserPage(id) {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             title: '查看',
             message: $('<div></div>').load('/user/toEditSysUser?id=' + id),
             draggable: false,
@@ -183,7 +183,7 @@ var userModle = (function () {
     }
 
     function doDelSysUser(id) {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             size: BootstrapDialog.SIZE_SMALL,
             type: BootstrapDialog.TYPE_DANGER,
             message: '你确认删除吗？',

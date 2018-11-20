@@ -185,7 +185,7 @@ var sysRoleModle = (function () {
     }
 
     function toViewSysRole(id) {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             title: '查看',
             message: $('<div></div>').load('/sysRole/toEditSysRole?id=' + id),
             draggable: false,
@@ -197,7 +197,7 @@ var sysRoleModle = (function () {
     }
 
     function doDelSysRole(id) {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             size: BootstrapDialog.SIZE_SMALL,
             type: BootstrapDialog.TYPE_DANGER,
             message: '你确认删除吗？',

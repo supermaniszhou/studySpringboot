@@ -33,7 +33,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
             {
                 field: '${column.key}',
                 title: '${column.value}',
-                sortable: true
+                sortable: true,
                 align: 'center',
                 visible: true
             },

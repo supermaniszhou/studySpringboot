@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="/common/main_head::mainHeader"></head>
 <style type="text/css">
-    .table td {
+    .table-responsive .table td {
         border: 0px;
     }
 </style>

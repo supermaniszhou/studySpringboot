@@ -159,7 +159,7 @@ var sysDeptModle = (function () {
                     $("#sysDepttable").bootstrapTable('refresh');
                     var val = dialogRef.getModalBody().find('#flagInput').val();
                     if (val == "success") {
-                        SearchData();
+                        initDeptTree();
                         dialogRef.close();
                     }
 
@@ -175,6 +175,7 @@ var sysDeptModle = (function () {
     }
 
     function toEditSysDept(id) {
+        console.log(id);
         parent.BootstrapDialog.show({
             title: '修改',
             message: $('<div></div>').load('/sysDept/toEditSysDept?id=' + id),
@@ -192,6 +193,7 @@ var sysDeptModle = (function () {
                     var val = dialogRef.getModalBody().find('#flagInput').val();
                     $("#sysDepttable").bootstrapTable('refresh');
                     if (val == "success") {
+                        initDeptTree()
                         dialogRef.close();
                     }
                 }
@@ -232,6 +234,7 @@ var sysDeptModle = (function () {
                         if (data.code == 0) {
                             ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
                             $("#sysDepttable").bootstrapTable('refresh');
+                            initDeptTree();
                         } else {
                             ToastrMessage.successMessage(data.msg, "2000", "toast-top-center");
 

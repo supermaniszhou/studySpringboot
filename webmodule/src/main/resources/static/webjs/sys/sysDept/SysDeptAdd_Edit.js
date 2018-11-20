@@ -34,7 +34,6 @@ var sysDeptAddEdit = (function () {
         bootstrapValidator.validate();
         if (bootstrapValidator.isValid()) {
             //异步请求改同步
-            console.log($("#sysDeptForm").serialize());
             $.ajaxSettings.async = false;
             $.post("/sysDept/doAddSysDept", $("#sysDeptForm").serialize(), function (data) {
                 if (data.code == 0) {

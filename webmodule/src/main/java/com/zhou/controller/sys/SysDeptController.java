@@ -118,11 +118,11 @@ public class SysDeptController extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "toEditSysDept")
+    @RequestMapping(value = "/toEditSysDept")
     public ModelAndView toEditSysDept(@RequestParam(value = "id") long id, Model model) {
         SysDept sysDept = null;
         try {
-            sysDept = (SysDept) sysDeptService.selectByPrimaryKey(id);
+            sysDept =  sysDeptService.selectByPrimaryKey(id);
             model.addAttribute("sysDept", sysDept);
         } catch (Exception e) {
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class SysDeptController extends BaseController {
         return new ModelAndView(VIEW_PATH + "sysDept/SysDept_edit");
     }
 
-    @RequestMapping(value = "doEditSysDept")
+    @RequestMapping(value = "/doEditSysDept")
     public Map<String, Object> doEditSysDept(SysDept sysDept) {
         try {
             sysDeptService.updateByPrimaryKeySelective(sysDept);
@@ -141,7 +141,7 @@ public class SysDeptController extends BaseController {
         return success();
     }
 
-    @RequestMapping(value = "doDelSysDept")
+    @RequestMapping(value = "/doDelSysDept")
     public Map<String, Object> doDelSysDept(@RequestParam(value = "id", required = true) long id) {
         try {
             sysDeptService.deleteByPrimaryKey(id);

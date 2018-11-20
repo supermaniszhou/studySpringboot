@@ -10,26 +10,16 @@
     <form class="form-horizontal" id="sysDeptForm" style="margin-left: 30px;margin-right: 30px;">
 
         <div class="table-responsive">
+            <input type="hidden" name="id" th:value="${sysDept.id}"/>
             <table class="table">
                 <tbody>
                 <tr>
-                    <td class="zlc-table-td"></td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="id" class="form-control" id="id" th:value="${sysDept.id}"
-                                   placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="idError"></div>
-                    </td>
-
                     <td class="zlc-table-td">部门名称</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
                             <input type="text" name="deptName" class="form-control" id="deptName"
                                    th:value="${sysDept.deptName}" placeholder=""/>
+
                         </div>
                     </td>
 
@@ -51,17 +41,6 @@
                         <div id="parentIdError"></div>
                     </td>
 
-                    <td class="zlc-table-td">所属区域</td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="dpetRegion" class="form-control" id="dpetRegion"
-                                   th:value="${sysDept.dpetRegion}" placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="dpetRegionError"></div>
-                    </td>
 
                 </tr>
                 <tr>
@@ -76,7 +55,8 @@
                     <td>
                         <div id="deptLogoError"></div>
                     </td>
-
+                </tr>
+                <tr>
                     <td class="zlc-table-td">部门图片</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
@@ -102,128 +82,18 @@
                     <td>
                         <div id="deptLevelError"></div>
                     </td>
-
-                    <td class="zlc-table-td">部门排序</td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="deptOrder" class="form-control" id="deptOrder"
-                                   th:value="${sysDept.deptOrder}" placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="deptOrderError"></div>
-                    </td>
-
                 </tr>
                 <tr>
-                    <td class="zlc-table-td"></td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="createUserid" class="form-control" id="createUserid"
-                                   th:value="${sysDept.createUserid}" placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="createUseridError"></div>
-                    </td>
-
-                    <td class="zlc-table-td"></td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="createUsername" class="form-control" id="createUsername"
-                                   th:value="${sysDept.createUsername}" placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="createUsernameError"></div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="zlc-table-td"></td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="createUserOrg" class="form-control" id="createUserOrg"
-                                   th:value="${sysDept.createUserOrg}" placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="createUserOrgError"></div>
-                    </td>
-
-                    <td class="zlc-table-td"></td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="createUserOrgname" class="form-control" id="createUserOrgname"
-                                   th:value="${sysDept.createUserOrgname}" placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="createUserOrgnameError"></div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="zlc-table-td"></td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="createTime" onClick="WdatePicker()" class="form-control"
-                                   id="createTime" th:value="${sysDept.createTime}" placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="createTimeError"></div>
-                    </td>
-
-                    <td class="zlc-table-td"></td>
-                    <td>
-                        <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="updateTime" onClick="WdatePicker()" class="form-control"
-                                   id="updateTime" th:value="${sysDept.updateTime}" placeholder=""/>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="updateTimeError"></div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="zlc-table-td"></td>
+                    <td class="zlc-table-td">是否启用</td>
                     <td valign="middle">
                         <div class="form-group zlc-form-group-margin">
                             <label>
-                                <input type="radio" name="isDelRadio" placeholder="" value="0" checked>
+                                <input type="radio" name="isEnableRadio" placeholder="" value="0" checked="checked"/>
                                 <strong style="cursor: pointer;margin-left: 5px;">启用</strong>
                             </label>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <label>
-                                <input type="radio" name="isDelRadio" placeholder="" value="1">
-                                <strong style="cursor: pointer;margin-left: 5px;">不启用</strong>
-                            </label>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div id="isDelRadioError"></div>
-                    </td>
-
-                    <td class="zlc-table-td"></td>
-                    <td valign="middle">
-                        <div class="form-group zlc-form-group-margin">
-                            <label>
-                                <input type="radio" name="isEnableRadio" placeholder="" value="0" checked>
-                                <strong style="cursor: pointer;margin-left: 5px;">启用</strong>
-                            </label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <label>
-                                <input type="radio" name="isEnableRadio" placeholder="" value="1">
+                                <input type="radio" name="isEnableRadio" placeholder="" value="1"/>
                                 <strong style="cursor: pointer;margin-left: 5px;">不启用</strong>
                             </label>
                         </div>
@@ -250,12 +120,10 @@
     $(function () {
         //必须要添加的   否则select2 搜索框无法输入
         $(".bootstrap-dialog").removeAttr("tabindex");
-        // var h = ($(window).height() - 250);
-        // $(".form-horizontal").css({"height": h + "px"});
         $.post("/sysDept/getAllDeptList", {}, function (data) {
             $("#parentId").select2ToTree({treeData: {dataArr: data}, maximumSelectionLength: 5})
                 .val("[[${sysDept.parentId}]]").trigger("change");
-
+        });
     });
 </script>
 </html>

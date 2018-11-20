@@ -63,7 +63,14 @@ var sysRoleModle = (function () {
                 title: '删除状态',
                 sortable: true,
                 align: 'center',
-                visible: true
+                visible: true,
+                formatter: function (value, row) {
+                    if (value == 0) {
+                        return "未删除";
+                    } else if (value == 1) {
+                        return "已删除";
+                    }
+                }
             },
 
             {
@@ -71,7 +78,14 @@ var sysRoleModle = (function () {
                 title: '是否启用',
                 sortable: true,
                 align: 'center',
-                visible: true
+                visible: true,
+                formatter: function (value, row) {
+                    if (value == 0) {
+                        return "已启用";
+                    } else if (value == 1) {
+                        return "未启用";
+                    }
+                }
             },
 
             {
@@ -96,7 +110,8 @@ var sysRoleModle = (function () {
         return {
             pageSize: params.pageSize,
             pageIndex: params.pageNumber,
-            // username: $.trim($("#usernameForm").val()),
+            roleName: $.trim($("#roleName").val()),
+            isEnable: $.trim($("input[name='isEnable']:checked").val()),
         };
     }
 

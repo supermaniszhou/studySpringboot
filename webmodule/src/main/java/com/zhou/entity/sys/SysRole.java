@@ -1,4 +1,5 @@
 package com.zhou.entity.sys;
+import com.zhou.entity.BaseEntity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import java.io.*;
 import java.util.*;
 @Setter
 @Getter
-public class SysRole implements Serializable{
+public class SysRole extends BaseEntity implements Serializable {
     private Integer id;//
 
     private String roleName;//角色名称

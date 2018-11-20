@@ -33,7 +33,6 @@ var sysRoleAddEdit = (function () {
         if (bootstrapValidator.isValid()) {
             //异步请求改同步
             $.ajaxSettings.async = false;
-            alert($("#sysRoleForm").serialize());
             $.post("/sysRole/doAddSysRole", $("#sysRoleForm").serialize(), function (data) {
                 if (data.code == 0) {
                     document.getElementById('sysRoleForm').reset();

@@ -284,34 +284,19 @@
         <include refid="Base_Column_List"/>
         from sys_role
         <where>
-            <if test="id !=null">
-                and ID=#{id}
+
+            <if test="roleName !=null and  roleName!=''">
+                and ROLE_NAME like '%'||#{roleName}||'%'
             </if>
-            <if test="roleName !=null">
-                and ROLE_NAME=#{roleName}
-            </if>
-            <if test="createUserid !=null">
-                and CREATE_USERID=#{createUserid}
-            </if>
-            <if test="createUsername !=null">
-                and CREATE_USERNAME=#{createUsername}
-            </if>
-            <if test="createUserOrg !=null">
-                and CREATE_USER_ORG=#{createUserOrg}
-            </if>
-            <if test="createUserOrgname !=null">
-                and CREATE_USER_ORGNAME=#{createUserOrgname}
-            </if>
-            <if test="createTime !=null">
+
+            <if test="createTime !=null ">
                 and CREATE_TIME=#{createTime}
             </if>
-            <if test="updateTime !=null">
-                and UPDATE_TIME=#{updateTime}
-            </if>
-            <if test="isDel !=null">
+
+            <if test="isDel !=null ">
                 and IS_DEL=#{isDel}
             </if>
-            <if test="isEnable !=null">
+            <if test="isEnable !=null ">
                 and IS_ENABLE=#{isEnable}
             </if>
         </where>

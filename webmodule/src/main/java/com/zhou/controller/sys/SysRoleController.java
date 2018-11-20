@@ -31,14 +31,12 @@ public class SysRoleController extends BaseController {
     }
 
     @RequestMapping("/getSysRoleData")
-    public Map<String, Object> getSysRoleData(@RequestParam(value = "pageSize", required = false) int pageSize,
-                                                   @RequestParam(value = "pageIndex", required = false) int pageIndex) {
+    public Map<String, Object> getSysRoleData(SysRole sysRole) {
 
-        SysRole sysRole = new SysRole();
         List<SysRole> list=null;
         PageInfo<SysRole> pageInfo=null;
         try {
-            list = sysRoleService.selectPageList(sysRole, pageIndex, pageSize);
+            list = sysRoleService.selectPageList(sysRole, sysRole.getPageIndex(), sysRole.getPageSize());
             pageInfo = new PageInfo<>(list);
         }catch (Exception e){
             e.printStackTrace();

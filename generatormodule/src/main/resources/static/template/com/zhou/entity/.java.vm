@@ -5,6 +5,8 @@ import java.lang.*;
 import java.math.*;
 import java.io.*;
 import java.util.*;
+import lombok.Getter;
+import lombok.Setter;
 import com.zhou.entity.BaseEntity;
 @Setter
 @Getter

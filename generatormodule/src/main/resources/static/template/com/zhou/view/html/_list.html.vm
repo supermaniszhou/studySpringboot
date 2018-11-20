@@ -8,7 +8,7 @@
 </style>
 <!-- 列表-->
 <body>
-<form class="form-horizontal" id="Form" style="margin-right: 30px;">
+<div class="table-responsive">
     <table class="table">
         <tr>
             #foreach($fr in $fieldRemarks.entrySet())
@@ -30,8 +30,7 @@
             </td>
         </tr>
     </table>
-</form>
-
+</div>
 <div class="row">
     <div class="col-md-12">
         <table id="${className.substring(0,1).toLowerCase()}${className.substring(1)}table">

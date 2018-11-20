@@ -60,6 +60,9 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
         return {
             pageSize: params.pageSize,
             pageIndex: params.pageNumber,
+    #foreach($fr in $fieldRemarks.entrySet())
+        ${fr.key}:$.trim($("#${fr.key}").val())
+    #end
             // username: $.trim($("#usernameForm").val()),
         };
     }
@@ -84,7 +87,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
                 label: '保存',
                 cssClass: 'btn-primary',
                 action: function (dialogRef) {
-                    dialogRef.getModalBody().find('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').find("button").trigger('click');
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
                     $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}table").bootstrapTable('refresh');
                     var val = dialogRef.getModalBody().find('#flagInput').val();
                     if (val == "success") {
@@ -117,7 +120,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
                 label: '保存',
                 cssClass: 'btn-primary',
                 action: function (dialogRef) {
-                    dialogRef.getModalBody().find('#${className.substring(0,1).toLowerCase()}${className.substring(1)}Form').find("button").trigger('click');
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
                     var val = dialogRef.getModalBody().find('#flagInput').val();
                     $("#${className.substring(0,1).toLowerCase()}${className.substring(1)}table").bootstrapTable('refresh');
                     if (val == "success") {

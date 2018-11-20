@@ -148,7 +148,7 @@
         from ${tableName}
         <where>
             #foreach($column in $columnFieldmap.entrySet())
-                <if test="$column.value !=null">
+                <if test="$column.value !=null and $column.value !=''">
                     and ${column.key}=#{${column.value}}
                 </if>
             #end

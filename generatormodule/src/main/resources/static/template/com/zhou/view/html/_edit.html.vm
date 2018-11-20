@@ -23,12 +23,12 @@
                         <td valign="middle">
                             <div class="form-group zlc-form-group-margin">
                                 <label>
-                                    <input type="radio" name="${fr.key}" placeholder="" value="0" checked>
+                                    <input type="radio" name="${fr.key}" placeholder="" value="0" checked="checked"/>
                                     <strong style="cursor: pointer;margin-left: 5px;">启用</strong>
                                 </label>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <label>
-                                    <input type="radio" name="${fr.key}" placeholder="" value="1">
+                                    <input type="radio" name="${fr.key}" placeholder="" value="1"/>
                                     <strong style="cursor: pointer;margin-left: 5px;">不启用</strong>
                                 </label>
                             </div>

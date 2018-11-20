@@ -137,7 +137,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
     }
 
     function toView${className}(id) {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             title: '查看',
             message: $('<div></div>').load('/${className.substring(0,1).toLowerCase()}${className.substring(1)}/toEdit${className}?id=' + id),
             draggable: false,
@@ -149,7 +149,7 @@ var ${className.substring(0,1).toLowerCase()}${className.substring(1)}Modle = (f
     }
 //删除
     function doDel${className}(id) {
-        BootstrapDialog.show({
+        parent.BootstrapDialog.show({
             size: BootstrapDialog.SIZE_SMALL,
             type: BootstrapDialog.TYPE_DANGER,
             message: '你确认删除吗？',

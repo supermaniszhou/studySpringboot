@@ -63,7 +63,7 @@ public class TableInfo {
                                 columnList.add(columnName);
                                 fieldList.add(NamingStrategy.underlineToCamel(columnName));
 
-                                columnFieldMap.put(columnName, NamingStrategy.underlineToCamel(columnName));
+                                columnFieldMap.put(columnName, NamingStrategy.underlineToCamel(columnName).concat(",").concat(typeName));
 
                                 fieldRemarks.put(NamingStrategy.underlineToCamel(columnName), memo);
                             }

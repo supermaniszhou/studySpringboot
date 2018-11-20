@@ -4,10 +4,10 @@
     <resultMap id="BaseResultMap" type="${entityP}.${className}">
     #foreach($column in $columnFieldmap.entrySet())
         #if(${column.key} =='ID')
-    <id column="${column.key}"  property="${column.value}" />
+    <id column="${column.key}"  property="${column.value.split("[,]")[0]}" />
         #end
         #if(${column.key} !='ID')
-    <result column="${column.key}"  property="${column.value}" />
+    <result column="${column.key}"  property="${column.value.split("[,]")[0]}" />
         #end
     #end
     </resultMap>
@@ -23,7 +23,6 @@
 
     #end
     </sql>
-
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
@@ -31,7 +30,7 @@
         where
     #foreach($column in $columnFieldmap.entrySet())
     #if(${column.key} =='ID')
-        ${column.key} = #{${column.value}}
+        ${column.key} = #{${column.value.split("[,]")[0]}}
     #end
     #end
     </select>
@@ -41,7 +40,7 @@
         where
       #foreach($column in $columnFieldmap.entrySet())
         #if(${column.key} =='ID')
-            ${column.key} = #{${column.value}}
+            ${column.key} = #{${column.value.split("[,]")[0]}}
         #end
         #end
 </delete>
@@ -62,7 +61,7 @@
         #set($fun2=0)
     #foreach($column in $columnFieldmap.entrySet())
         #set($f2=$columnFieldmap.size() - 1)
-        #{${column.value}
+        #{${column.value.split("[,]")[0]}
         #set($fun2 = $fun2 + 1)
         #if($fun2 <= $f2)
           ,
@@ -75,7 +74,7 @@
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
             #foreach($column in $columnFieldmap.entrySet())
-                <if test="$column.value !=null">
+                <if test="$column.value.split("[,]")[0] !=null">
                     ${column.key},
                 </if>
             #end
@@ -94,8 +93,8 @@
         <trim prefix="set" suffixOverrides="," >
         #foreach($column in $columnFieldmap.entrySet())
             #if(${column.key} !='ID')
-            <if test="$column.value !=null ">
-                ${column.key}=#{${column.value}},
+            <if test="$column.value.split("[,]")[0] !=null ">
+                ${column.key}=#{${column.value.split("[,]")[0]}},
             </if>
             #end
         #end
@@ -103,8 +102,8 @@
         <where>
             #foreach($column in $columnFieldmap.entrySet())
                 #if(${column.key} =='ID')
-            <if test="$column.value !=null">
-               and ${column.key}=#{${column.value}}
+            <if test="$column.value.split("[,]")[0] !=null">
+               and ${column.key}=#{${column.value.split("[,]")[0]}}
             </if>
                 #end
             #end
@@ -115,16 +114,24 @@
         update ${tableName}
         <trim prefix="set" suffixOverrides="," >
             #foreach($column in $columnFieldmap.entrySet())
-                <if test="$column.value !=null ">
-                    ${column.key}=#{${column.value}},
+                #if(${column.key} !='ID')
+                <if test="$column.value.split("[,]")[0] !=null ">
+                    ${column.key}=#{${column.value.split("[,]")[0]}},
                 </if>
+                #end
             #end
         </trim>
         <where>
             #foreach($column in $columnFieldmap.entrySet())
-                <if test="$column.value !=null">
-
-                    and ${column.key}=#{${column.value}}
+                #set($f = $column.value.split("[,]")[1])
+                #if($f == 'CHAR' || $f == 'VARCHAR2' || $f == 'VARCHAR')
+                <if test="$column.value.split("[,]")[0] !=null and $column.value.split("[,]")[0] !=''">
+                #elseif($f == 'DATE' || $f == 'TIMESTAMP' || $f == 'NUMBER'|| $f == 'FLOAT' || $f == 'BLOB' || $f == 'RAW')
+                <if test="$column.value.split("[,]")[0] !=null">
+                #else
+                <if test="$column.value.split("[,]")[0] !=null and $column.value.split("[,]")[0] !=''">
+                #end
+                    and ${column.key}=#{${column.value.split("[,]")[0]}}
                 </if>
             #end
         </where>
@@ -135,8 +142,15 @@
         from ${tableName}
         <where>
         #foreach($column in $columnFieldmap.entrySet())
-            <if test="$column.value !=null and $column.value !=''">
-                and ${column.key}=#{${column.value}}
+            #set($f = $column.value.split("[,]")[1])
+            #if($f == 'CHAR' || $f == 'VARCHAR2' || $f == 'VARCHAR')
+            <if test="$column.value.split("[,]")[0] !=null and $column.value.split("[,]")[0] !=''">
+            #elseif($f == 'DATE' || $f == 'TIMESTAMP' || $f == 'NUMBER'|| $f == 'FLOAT' || $f == 'BLOB' || $f == 'RAW')
+            <if test="$column.value.split("[,]")[0] !=null">
+            #else
+            <if test="$column.value.split("[,]")[0] !=null and $column.value.split("[,]")[0] !=''">
+            #end
+                and ${column.key}=#{${column.value.split("[,]")[0]}}
             </if>
         #end
         </where>
@@ -148,8 +162,15 @@
         from ${tableName}
         <where>
             #foreach($column in $columnFieldmap.entrySet())
-                <if test="$column.value !=null and $column.value !=''">
-                    and ${column.key}=#{${column.value}}
+                #set($f = $column.value.split("[,]")[1])
+                #if($f == 'CHAR' || $f == 'VARCHAR2' || $f == 'VARCHAR')
+                <if test="$column.value.split("[,]")[0] !=null and $column.value.split("[,]")[0] !=''">
+                #elseif($f == 'DATE' || $f == 'TIMESTAMP' || $f == 'NUMBER'|| $f == 'FLOAT' || $f == 'BLOB' || $f == 'RAW')
+                <if test="$column.value.split("[,]")[0] !=null">
+                #else
+                <if test="$column.value.split("[,]")[0] !=null and $column.value.split("[,]")[0] !=''">
+                #end
+                    and ${column.key}=#{${column.value.split("[,]")[0]}}
                 </if>
             #end
         </where>

@@ -7,12 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="commonutil" />
+        <module name="doc" />
         <module name="generatormodule" />
         <module name="webmodule" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="batisgenerator" target="1.8" />
       <module name="commonutil" target="1.8" />
+      <module name="doc" target="1.8" />
       <module name="generatormodule" target="1.8" />
       <module name="StudySpringboot" target="1.8" />
       <module name="webmodule" target="1.8" />

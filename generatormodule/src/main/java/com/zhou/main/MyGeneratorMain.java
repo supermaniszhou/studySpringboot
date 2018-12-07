@@ -9,7 +9,7 @@ import java.sql.Connection;
 public class MyGeneratorMain {
     public static void main(String[] args) {
         Connection connection = DbUtil.getConn();
-        String inTableName = "sys_role";
+        String inTableName = "SYS_DEPT";
         TableInfo.getTables(connection, inTableName);
     }
 }

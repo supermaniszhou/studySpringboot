@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+<style type="text/css">
+   .table-responsive .table td {
+        border: 0px;
+    }
+</style>
+<!-- 列表-->
+<body>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+
+            <td class="zlc-table-td-text">部门名称</td>
+            <td width="200px">
+                <input type="text" name="deptName" class="form-control" id="deptName" placeholder=""/>
+            </td>
+            <td class="zlc-table-td-text">上级编号</td>
+            <td width="200px">
+                <input type="text" name="parentId" class="form-control" id="parentId" placeholder=""/>
+            </td>
+            <!--<td class="zlc-table-td-text">所属区域</td>
+            <td width="200px">
+                <input type="text" name="dpetRegion" class="form-control" id="dpetRegion" placeholder=""/>
+            </td>
+            <td class="zlc-table-td-text">部门LOGO</td>
+            <td width="200px">
+                <input type="text" name="deptLogo" class="form-control" id="deptLogo" placeholder=""/>
+            </td>
+            <td class="zlc-table-td-text">部门图片</td>
+            <td width="200px">
+                <input type="text" name="deptPicPath" class="form-control" id="deptPicPath" placeholder=""/>
+            </td>
+            <td class="zlc-table-td-text">部门级别</td>
+            <td width="200px">
+                <input type="text" name="deptLevel" class="form-control" id="deptLevel" placeholder=""/>
+            </td>
+            <td class="zlc-table-td-text">部门排序</td>
+            <td width="200px">
+                <input type="text" name="deptOrder" class="form-control" id="deptOrder" placeholder=""/>
+            </td>-->
+
+
+            <td class="zlc-table-td-text">是否启用</td>
+            <td width="200px">
+                <input type="text" name="isEnableRadio" class="form-control" id="isEnableRadio" placeholder=""/>
+            </td>
+            <td>
+                <button type="button" class="btn btn-default"
+                        onclick="sysDeptModle.SearchData();">
+                    查询
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" data-toggle="modal"
+                   onclick="sysDeptModle.toAddSysDept();">新增</a>
+            </td>
+        </tr>
+        <tr>
+
+        </tr>
+    </table>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table id="sysDepttable">
+        </table>
+    </div>
+</div>
+
+<script th:src="@{/webjs/sys/sysDept/SysDeptList.js}"></script>
+</body>
+</html>

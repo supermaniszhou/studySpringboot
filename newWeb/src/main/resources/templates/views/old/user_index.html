@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+<body id="body">
+<div th:if="${not #lists.isEmpty(user)}">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">列表</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="u:${user}">
+                    <span th:text="${u.name}"></span>
+                    <span th:text="${u.age}"></span>
+                    <button class="btn" th:onclick="'getName(\''+${u.name}+'\');'">获得名字</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<table id="table2">
+</table>
+<script>
+    $('#table2').bootstrapTable({
+        url: '/getUserData',
+//            queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+        queryParams: queryParams,
+        uniqueId: "id",
+        method: "post",
+        pagination: true,
+        pageNumber: 1,
+//            pageSize: 5,
+        pageList: [10, 20, 50, 100],
+        sidePagination: "client",         //分页方式：client客户端分页，server服务端分页（*）
+        striped: true,                   //是否显示行间隔色
+        cache: false,
+        uniqueId: "id",                       //每一行的唯一标识，一般为主键列
+        height: 500,
+        paginationPreText: "上一页",
+        paginationNextText: "下一页",
+        search: true,
+        showRefresh: true,
+        detailView: true,
+        detailFormatter: function (index, row) {
+            return "id:" + row.id + ";名字：" + row.name + "；价格：" + row.price;
+        },
+        sortable: true,
+        columns: [
+            {checkbox: true, width: '5%'}
+            , {
+                field: 'id',
+                title: 'id',
+                sortable: true,
+                visible: false
+            }, {
+                field: 'name',
+                title: '名字',
+                width: '10%'
+            }, {
+                field: 'age',
+                title: '年龄'
+                ,
+                width: '10%'
+            }, {
+                field: 'address',
+                title: '地址',
+                width: 'auto'
+            }, {
+                field: 'sex',
+                title: '性别',
+                width: '10%'
+            },
+            {
+                title: '操作',
+                field: 'id',
+                width: '20%',
+                formatter: opeate
+            }
+        ]
+    });
+
+    function opeate(value, row, index) {
+        var html = '<a href="javascript:alert(' + index + ')">编辑</a>';
+        html += '　<a href="javascript:void(0)" onclick="DeleteBook(' + index + ')" >删除</a>';
+        return html;
+    }
+
+    //查询条件
+    function queryParams(params) {
+        return {
+            pageSize: params.pageSize,
+            pageIndex: params.pageNumber,
+            Title: $.trim($("#txtTitle").val()),
+            Author: $.trim($("#txtAuthor").val()),
+            Publish: $.trim($("#txtPublish").val()),
+        };
+    }
+
+    //查询事件
+    function SearchData() {
+        $('#table').bootstrapTable('refresh', {pageNumber: 1});
+    }
+
+    //删除操作
+    function DeleteBook(bookId) {
+        if (confirm("确定删除图书ID：" + bookId + "吗？")) {
+            alert("执行删除操作");
+        }
+    }
+</script>
+
+</body>
+</html>

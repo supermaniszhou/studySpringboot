@@ -1,0 +1,21 @@
+.zlc-table-td {
+    vertical-align: middle !important;
+    text-align: left;
+    color: #030303;
+    width: 120px;
+}
+
+.zlc-form-group-margin {
+    margin-bottom: 0px !important;
+}
+.zlc-dialog-top{
+    margin-top: 100px;
+}
+
+.zlc-table-td-text {
+    padding: 15px !important;
+    vertical-align: middle !important;
+    text-align: right;
+    color: #030303;
+    width: 110px;
+}

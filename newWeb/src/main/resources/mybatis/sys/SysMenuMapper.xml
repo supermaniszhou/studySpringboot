@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhou.mapper.sys.SysMenuMapper">
+
+    <sql id="searchCondition">
+        <where>
+            1=1
+            <if test="id !=null and id !=''">
+                and ID=#{id}
+            </if>
+            <if test="menuName !=null and menuName !=''">
+                and MENU_NAME=#{menuName}
+            </if>
+            <if test="menuLevel !=null and menuLevel !=''">
+                and MENU_LEVEL=#{menuLevel}
+            </if>
+            <if test="menuParent !=null and menuParent !=''">
+                and MENU_PARENT=#{menuParent}
+            </if>
+            <if test="menuOrder !=null and menuOrder !=''">
+                and MENU_ORDER=#{menuOrder}
+            </if>
+            <if test="menuChild !=null and menuChild !=''">
+                and MENU_CHILD=#{menuChild}
+            </if>
+            <if test="memo !=null and memo !=''">
+                and MEMO=#{memo}
+            </if>
+            <if test="menuUrl !=null and menuUrl !=''">
+                and MENU_URL=#{menuUrl}
+            </if>
+            <if test="menuIcon !=null and menuIcon !=''">
+                and MENU_ICON=#{menuIcon}
+            </if>
+            <if test="yesNo !=null and yesNo !=''">
+                and YES_NO=#{yesNo}
+            </if>
+        </where>
+    </sql>
+
+    <select id="queryCount" parameterType="com.zhou.entity.sys.SysUser" resultType="int">
+        select count(1) from ZLC.sys_menu
+        <include refid="searchCondition"></include>
+    </select>
+
+    <insert id="add" parameterType="com.zhou.entity.sys.SysMenu">
+        insert into ZLC.sys_menu (
+        <trim suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                ID,
+            </if>
+            <if test="menuName !=null and menuName !=''">
+                MENU_NAME,
+            </if>
+            <if test="menuLevel !=null and menuLevel !=''">
+                MENU_LEVEL,
+            </if>
+            <if test="menuParent !=null ">
+                MENU_PARENT,
+            </if>
+            <if test="menuOrder !=null and menuOrder !=''">
+                MENU_ORDER,
+            </if>
+            <if test="menuChild !=null and menuChild !=''">
+                MENU_CHILD,
+            </if>
+            <if test="memo !=null and memo !=''">
+                MEMO,
+            </if>
+            <if test="menuUrl !=null and menuUrl !=''">
+                MENU_URL,
+            </if>
+            <if test="menuIcon !=null and menuIcon !=''">
+                MENU_ICON,
+            </if>
+            <if test="yesNo !=null and yesNo !=''">
+                YES_NO,
+            </if>
+        </trim>
+        ) VALUES (
+        <trim suffixOverrides=",">
+            <if test="id !=null ">
+                #{id},
+            </if>
+            <if test="menuName !=null and menuName !=''">
+                #{menuName},
+            </if>
+            <if test="menuLevel !=null and menuLevel !=''">
+                #{menuLevel},
+            </if>
+            <if test="menuParent !=null ">
+                #{menuParent},
+            </if>
+            <if test="menuOrder !=null and menuOrder !=''">
+                #{menuOrder},
+            </if>
+            <if test="menuChild !=null and menuChild !=''">
+                #{menuChild},
+            </if>
+            <if test="memo !=null and memo !=''">
+                #{memo},
+            </if>
+            <if test="menuUrl !=null and menuUrl !=''">
+                #{menuUrl},
+            </if>
+            <if test="menuIcon !=null and menuIcon !=''">
+                #{menuIcon},
+            </if>
+            <if test="yesNo !=null and yesNo !=''">
+                #{yesNo},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <update id="update" parameterType="com.zhou.entity.sys.SysMenu">
+        update ZLC.sys_menu
+        <trim prefix="set" suffixOverrides=",">
+
+            <if test="menuName !=null and menuName !=''">
+                MENU_NAME=#{menuName},
+            </if>
+            <if test="menuLevel !=null ">
+                MENU_LEVEL=#{menuLevel},
+            </if>
+            <if test="menuParent !=null ">
+                MENU_PARENT=#{menuParent},
+            </if>
+            <if test="menuOrder !=null and menuOrder !=''">
+                MENU_ORDER=#{menuOrder},
+            </if>
+            <if test="menuChild !=null and menuChild !=''">
+                MENU_CHILD=#{menuChild},
+            </if>
+            <if test="memo !=null and memo !=''">
+                MEMO=#{memo},
+            </if>
+            <if test="menuUrl !=null and menuUrl !=''">
+                MENU_URL=#{menuUrl},
+            </if>
+            <if test="menuIcon !=null and menuIcon !=''">
+                MENU_ICON=#{menuIcon},
+            </if>
+            <if test="yesNo !=null ">
+                YES_NO=#{yesNo},
+            </if>
+        </trim>
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                <if test="id !=null ">
+                    and ID=#{id}
+                </if>
+            </trim>
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="com.zhou.entity.sys.SysMenu">
+        delete from ZLC.sys_menu
+        <where>
+            1=1
+            <trim suffixOverrides=",">
+                <if test="id !=null and id !=''">
+                    and ID=#{id},
+                </if>
+                <if test="menuName !=null and menuName !=''">
+                    and MENU_NAME=#{menuName},
+                </if>
+                <if test="menuLevel !=null and menuLevel !=''">
+                    and MENU_LEVEL=#{menuLevel},
+                </if>
+                <if test="menuParent !=null and menuParent !=''">
+                    and MENU_PARENT=#{menuParent},
+                </if>
+                <if test="menuOrder !=null and menuOrder !=''">
+                    and MENU_ORDER=#{menuOrder},
+                </if>
+                <if test="menuChild !=null and menuChild !=''">
+                    and MENU_CHILD=#{menuChild},
+                </if>
+                <if test="memo !=null and memo !=''">
+                    and MEMO=#{memo},
+                </if>
+                <if test="menuUrl !=null and menuUrl !=''">
+                    and MENU_URL=#{menuUrl},
+                </if>
+                <if test="menuIcon !=null and menuIcon !=''">
+                    and MENU_ICON=#{menuIcon},
+                </if>
+                <if test="yesNo !=null and yesNo !=''">
+                    and YES_NO=#{yesNo},
+                </if>
+            </trim>
+
+        </where>
+    </delete>
+
+    <select id="query" parameterType="com.zhou.entity.sys.SysMenu" resultType="com.zhou.entity.sys.SysMenu">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            MENU_NAME AS menuName,
+            MENU_LEVEL AS menuLevel,
+            MENU_PARENT AS menuParent,
+            MENU_ORDER AS menuOrder,
+            MENU_CHILD AS menuChild,
+            MEMO AS memo,
+            MENU_URL AS menuUrl,
+            MENU_ICON AS menuIcon,
+            YES_NO AS yesNo,
+        </trim>
+        from ZLC.sys_menu
+        <where>
+            1=1
+            <if test="id !=null and id !=''">
+                and ID=#{id}
+            </if>
+            <if test="menuName !=null and menuName !=''">
+                and MENU_NAME=#{menuName}
+            </if>
+            <if test="menuLevel !=null and menuLevel !=''">
+                and MENU_LEVEL=#{menuLevel}
+            </if>
+            <if test="menuParent !=null and menuParent !=''">
+                and MENU_PARENT=#{menuParent}
+            </if>
+            <if test="menuOrder !=null and menuOrder !=''">
+                and MENU_ORDER=#{menuOrder}
+            </if>
+            <if test="menuChild !=null and menuChild !=''">
+                and MENU_CHILD=#{menuChild}
+            </if>
+            <if test="memo !=null and memo !=''">
+                and MEMO=#{memo}
+            </if>
+            <if test="menuUrl !=null and menuUrl !=''">
+                and MENU_URL=#{menuUrl}
+            </if>
+            <if test="menuIcon !=null and menuIcon !=''">
+                and MENU_ICON=#{menuIcon}
+            </if>
+            <if test="yesNo !=null and yesNo !=''">
+                and YES_NO=#{yesNo}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryList" parameterType="com.zhou.entity.sys.SysMenu" resultType="com.zhou.entity.sys.SysMenu">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            MENU_NAME AS menuName,
+            MENU_LEVEL AS menuLevel,
+            MENU_PARENT AS menuParent,
+            MENU_ORDER AS menuOrder,
+            MENU_CHILD AS menuChild,
+            MEMO AS memo,
+            MENU_URL AS menuUrl,
+            MENU_ICON AS menuIcon,
+            YES_NO AS yesNo,
+        </trim>
+        from ZLC.sys_menu
+        <include refid="searchCondition"></include>
+        order by id DESC
+    </select>
+
+    <select id="getAll" parameterType="com.zhou.entity.sys.SysMenu" resultType="com.zhou.entity.sys.SysMenu">
+        select
+        <trim suffixOverrides=",">
+            ID AS id,
+            MENU_NAME AS menuName,
+            MENU_LEVEL AS menuLevel,
+            MENU_PARENT AS menuParent,
+            MENU_ORDER AS menuOrder,
+            MENU_CHILD AS menuChild,
+            MEMO AS memo,
+            MENU_URL AS menuUrl,
+            MENU_ICON AS menuIcon,
+            YES_NO AS yesNo,
+        </trim>
+        from ZLC.sys_menu
+        <where>
+            1=1
+            <if test="flag==null and flag==''">
+                and MENU_PARENT not in (-1)
+            </if>
+            <if test="flag=='contain'">
+                <if test="yesNo !=null ">
+                    and YES_NO=0
+                </if>
+            </if>
+
+            <if test="flag=='exclusive'">
+                and MENU_PARENT not in (-1)
+                <if test="yesNo !=null ">
+                    and YES_NO=0
+                </if>
+            </if>
+
+        </where>
+        ORDER BY MENU_LEVEL ASC
+    </select>
+
+
+</mapper>

@@ -1,0 +1,64 @@
+
+/*主页 左侧导航 子菜单*/
+.child i{margin-left: 20px}
+/*主页 底部*/
+.footer{text-align: center;border-left:0px solid #ffffff;}
+/*主页 主体区域*/
+.layui-body{border-left:3px solid #1AA094;}
+/*主页 主体区域 选项卡*/
+.margin_0{ margin:0;}
+.layui-tab-title .layui-this{ background-color: #ffffff;color: #030303;}
+.layui-tab-title .layui-this:after{border-color: #ffffff;}
+.myTab{position: absolute;padding-right:100%;height: 41px;border-bottom:1px solid #1AA094;border-top:3px solid #1AA094;}
+/*主页 主体区域 选项卡操作*/
+.tabOption{ position:absolute; right:0; background-color:#fff ;border-left:1px solid #e2e2e2; border-bottom:1px solid #1AA094;border-top:3px solid #1AA094;}
+.tabOption .layui-nav-item{ line-height:40px;}
+.tabOption .layui-nav-item a,.tabOption .layui-nav-item a:hover{ color:#000; }
+.tabOption .layui-nav-child{ top:45px; left:-20px; width: 155px;}
+.tabOption .layui-nav-child a{ padding-left: 40px;}
+.tabOption .layui-nav-child a:hover{ color:#fff; background-color:#5FB878; }
+/*主页 主体区域 内容*/
+.tabContent{padding-top: 50px;}
+
+/*登陆页 登陆框位置、大小、背景色、透明度 */
+.loginBox{position:absolute;top:40%;left:80%;width:300px;height:350px;margin-top:-150px;margin-left:-150px;padding:20px;background-color: rgba(225, 227, 234, 0.63);
+    filter:alpha(opacity=30);/* 透明度设置 ：支持 IE 浏览器*/
+    -moz-opacity:0.30;/* 透明度设置 ：支持 FireFox 浏览器*/
+    opacity:0.90;/* 透明度设置 ：支持 Chrome,Opera,Safari 等浏览器*/
+}
+/*登陆页 输入框效果 */
+.input-item{position:relative;}
+.input-item.layui-input-focus label,.input-item label,.input-item.layui-input-focus input,.input-item input{transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;}
+.input-item label{position:absolute;color:#757575;left:10px;top:9px;line-height:20px;background:#fff;padding:0 5px;font-size:14px;cursor:text;}
+.input-item .layui-input::-webkit-input-placeholder{color:#fff;}
+.input-item .layui-input::-moz-placeholder{color:#fff;}
+.input-item .layui-input:-ms-input-placeholder{color:#fff;}
+.input-item .layui-input::placeholder{color:#fff;}
+.input-item.layui-input-focus label{top:-10px;font-size:12px;color:#ff6700;}
+.input-item.layui-input-focus input{border-color:#ff6700 !important;}
+.input-item.layui-input-focus .layui-input::-webkit-input-placeholder{color:#757575;}
+.input-item.layui-input-focus .layui-input::-moz-placeholder{color:#757575;}
+.input-item.layui-input-focus .layui-input:-ms-input-placeholder{color:#757575;}
+.input-item.layui-input-focus .layui-input::placeholder{color:#757575;}
+.input-item.layui-input-focus .layui-input::-webkit-input-placeholder{transition:color 0.2s linear 0.2s;-webkit-transition:color 0.2s linear 0.2s;}
+.input-item.layui-input-focus .layui-input::-moz-placeholder{transition:color 0.2s linear 0.2s;}
+.input-item.layui-input-focus .layui-input:-ms-input-placeholder{transition:color 0.2s linear 0.2s;}
+.input-item.layui-input-focus .layui-input::placeholder{transition:color 0.2s linear 0.2s;-webkit-transition:color 0.2s linear 0.2s;}
+.input-item.layui-input-active label{top:-10px;font-size:12px;}
+
+/*锁屏页*/
+.lockPageBox{width:500px;height:300px;background-color:#D8BFD8;}
+.lockPageDiv{width: 100%;height: 100%;}
+.lockPageDiv_1{width: 200px; height: 100px; padding-top: 20px; padding-bottom: 20px;text-align: center;margin-left: 150px;}
+.lockPageDiv_1 p{padding-top: 10px;}
+.lockPageDiv_1 img{width: 100px;height: 100px;margin-right: 10px;border-radius: 50%}
+.lockPageDiv_2{margin-left: 120px;margin-top: 20px}
+.lockPageDiv_2 input{width: 200px;float: left}
+
+/*主页 查询条件框*/
+.searchConditionBox{width:500px;height:600px;background-color:#D8BFD8;}
+.searchConditionBox .layui-form-label{width: auto;padding-left: 6px;padding-right: 6px;}
+.searchConditionBox .layui-input-block{margin-left: 80px;}
+
+/*查询条件框*/
+.searchConditionBox1{width:200px;height:300px;background-color: #d1d1d1;padding:20px;}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+<body>
+
+<div id="head" style="height: 1px;width: 100%;">
+</div>
+<div id="left" style="width: 200px;margin-right: 1px;">
+    <ul>
+        <li><a href="javascript:open('/sysMenu/toSysMenuPage')">菜单</a></li>
+        <li><a href="javascript:open('/user/toUserList')">用户列表</a></li>
+    </ul>
+</div>
+<div id="content" style="width: auto;height: 100%;margin-left: 200px;margin-top: 10px;">
+</div>
+
+<script>
+    $(function () {
+//        $('#content').load('/index');
+        var h = $(window).height()*0.92;
+        $('#content').css({"height":h});
+    });
+    function open(url) {
+        var tmp = '<iframe frameborder="0" src="' + url + '" style="width: 100%;height: 100%"></iframe>';
+        $('#content').html(tmp);
+    }
+</script>
+</body>
+</html>

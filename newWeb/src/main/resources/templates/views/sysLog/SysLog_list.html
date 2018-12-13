@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+
+<body>
+<div id="wrapperZlc">
+    <div id="page-innerZlc">
+        <div style="">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label for="idfor" class="layui-form-label">编号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control input-sm" id="idfor" name="id" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="userIdfor" class="layui-form-label">用户ID</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control input-sm" id="userIdfor" name="userId" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="userNamefor" class="layui-form-label">用户名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control input-sm" id="userNamefor" name="userName"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="userIpfor" class="layui-form-label">用户IP地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control input-sm" id="userIpfor" name="userIp" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="userMacfor" class="layui-form-label">Mac地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control input-sm" id="userMacfor" name="userMac" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="oporateCommentfor" class="layui-form-label">操作内容</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control input-sm" id="oporateCommentfor" name="oporateComment"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="oporateTimefor" class="layui-form-label">操作时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control input-sm" id="oporateTimefor" name="oporateTime"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="opotateTypefor" class="layui-form-label">操作类型</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="form-control input-sm" id="opotateTypefor" name="opotateType"
+                               placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <button type="button" class="btn btn-default" onclick="sysLogModle.SearchData();">
+                    查询
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" data-toggle="modal" onclick="sysLogAddEdit.toAdd();">新增</a>
+                <a class="btn btn-primary" data-toggle="modal" onclick="doAddSysLog()">新增2</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="SysLogtable">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjs/sys/sysLog/SysLogList.js}"></script>
+
+<script>
+    function doAddSysLog() {
+        BootstrapDialog.show({
+            title: 'Draggable Dialog',
+            message: $('<div></div>').load('/sysLog/toAddSyslogPage'),
+            draggable: false,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            buttons: [{
+                label: '保存',
+                cssClass: 'btn-primary',
+                action: function (dialogRef) {
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
+                    // dialogRef.close();
+
+                }
+            }, {
+                icon: 'glyphicon glyphicon-eye-close',
+                label: '关闭',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+        $('#SysLogtable').bootstrapTable('refresh');
+    }
+</script>
+</body>
+</html>

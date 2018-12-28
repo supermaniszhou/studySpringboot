@@ -74,10 +74,18 @@ var userModle = (function () {
                     }
                 },
                 {
+                    title: '角色管理',
+                    field: 'id',
+                    width: '10%',
+                    formatter: roleManage,
+                    align: 'center',
+                },
+                {
                     title: '操作',
                     field: 'id',
                     width: '20%',
-                    formatter: opeate
+                    formatter: opeate,
+                    align: 'center',
                 }
             ]
         });
@@ -87,6 +95,11 @@ var userModle = (function () {
         var html = '<a title="修改" href="javascript:void(0)" onclick="userModle.toEditUserPage(\'' + row.id + '\')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>';
         html += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="查看" href="javascript:void(0)" onclick="userModle.toViewUserPage(\'' + row.id + '\')"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>';
         html += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="删除" href="javascript:void(0)" onclick="userModle.doDelSysUser(\'' + row.id + '\')" ><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>';
+        return html;
+    }
+
+    function roleManage(value, row, index) {
+        var html = '<a href="javascript:void(0)" onclick="userModle.toEditUserPage(\'' + row.id + '\')" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>角色权限</a>';
         return html;
     }
 

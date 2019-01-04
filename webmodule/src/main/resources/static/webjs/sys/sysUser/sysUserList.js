@@ -99,7 +99,7 @@ var userModle = (function () {
     }
 
     function roleManage(value, row, index) {
-        var html = '<a href="javascript:void(0)" onclick="userModle.toEditUserPage(\'' + row.id + '\')" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>角色权限</a>';
+        var html = '<a href="javascript:void(0)" onclick="userModle.toConfigRole(\'' + row.id + '\')" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>角色权限</a>';
         return html;
     }
 
@@ -151,7 +151,38 @@ var userModle = (function () {
             }]
         });
     }
+    //
 
+    function toConfigRole(id) {
+        parent.BootstrapDialog.show({
+            title: '角色设置',
+            message: $('<div></div>').load('/user/toConfigRole?id=' + id),
+            draggable: true,
+            type: BootstrapDialog.TYPE_DEFAULT,
+            size: BootstrapDialog.SIZE_WIDE,
+            closable: true,//右上角的关闭按钮
+            // cssClass: '',
+            backdrop: false,
+            buttons: [{
+                label: '保存',
+                cssClass: 'btn-primary',
+                action: function (dialogRef) {
+                    dialogRef.getModalBody().find('form').find("button").trigger('click');
+                    var val = dialogRef.getModalBody().find('#flagInput').val();
+                    $("#sysUserTable").bootstrapTable('refresh');
+                    if (val == "success") {
+                        dialogRef.close();
+                    }
+                }
+            }, {
+                icon: 'glyphicon glyphicon-eye-close',
+                label: '关闭',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
     function toEditUserPage(id) {
         parent.BootstrapDialog.show({
             title: '修改',
@@ -231,6 +262,7 @@ var userModle = (function () {
         SearchData: SearchData,
         toAddUserPage: toAddUserPage,
         toEditUserPage: toEditUserPage,
+        toConfigRole: toConfigRole,
         toViewUserPage: toViewUserPage,
         doDelSysUser: doDelSysUser,
     }

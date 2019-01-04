@@ -13,6 +13,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,13 +28,6 @@ public class SysUserController extends BaseController {
     @Autowired
     private SysUserService userService;
 
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    }
 
     @RequestMapping(value = "/toUserList")
     public ModelAndView toUserList(Model model) {
@@ -113,5 +107,11 @@ public class SysUserController extends BaseController {
         return success();
     }
 
+
+    @RequestMapping(value = "/toConfigRole")
+    public ModelAndView toConfigRole(HttpServletRequest request){
+
+        return new ModelAndView(VIEW_PATH +"user/sysUser_config_role");
+    }
 
 }

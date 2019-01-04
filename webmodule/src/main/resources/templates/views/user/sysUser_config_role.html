@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/main_head::mainHeader"></head>
+
+<body>
+<div class="col-lg-6">
+    <div class="switch" data-on-label="<i class='icon-ok icon-white'></i>" data-off-label="<i class='icon-remove'></i>">
+        <input type="checkbox" checked/>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-lg-4"><h2 class="h4">State</h2>
+            <p><input id="switch-state" type="checkbox" checked="checked"></p>
+            <div class="btn-group">
+                <button type="button" data-switch-toggle="state" class="btn btn-default">Toggle</button>
+                <button type="button" data-switch-set="state" data-switch-value="true" class="btn btn-default">Set
+                    true
+                </button>
+                <button type="button" data-switch-set="state" data-switch-value="false" class="btn btn-default">Set
+                    false
+                </button>
+                <button type="button" data-switch-get="state" class="btn btn-default">Get</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

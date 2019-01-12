@@ -34,18 +34,19 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (list.contains(url)) {
             flag = true;
         } else {
-            if ("/error".equals(url)) {
-                request.getSession().invalidate();
-                response.sendRedirect("/login/loginpage");
-                return flag = false;
-            } else {
+//            if ("/error".equals(url)) {
+//                request.getSession().invalidate();
+//                response.sendRedirect("/login/loginpage");
+//                return flag = false;
+//            } else {
                 if (null != userId && !"".equals(userId)) {
                     flag = true;
                 } else {
+//                    response.sendRedirect(request.getScheme()+"://"+request.getServerName()+"/"+request.getServerPort()+"/login/loginpage");
                     response.sendRedirect("/login/loginpage");
                     flag = false;
                 }
-            }
+//            }
         }
         return flag;
     }

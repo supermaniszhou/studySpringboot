@@ -3,27 +3,54 @@
 <head th:include="/common/main_head::mainHeader"></head>
 
 <body>
-<div class="col-lg-6">
-    <div class="switch" data-on-label="<i class='icon-ok icon-white'></i>" data-off-label="<i class='icon-remove'></i>">
-        <input type="checkbox" checked/>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-lg-4"><h2 class="h4">State</h2>
-            <p><input id="switch-state" type="checkbox" checked="checked"></p>
-            <div class="btn-group">
-                <button type="button" data-switch-toggle="state" class="btn btn-default">Toggle</button>
-                <button type="button" data-switch-set="state" data-switch-value="true" class="btn btn-default">Set
-                    true
-                </button>
-                <button type="button" data-switch-set="state" data-switch-value="false" class="btn btn-default">Set
-                    false
-                </button>
-                <button type="button" data-switch-get="state" class="btn btn-default">Get</button>
-            </div>
+<style type="text/css">
+    #sysUserForm .table td {
+        border: none
+    }
+</style>
+<div style="height: auto;">
+    <form class="form-horizontal" id="sysUserForm" style="margin-left: 30px;margin-right: 30px;">
+        <!--<div class="form-group">-->
+        <div class="table-responsive">
+            <table class="table ">
+                <tbody id="roleTr" th:if="${roleList !=null}" th:each="item:${roleList}">
+                <tr>
+                    <td class="zlc-table-td" style="text-align: right;"><span th:text="${item.roleName}"></span></td>
+                    <td>
+                        <div>
+                            <input type="checkbox" name="roleId">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
+        <button onclick="doAdd()">ti</button>
+    </form>
 </div>
+
 </body>
+<script>
+    $(function () {
+        $('input[name="roleId"]').bootstrapSwitch({
+            onText: "<i class='fa fa-check fa-lg'></i>",
+            offText: "<i class='fa fa-times fa-lg'>&nbsp;</i>",
+            onColor:"success",
+            // offColor:"info",
+            size:"small",
+            onSwitchChange: function (event, state) {
+                if (state == true) {
+                    $(this).val("1");
+                } else {
+                    $(this).val("2");
+                }
+            }
+        })
+    });
+
+    function doAdd() {
+        var josn = $("#sysUserForm").serialize();
+        alert(JSON.stringify(josn));
+    }
+</script>
 </html>

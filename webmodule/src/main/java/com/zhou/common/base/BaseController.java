@@ -40,6 +40,15 @@ public class BaseController {
 
     }
 
+    public static final Map<String, Object> success(Object object) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", SUCCESS_FLAG);
+        map.put("msg", SUCCESS_MSG);
+        map.put("data", object);
+        return map;
+
+    }
+
     public static final Map<String, Object> error() {
         Map<String, Object> map = new HashMap<>();
         map.put("code", ERROR_FLAG);
@@ -47,6 +56,8 @@ public class BaseController {
         return map;
 
     }
+
+
 
     public static final Map<String, Object> responseTo(long total, Object obj) {
         Map<String, Object> map = new HashMap<>();

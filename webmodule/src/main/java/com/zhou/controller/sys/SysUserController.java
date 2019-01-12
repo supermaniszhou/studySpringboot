@@ -2,7 +2,9 @@ package com.zhou.controller.sys;
 
 import com.github.pagehelper.PageInfo;
 import com.zhou.common.base.BaseController;
+import com.zhou.entity.sys.SysRole;
 import com.zhou.entity.sys.SysUser;
+import com.zhou.service.sys.SysRoleService;
 import com.zhou.service.sys.SysUserService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ import java.util.Map;
 public class SysUserController extends BaseController {
     @Autowired
     private SysUserService userService;
+    @Autowired
+    private SysRoleService sysRoleService;
 
 
     @RequestMapping(value = "/toUserList")
@@ -107,11 +111,20 @@ public class SysUserController extends BaseController {
         return success();
     }
 
-
+    /**
+     * 跳转到为用户配置角色页面
+     */
     @RequestMapping(value = "/toConfigRole")
-    public ModelAndView toConfigRole(HttpServletRequest request){
-
-        return new ModelAndView(VIEW_PATH +"user/sysUser_config_role");
+    public ModelAndView toConfigRole(HttpServletRequest request, Model model) {
+        List<SysRole> roleList = null;
+        try {
+            SysRole role = new SysRole();
+            roleList = sysRoleService.selectPageList(role, 0, 0);
+            model.addAttribute("roleList", roleList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ModelAndView(VIEW_PATH + "user/sysUser_config_role");
     }
 
 }

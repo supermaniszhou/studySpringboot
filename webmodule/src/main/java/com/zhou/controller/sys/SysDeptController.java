@@ -67,7 +67,7 @@ public class SysDeptController extends BaseController {
         List<Map<String, Object>> parents = new ArrayList<>();
         for (SysDept dept : list) {
             Map<String, Object> map = new HashMap<>();
-            if (dept.getParentId() == 0 || dept.getParentId() == -1) {
+            if (dept.getParentId() == null) {
                 map.put("id", dept.getId());
                 map.put("text", dept.getDeptName());
                 map.put("nodes", "");
@@ -76,7 +76,7 @@ public class SysDeptController extends BaseController {
         }
         for (Map<String, Object> map : parents) {
             long parentId = (long) map.get("id");
-            map.put("nodes", getChild(parentId,list));
+            map.put("nodes", getChild(parentId, list));
         }
 
         return parents;
@@ -122,7 +122,7 @@ public class SysDeptController extends BaseController {
     public ModelAndView toEditSysDept(@RequestParam(value = "id") long id, Model model) {
         SysDept sysDept = null;
         try {
-            sysDept =  sysDeptService.selectByPrimaryKey(id);
+            sysDept = sysDeptService.selectByPrimaryKey(id);
             model.addAttribute("sysDept", sysDept);
         } catch (Exception e) {
             e.printStackTrace();

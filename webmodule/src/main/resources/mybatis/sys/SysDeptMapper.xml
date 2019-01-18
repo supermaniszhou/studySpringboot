@@ -467,7 +467,7 @@
             </if>
 
         </where>
-        order by PARENT_ID asc
+        order by ID asc
     </select>
 
     <select id="selectSysDeptbyCondition" parameterType="com.zhou.entity.sys.SysDept" resultMap="BaseResultMap">

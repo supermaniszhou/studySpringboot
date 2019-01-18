@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.zhou.common.base.BaseController;
 import com.zhou.entity.sys.SysRole;
 import com.zhou.entity.sys.SysUser;
+import com.zhou.entity.sys.SysUserRole;
 import com.zhou.service.sys.SysRoleService;
 import com.zhou.service.sys.SysUserService;
 import org.apache.commons.collections.map.HashedMap;
@@ -115,16 +116,32 @@ public class SysUserController extends BaseController {
      * 跳转到为用户配置角色页面
      */
     @RequestMapping(value = "/toConfigRole")
-    public ModelAndView toConfigRole(HttpServletRequest request, Model model) {
+    public ModelAndView toConfigRole(HttpServletRequest request,String id, Model model) {
         List<SysRole> roleList = null;
         try {
             SysRole role = new SysRole();
             roleList = sysRoleService.selectPageList(role, 0, 0);
             model.addAttribute("roleList", roleList);
+            model.addAttribute("userId", id);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return new ModelAndView(VIEW_PATH + "user/sysUser_config_role");
+    }
+
+    /**
+     *
+     * */
+    @RequestMapping(value = "/doSavaRoleToUser")
+    public Map<String,Object> doSavaRoleToUser(SysUserRole sysUserRole){
+        try {
+            System.out.println(sysUserRole);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return error();
+        }
+        return success();
     }
 
 }

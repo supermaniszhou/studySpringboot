@@ -27,7 +27,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 
     @Override
     public int insertSelective(SysDept sysDept) {
-        if (sysDept.getId() == 0) {
+        if (sysDept.getId() == 0 || sysDept.getId()==null) {
             sysDept.setParentId(null);
         }
         return mapper.insertSelective(sysDept);
@@ -40,7 +40,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 
     @Override
     public int updateByPrimaryKeySelective(SysDept sysDept) {
-        if (sysDept.getId() == 0) {
+        if (sysDept.getId() == 0 || sysDept.getId()==null) {
             sysDept.setParentId(null);
         }
         return mapper.updateByPrimaryKeySelective(sysDept);

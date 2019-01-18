@@ -120,11 +120,25 @@ public class SysUserController extends BaseController {
      * 跳转到为用户配置角色页面
      */
     @RequestMapping(value = "/toConfigRole")
-    public ModelAndView toConfigRole(HttpServletRequest request, String id, Model model) {
+    public ModelAndView toConfigRole(HttpServletRequest request, long id, Model model) {
         List<SysRole> roleList = null;
         try {
             SysRole role = new SysRole();
             roleList = sysRoleService.selectPageList(role, 0, 0);
+
+            SysUserRole sysUserRole = new SysUserRole();
+            sysUserRole.setUserId(id);
+            List<SysUserRole> userRoleList = userRoleService.selectPageList(sysUserRole,0,0);
+
+            for (SysRole sysRole: roleList
+                 ) {
+                for (SysUserRole ur:userRoleList
+                     ) {
+                    if(sysRole.getId()== ur.getRoleId()){
+                        sysRole.setStatus("true");
+                    }
+                }
+            }
             model.addAttribute("roleList", roleList);
             model.addAttribute("userId", id);
 

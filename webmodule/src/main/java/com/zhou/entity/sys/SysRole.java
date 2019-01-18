@@ -11,7 +11,7 @@ import java.util.*;
 @Setter
 @Getter
 public class SysRole extends BaseEntity implements Serializable {
-    private Integer id;//
+    private Long id;//
 
     private String roleName;//角色名称
 
@@ -31,6 +31,7 @@ public class SysRole extends BaseEntity implements Serializable {
 
     private Integer isEnable;//是否启用：0启用，1：不启用
 
+    private String status;
 
 
 }

@@ -18,7 +18,10 @@
                 <tr>
                     <td class="zlc-table-td" style="text-align: right;"><span th:text="${item.roleName}"></span></td>
                     <td>
-                        <div>
+                        <div th:if="${item.status == 'true'}">
+                            <input type="checkbox" name="ids" th:value="${item.id}" checked="checked">
+                        </div>
+                        <div th:unless="${item.status == 'true'}">
                             <input type="checkbox" name="ids" th:value="${item.id}">
                         </div>
                     </td>
@@ -28,7 +31,6 @@
         </div>
         <input type="hidden" id="flagInput">
         <button type="button" onclick="doAdd()" hidden="hidden"></button>
-        <!--<button type="button" onclick="dotestAdd()">beetl</button>-->
     </form>
 </div>
 

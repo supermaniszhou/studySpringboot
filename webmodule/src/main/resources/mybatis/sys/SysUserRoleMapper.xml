@@ -27,10 +27,10 @@
     <delete id="deleteByPrimaryKey" parameterType="com.zhou.entity.sys.SysUserRole">
         delete from SYS_USER_ROLE
         <where>
-            <if test="id !=null and id !=''">
+            <if test="id !=null ">
                 AND ID = #{id}
             </if>
-            <if test="userId !=null and userId !=''">
+            <if test="userId !=null ">
                 AND USER_ID = #{userId}
             </if>
         </where>

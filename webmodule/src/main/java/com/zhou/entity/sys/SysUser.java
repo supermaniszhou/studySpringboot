@@ -1,8 +1,14 @@
 package com.zhou.entity.sys;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class SysUser {
+public class SysUser implements Serializable{
+    private String roleNames;
+
     private Long id;
 
     private String realname;
@@ -50,6 +56,14 @@ public class SysUser {
     private String picPath;
 
     private String userBirthday;
+
+    public String getRoleNames() {
+        return roleNames;
+    }
+
+    public void setRoleNames(String roleNames) {
+        this.roleNames = roleNames;
+    }
 
     public Long getId() {
         return id;

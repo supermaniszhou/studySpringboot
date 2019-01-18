@@ -74,6 +74,12 @@ var userModle = (function () {
                     }
                 },
                 {
+                    field: 'roleNames',
+                    title: '角色',
+                    width: 'auto'
+                },
+
+                {
                     title: '角色管理',
                     field: 'id',
                     width: '10%',

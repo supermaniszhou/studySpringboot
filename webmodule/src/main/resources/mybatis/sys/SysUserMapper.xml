@@ -24,6 +24,7 @@
         <result column="USER_HEIGHT" jdbcType="DECIMAL" property="userHeight"/>
         <result column="PIC_PATH" jdbcType="VARCHAR" property="picPath"/>
         <result column="USER_BIRTHDAY" jdbcType="VARCHAR" property="userBirthday"/>
+        <result column="roleNames" property="roleNames"/>
     </resultMap>
     <sql id="Base_Column_List">
     ID, USERNAME, PASSWORD, EMAIL, ADDRESS, PHONE, AGE, SEX, QQ, WEIXIN, USERIDENTY, 
@@ -307,49 +308,52 @@
     </select>
 
     <select id="selectPageList" parameterType="com.zhou.entity.sys.SysUser" resultMap="BaseResultMap">
-        SELECT <include refid="Base_Column_List"></include>  FROM SYS_USER
+        select su.ID, su.USERNAME, su.PASSWORD, su.EMAIL, su.ADDRESS, su.PHONE, su.AGE, su.SEX, su.QQ, su.WEIXIN, su.USERIDENTY,
+        su.ISDEL, su.ISDISABLE, su.CREATETIME, su.UPDATETIME, su.LOGINSTATUS, su.MENO, su.REALNAME, su.USER_ORG,
+        su.USER_HEIGHT, su.PIC_PATH, su.USER_BIRTHDAY,
+        (select wm_concat(r.role_name) from sys_user_role ur, sys_role r where ur.role_id=r.id and ur.user_id=su.id) roleNames from sys_user su
         <where>
             <if test="username != null and username!=''">
-                and USERNAME = #{username,jdbcType=VARCHAR}
+                and su.USERNAME = #{username,jdbcType=VARCHAR}
             </if>
 
             <if test="address != null and address!=''">
-                and ADDRESS = #{address,jdbcType=VARCHAR}
+                and su.ADDRESS = #{address,jdbcType=VARCHAR}
             </if>
             <if test="phone != null and phone!=''">
-                and PHONE = #{phone,jdbcType=VARCHAR}
+                and su.PHONE = #{phone,jdbcType=VARCHAR}
             </if>
 
             <if test="sex != null and sex!=''">
-                and SEX = #{sex,jdbcType=DECIMAL}
+                and su.SEX = #{sex,jdbcType=DECIMAL}
             </if>
 
             <if test="useridenty != null and  useridenty!=''">
-                and USERIDENTY = #{useridenty,jdbcType=VARCHAR}
+                and su.USERIDENTY = #{useridenty,jdbcType=VARCHAR}
             </if>
             <if test="isdel != null and isdel!=''">
-                and ISDEL = #{isdel,jdbcType=VARCHAR}
+                and su.ISDEL = #{isdel,jdbcType=VARCHAR}
             </if>
             <if test="isdisable != null and isdisable!=''">
-                and ISDISABLE = #{isdisable,jdbcType=VARCHAR}
+                and su.ISDISABLE = #{isdisable,jdbcType=VARCHAR}
             </if>
             <if test="createtime != null and createtime!=''">
-                and CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+                and su.CREATETIME = #{createtime,jdbcType=TIMESTAMP}
             </if>
 
             <if test="loginstatus != null and loginstatus!=''">
-                and LOGINSTATUS = #{loginstatus,jdbcType=DECIMAL}
+                and su.LOGINSTATUS = #{loginstatus,jdbcType=DECIMAL}
             </if>
 
             <if test="realname != null and realname!=''">
-                and REALNAME = #{realname,jdbcType=VARCHAR}
+                and su.REALNAME = #{realname,jdbcType=VARCHAR}
             </if>
             <if test="userOrg != null and userOrg!=''">
-                and USER_ORG = #{userOrg,jdbcType=VARCHAR}
+                and su.USER_ORG = #{userOrg,jdbcType=VARCHAR}
             </if>
 
             <if test="picPath != null and picPath!=''">
-                and PIC_PATH = #{picPath,jdbcType=VARCHAR}
+                and su.PIC_PATH = #{picPath,jdbcType=VARCHAR}
             </if>
 
         </where>

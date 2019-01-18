@@ -24,11 +24,18 @@
         ID = #{id}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="com.zhou.entity.sys.SysUserRole">
         delete from SYS_USER_ROLE
-        where
-                          ID = #{id}
-                                                </delete>
+        <where>
+            <if test="id !=null and id !=''">
+                AND ID = #{id}
+            </if>
+            <if test="userId !=null and userId !=''">
+                AND USER_ID = #{userId}
+            </if>
+        </where>
+
+    </delete>
 
     <insert id="insert" parameterType="com.zhou.entity.sys.SysUserRole">
         insert into SYS_USER_ROLE (
@@ -45,6 +52,13 @@
                           ,
                     #{roleId
                             )
+    </insert>
+
+    <insert id="insertBatch" parameterType="com.zhou.entity.sys.SysUserRole">
+        INSERT INTO SYS_USER_ROLE(USER_ID,ROLE_ID)
+        <foreach collection="list" index="index" item="item" separator="union all">
+            SELECT #{item.userId} , #{item.roleId} from dual
+        </foreach>
     </insert>
 
     <insert id="insertSelective" parameterType="com.zhou.entity.sys.SysUserRole">

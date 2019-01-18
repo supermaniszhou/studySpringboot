@@ -9,9 +9,11 @@ import java.util.List;
 
 @Repository
 public interface SysUserRoleMapper {
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(SysUserRole id);
 
     int insert(SysUserRole record);
+
+    void insertBatch(List<SysUserRole> list);
 
     int insertSelective(SysUserRole record);
 

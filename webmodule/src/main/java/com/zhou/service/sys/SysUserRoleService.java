@@ -2,10 +2,14 @@ package com.zhou.service.sys;
 import com.github.pagehelper.Page;
 import com.zhou.entity.sys.SysUserRole;
 
+import java.util.List;
+
 
 public interface SysUserRoleService {
 
-    int deleteByPrimaryKey(Long id);
+    void insertBatch(SysUserRole sysUserRole) throws Exception;
+
+    int deleteByPrimaryKey(SysUserRole id);
 
     int insert(SysUserRole sysUserRole);
 

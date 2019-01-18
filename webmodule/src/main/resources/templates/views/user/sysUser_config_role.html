@@ -19,15 +19,16 @@
                     <td class="zlc-table-td" style="text-align: right;"><span th:text="${item.roleName}"></span></td>
                     <td>
                         <div>
-                            <input type="checkbox" name="roleId" th:value="${item.id}">
+                            <input type="checkbox" name="ids" th:value="${item.id}">
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+        <input type="hidden" id="flagInput">
         <button type="button" onclick="doAdd()" hidden="hidden"></button>
-        <button type="button" onclick="dotestAdd()">beetl</button>
+        <!--<button type="button" onclick="dotestAdd()">beetl</button>-->
     </form>
 </div>
 
@@ -49,6 +50,7 @@
         //     }
         // })
     });
+
     function doAdd() {
         $.post("/user/doSavaRoleToUser", $("#userRoleForm").serialize(), function (data) {
             if (data.code == 0) {
@@ -61,18 +63,6 @@
 
         });
     }
-    function dotestAdd() {
-        alert(1);
-        $.post("/sysLogInfo/doAddSysLoginfo",{}, function (data) {
-            if (data.code == 0) {
-                ToastrMessage.successMessage(data.msg, "1000", "toast-top-center");
-                $("#flagInput").val("success");
-            } else {
-                ToastrMessage.errorMessage(data.msg, "2000", "toast-top-center");
-                $("#flagInput").val("error");
-            }
 
-        });
-    }
 </script>
 </html>

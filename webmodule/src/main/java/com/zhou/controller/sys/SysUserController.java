@@ -6,6 +6,7 @@ import com.zhou.entity.sys.SysRole;
 import com.zhou.entity.sys.SysUser;
 import com.zhou.entity.sys.SysUserRole;
 import com.zhou.service.sys.SysRoleService;
+import com.zhou.service.sys.SysUserRoleService;
 import com.zhou.service.sys.SysUserService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class SysUserController extends BaseController {
     private SysUserService userService;
     @Autowired
     private SysRoleService sysRoleService;
+
+    @Autowired
+    private SysUserRoleService userRoleService;
 
 
     @RequestMapping(value = "/toUserList")
@@ -116,7 +120,7 @@ public class SysUserController extends BaseController {
      * 跳转到为用户配置角色页面
      */
     @RequestMapping(value = "/toConfigRole")
-    public ModelAndView toConfigRole(HttpServletRequest request,String id, Model model) {
+    public ModelAndView toConfigRole(HttpServletRequest request, String id, Model model) {
         List<SysRole> roleList = null;
         try {
             SysRole role = new SysRole();
@@ -131,12 +135,12 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     *
-     * */
+     * 给用户赋 角色
+     */
     @RequestMapping(value = "/doSavaRoleToUser")
-    public Map<String,Object> doSavaRoleToUser(SysUserRole sysUserRole){
+    public Map<String, Object> doSavaRoleToUser(SysUserRole sysUserRole) {
         try {
-            System.out.println(sysUserRole);
+            userRoleService.insertBatch(sysUserRole);
         } catch (Exception e) {
             e.printStackTrace();
             return error();

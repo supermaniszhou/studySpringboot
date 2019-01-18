@@ -37,12 +37,12 @@ public class SysUserRoleController extends BaseController {
     @RequestMapping("/getSysUserRoleData")
     public Map<String, Object> getSysUserRoleData(SysUserRole sysUserRole) {
 
-        List<SysUserRole> list=null;
-        PageInfo<SysUserRole> pageInfo=null;
+        List<SysUserRole> list = null;
+        PageInfo<SysUserRole> pageInfo = null;
         try {
             list = sysUserRoleService.selectPageList(sysUserRole, sysUserRole.getPageIndex(), sysUserRole.getPageSize());
             pageInfo = new PageInfo<>(list);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return responseTo(pageInfo.getTotal(), list);
@@ -90,7 +90,9 @@ public class SysUserRoleController extends BaseController {
     @RequestMapping(value = "/doDelSysUserRole")
     public Map<String, Object> doDelSysUserRole(@RequestParam(value = "id", required = true) long id) {
         try {
-            sysUserRoleService.deleteByPrimaryKey(id);
+            SysUserRole userRole = new SysUserRole();
+            userRole.setId(id);
+            sysUserRoleService.deleteByPrimaryKey(userRole);
         } catch (Exception e) {
             e.printStackTrace();
             return error();

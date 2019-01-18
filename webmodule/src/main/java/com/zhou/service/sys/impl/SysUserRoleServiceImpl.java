@@ -7,7 +7,9 @@ import com.zhou.mapper.sys.SysUserRoleMapper;
 import com.zhou.service.sys.SysUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,7 +18,23 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
     private SysUserRoleMapper mapper;
 
     @Override
-    public int deleteByPrimaryKey(Long id) {
+    @Transactional
+    public void insertBatch(SysUserRole sysUserRole) throws Exception {
+        List<SysUserRole> list = new ArrayList<>();
+        Long[] ids = sysUserRole.getIds();
+        deleteByPrimaryKey(sysUserRole);
+        SysUserRole userRole = null;
+        for (int i = 0; i < ids.length; i++) {
+            userRole = new SysUserRole();
+            userRole.setUserId(sysUserRole.getUserId());
+            userRole.setRoleId(ids[i]);
+            list.add(userRole);
+        }
+        mapper.insertBatch(list);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(SysUserRole id) {
         return mapper.deleteByPrimaryKey(id);
     }
 

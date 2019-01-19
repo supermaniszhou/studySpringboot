@@ -6,9 +6,6 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.beetl.sql.core.annotatoin.AutoID;
-import org.beetl.sql.core.annotatoin.InsertIgnore;
-import org.beetl.sql.core.annotatoin.Table;
 
 
 /*
@@ -17,11 +14,9 @@ import org.beetl.sql.core.annotatoin.Table;
  */
 @Setter
 @Getter
-@Table(name = "ZLC.SYS_LOG_INFO")
 public class SysLogInfo {
     private String clientIp;
     private String httpStatusCode;
-    @InsertIgnore
     private Long id;
     private String method;
     private String paramData;

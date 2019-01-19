@@ -74,7 +74,9 @@
                     <td class="zlc-table-td">所属机构</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="userOrg" class="form-control" id="userOrg" placeholder="">
+                            <!--<input type="text" name="userOrg" class="form-control" id="userOrg" placeholder="">-->
+                            <select id="userOrg" style="width: 100%" name="userOrg" class="form-control">
+                            </select>
                         </div>
                     </td>
                     <td>
@@ -237,6 +239,12 @@
         var h = ($(window).height() - 250);
         $(".form-horizontal").css({"height": h + "px"});
 
+        $("#userOrg").select2();
+
+        $.post("/sysDept/getAllDeptList", {}, function (data) {
+            $("#userOrg").select2ToTree({treeData: {dataArr: data}, maximumSelectionLength: 5});
+
+        });
     });
 </script>
 </html>

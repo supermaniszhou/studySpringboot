@@ -6,10 +6,17 @@ import com.zhou.entity.sys.SysDept;
 import com.zhou.mapper.sys.SysDeptMapper;
 import com.zhou.service.sys.SysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 用在方法上的
+ */
 @Service
 public class SysDeptServiceImpl implements SysDeptService {
     @Autowired
@@ -27,7 +34,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 
     @Override
     public int insertSelective(SysDept sysDept) {
-        if (sysDept.getId() == 0 || sysDept.getId()==null) {
+        if (null == sysDept.getParentId() || 0==sysDept.getParentId()) {
             sysDept.setParentId(null);
         }
         return mapper.insertSelective(sysDept);
@@ -40,7 +47,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 
     @Override
     public int updateByPrimaryKeySelective(SysDept sysDept) {
-        if (sysDept.getId() == 0 || sysDept.getId()==null) {
+        if (null == sysDept.getParentId() || 0==sysDept.getParentId() ) {
             sysDept.setParentId(null);
         }
         return mapper.updateByPrimaryKeySelective(sysDept);

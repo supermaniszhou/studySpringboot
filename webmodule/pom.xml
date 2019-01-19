@@ -20,6 +20,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.zhou</groupId>
             <artifactId>commonutil</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -28,10 +34,7 @@
                     <artifactId>mysql-connector-java</artifactId>
                     <groupId>mysql</groupId>
                 </exclusion>
-                <exclusion>
-                    <artifactId>ehcache</artifactId>
-                    <groupId>org.ehcache</groupId>
-                </exclusion>
+
                 <exclusion>
                     <artifactId>spring-boot-starter-data-redis</artifactId>
                     <groupId>org.springframework.boot</groupId>

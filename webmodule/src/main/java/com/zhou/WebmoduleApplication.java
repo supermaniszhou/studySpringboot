@@ -6,10 +6,13 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
 @EnableAutoConfiguration
 @SpringBootApplication
+// 启用缓存注解
+//@EnableCaching
 //用于mybatis 扫描mapper 接口
 @MapperScan(basePackages = {"com.zhou.mapper.*"})
 public class WebmoduleApplication {

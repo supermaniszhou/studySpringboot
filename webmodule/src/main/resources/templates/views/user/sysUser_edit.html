@@ -17,8 +17,9 @@
                     <td class="zlc-table-td">真实姓名</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="realname" class="form-control" th:value="${sysUser.realname}" id="realname" placeholder="">
-                            <input type="hidden" name="id" class="form-control" th:value="${sysUser.id}" >
+                            <input type="text" name="realname" class="form-control" th:value="${sysUser.realname}"
+                                   id="realname" placeholder="">
+                            <input type="hidden" name="id" class="form-control" th:value="${sysUser.id}">
                         </div>
                     </td>
                     <td>
@@ -28,7 +29,8 @@
                     <td class="zlc-table-td">身份证号</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="useridenty" class="form-control" id="useridenty" th:value="${sysUser.useridenty}"
+                            <input type="text" name="useridenty" class="form-control" id="useridenty"
+                                   th:value="${sysUser.useridenty}"
                                    placeholder="">
                         </div>
                     </td>
@@ -41,7 +43,8 @@
                     <td class="zlc-table-td">账户名</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="username" class="form-control" id="username" th:value="${sysUser.username}"
+                            <input type="text" name="username" class="form-control" id="username"
+                                   th:value="${sysUser.username}"
                                    placeholder="6-20个字符，字母和数字">
                         </div>
                     </td>
@@ -52,7 +55,8 @@
                     <td class="zlc-table-td">密码</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="password" name="password" th:value="${sysUser.password}" class="form-control" id="password" placeholder="">
+                            <input type="password" name="password" th:value="${sysUser.password}" class="form-control"
+                                   id="password" placeholder="">
                         </div>
                     </td>
                     <td>
@@ -63,7 +67,8 @@
                     <td class="zlc-table-td">身高</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="userHeight" class="form-control" id="userHeight" th:value="${sysUser.userHeight}"
+                            <input type="text" name="userHeight" class="form-control" id="userHeight"
+                                   th:value="${sysUser.userHeight}"
                                    placeholder="">
                         </div>
                     </td>
@@ -75,7 +80,8 @@
                     <td class="zlc-table-td">所属机构</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="userOrg" class="form-control" id="userOrg" th:value="${sysUser.userOrg}" placeholder="">
+                            <select id="userOrg" style="width: 100%" name="userOrg" class="form-control">
+                            </select>
                         </div>
                     </td>
                     <td>
@@ -87,7 +93,8 @@
                     <td class="zlc-table-td">地址</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="address" class="form-control" th:value="${sysUser.address}"  id="address" placeholder="">
+                            <input type="text" name="address" class="form-control" th:value="${sysUser.address}"
+                                   id="address" placeholder="">
                         </div>
                     </td>
                     <td>
@@ -97,7 +104,8 @@
                     <td class="zlc-table-td">联系方式</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="phone" class="form-control" th:value="${sysUser.phone}"  id="phone" placeholder="">
+                            <input type="text" name="phone" class="form-control" th:value="${sysUser.phone}" id="phone"
+                                   placeholder="">
                         </div>
                     </td>
                     <td>
@@ -109,7 +117,8 @@
                     <td class="zlc-table-td">年龄</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="age" class="form-control" th:value="${sysUser.age}"  id="age" placeholder="">
+                            <input type="text" name="age" class="form-control" th:value="${sysUser.age}" id="age"
+                                   placeholder="">
                         </div>
                     </td>
                     <td>
@@ -124,7 +133,7 @@
                             </label>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <label><input type="radio" name="sex" placeholder="" value="2">
-                                <strong  style="cursor: pointer;margin-left: 5px;">女</strong>
+                                <strong style="cursor: pointer;margin-left: 5px;">女</strong>
                             </label>
                         </div>
                     </td>
@@ -137,7 +146,8 @@
                     <td class="zlc-table-td">QQ号</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="qq" th:value="${sysUser.qq}"  class="form-control" id="qq" placeholder="">
+                            <input type="text" name="qq" th:value="${sysUser.qq}" class="form-control" id="qq"
+                                   placeholder="">
                         </div>
                     </td>
                     <td>
@@ -147,7 +157,8 @@
                     <td class="zlc-table-td">微信号</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="weixin"  th:value="${sysUser.weixin}"  class="form-control" id="weixin" placeholder="">
+                            <input type="text" name="weixin" th:value="${sysUser.weixin}" class="form-control"
+                                   id="weixin" placeholder="">
                         </div>
                     </td>
                     <td>
@@ -161,7 +172,8 @@
                     <td class="zlc-table-td">邮箱</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="email" class="form-control"  th:value="${sysUser.email}"  id="email" placeholder="">
+                            <input type="text" name="email" class="form-control" th:value="${sysUser.email}" id="email"
+                                   placeholder="">
                         </div>
                     </td>
                     <td>
@@ -191,7 +203,8 @@
                     <td class="zlc-table-td">出生日期</td>
                     <td>
                         <div class="form-group zlc-form-group-margin">
-                            <input type="text" name="userBirthday" class="form-control" id="userBirthday"  th:value="${sysUser.userBirthday}"
+                            <input type="text" name="userBirthday" class="form-control" id="userBirthday"
+                                   th:value="${sysUser.userBirthday}"
                                    onClick="WdatePicker()" placeholder="">
                         </div>
                     </td>
@@ -203,7 +216,8 @@
                     <td class="zlc-table-td">描述</td>
                     <td colspan="4">
                         <div class="form-group zlc-form-group-margin">
-                            <textarea type="text" name="meno"  th:text="${sysUser.meno}" class="form-control" id="meno" rows="3"
+                            <textarea type="text" name="meno" th:text="${sysUser.meno}" class="form-control" id="meno"
+                                      rows="3"
                                       placeholder=""></textarea>
                         </div>
                     </td>
@@ -235,17 +249,25 @@
 
 </body>
 <script th:src="@{/webjs/sys/sysUser/sysUserAdd_Edit.js}"></script>
-<script  th:inline="javascript">
+<script th:inline="javascript">
     $(function () {
         //必须要添加的   否则select2 搜索框无法输入
         $(".bootstrap-dialog").removeAttr("tabindex");
+
+        $.post("/sysDept/getAllDeptList", {}, function (data) {
+            $("#userOrg").select2ToTree({treeData: {dataArr: data}, maximumSelectionLength: 5})
+                .val([[${sysUser.userOrg}]]).trigger("change");
+
+        });
+
         var h = ($(window).height() - 250);
         $(".form-horizontal").css({"height": h + "px"});
 
-        var sex=[[${sysUser.sex}]];
-        var isdisable=[[${sysUser.isdisable}]];
-        $(":radio[name='sex'][value='"+sex+"']").prop("checked",true);
-        $(":radio[name='isdisable'][value='"+isdisable+"']").prop("checked",true);
+
+        var sex = [[${sysUser.sex}]];
+        var isdisable = [[${sysUser.isdisable}]];
+        $(":radio[name='sex'][value='" + sex + "']").prop("checked", true);
+        $(":radio[name='isdisable'][value='" + isdisable + "']").prop("checked", true);
     });
 </script>
 </html>

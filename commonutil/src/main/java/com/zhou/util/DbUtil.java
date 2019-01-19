@@ -12,12 +12,12 @@ public class DbUtil {
     private final static Logger LOGGER = LoggerFactory.getLogger(DbUtil.class);
 
 
-    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@127.0.0.1:1521:orcl";
-    private static final String USERNAME = "zlc";
-    private static final String PASSWORD = "zlc";
+    public static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+    public static final String URL = "jdbc:oracle:thin:@127.0.0.1:1521:orcl";
+    public static final String USERNAME = "zlc";
+    public static final String PASSWORD = "zlc";
 
-    private static final String SQL = "SELECT * FROM ";// 数据库操作
+    public static final String SQL = "SELECT * FROM ";// 数据库操作
 
     static {
         try {

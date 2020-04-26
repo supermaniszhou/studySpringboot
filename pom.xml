@@ -38,7 +38,7 @@
         <zyide.version>1.0.0-SNAPSHOT</zyide.version>
         <pagehelper.version>1.2.3</pagehelper.version>
         <oracle.version>14.0</oracle.version>
-        <commons-fileupload.version>1.3.2</commons-fileupload.version>
+        <commons-fileupload.version>1.3.3</commons-fileupload.version>
         <poi.version>3.14</poi.version>
         <activiti.version>5.22.0</activiti.version>
     </properties>
